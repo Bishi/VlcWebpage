@@ -1,0 +1,14 @@
+South>=0.7.5
+Markdown>=2.1
+postmarkup>=1.2.0
+
+# TODO: remove dependencies
+django-annoying>=0.7.6
+django-pure-pagination>=0.2.1
+sorl-thumbnail>=11.12
+pytils>=0.2.3
+
+# Theme, templates and authentication
+django-simple-captcha
+django-bootstrap-form
+https://github.com/pinax/django-user-accounts.git

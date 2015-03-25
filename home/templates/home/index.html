@@ -1,0 +1,60 @@
+{% extends 'home/base_page.html' %}
+
+{% block title %}
+    <title>Vin la Cvicek</title>
+{% endblock %}
+
+{% block navigation %}
+    {% if not username %}
+    <div class="navigation">
+        <li class="in_menu">Welcome, Guest</li>
+        <li><a href="/account/signup">Register</a></li>
+        <li><a href="/account/login">Login</a></li>
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a href="/forum">Forum</a></li>
+    </div>
+    {% else %}
+    <div class="navigation">
+        <li class="in_menu">Welcome, {{ username }}</li>
+        <li><a href="/account/logout">Logout</a></li>
+        <li><a href="/account/settings">Settings</a> </li>
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a href="/forum">Forum</a></li>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="article_wrapper">
+        {% for newsArticle in newsArticles %}
+            <div class="article">
+                <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
+
+                {% if newsArticle.thumbnail %}
+                    <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                        <img src="/media/{{newsArticle.thumbnail}}" width="766"/></a></p>
+                {% endif %}
+
+                <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
+
+                {% if newsArticle.author %}
+                    <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="sidebar">
+        <div class="recruitment_statement">
+            Recruitment:
+        </div>
+        <div class="recruitment">
+            {% for recruits in recruitment %}
+                <div class="class_entity">
+                    <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
+                    <li class="class_role">{{ recruits.class_role }}</li>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

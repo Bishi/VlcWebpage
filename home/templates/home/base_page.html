@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
+        <link rel="shortcut icon" href="http://www.vinlacvicek.com/favicon.ico?v=2" />
+        <meta charset="UTF-8">
+        {% block title %}
+
+        {%  endblock %}
+    </head>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-61040857-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <body>
+        <div class="wrapper">
+            {% block header %}
+                <div class="header"><h1><a href="/">Vin la Cvicek work in progress page</a></h1></div>
+            {% endblock %}
+            {% block navigation %}
+
+            {% endblock %}
+            <div class="content">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+            <div class="pagination">
+                {% if newsArticles.has_previous %}
+                      <span class="page"><a href="?page={{ newsArticles.previous_page_number }}">«</a></span>
+                {% endif %}
+                {% for page in newsArticles.paginator.page_range %}
+                    {% ifequal page newsArticles.number %}
+                        <span class="current">{{ page }}</span>
+                    {% else %}
+                        <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>
+                    {% endifequal %}
+                {% endfor %}
+                {% if newsArticles.has_next %}
+                    <span class="page"><a href="?page={{ newsArticles.next_page_number }}">»</a></span>
+                {% endif %}
+            </div>
+            <div class="footer">
+                {% block footer %}
+                    <div class="footer_div">Vin la Cviček, Horde Mazrigos-EU. Drinking since 2005</div>
+                    <div class="footer_div  ">Contact Frostmaster or Bishi ingame</div>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

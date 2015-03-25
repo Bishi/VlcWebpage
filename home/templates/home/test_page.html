@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .recruitment {
+            background: white;
+            border: 1px solid black;
+            width: 170px;
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            padding: 5px;
+        }
+
+        .class_entity {
+            display: flex;
+            flex-direction: row;
+            height: 20px;
+            padding: 5px;
+        }
+
+        .class_name {
+            flex-grow: 1;
+            text-align: left;
+            align-self: center;
+        }
+
+        .class_role {
+            flex-grow: 1;
+            text-align: right;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="recruitment">
+        {% for recruits in recruitment %}
+            <div class="class_entity">
+                <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
+                <li class="class_role">{{ recruits.class_role }}</li>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
