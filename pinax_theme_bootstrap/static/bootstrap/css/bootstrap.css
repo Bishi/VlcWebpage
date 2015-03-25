@@ -6902,6 +6902,7 @@ td.visible-print {
 .post-info .post-controls {
   font-size: 12px;
   text-align: center;
+  text-decoration: none;
 }
 .post-content {
   vertical-align: top;

@@ -10,7 +10,8 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{% url "account_settings" %}"><i class="icon-user"></i> {% trans "Settings" %}</a></li>
+                <li><a href="{% url "account_settings" %}"><i class="icon-user"></i> {% trans "Account settings" %}</a></li>
+                <li><a href="/forum/profile/edit/"><i class="icon-user"></i> {% trans "Forum profile settings" %}</a></li>
                 {% if request.user.is_staff %}
                     <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="icon-cog"></i> {% trans "Admin" %}</a></li>
                 {% endif %}

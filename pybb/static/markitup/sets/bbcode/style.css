@@ -48,4 +48,5 @@
 }
 .markItUp .preview a {
 	background-image:url(images/preview.png);
+    width: 56px;
 }
