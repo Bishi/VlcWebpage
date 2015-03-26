@@ -192,3 +192,6 @@ PYBB_SMILES = {
     ':)': 'smile.gif',
     '*zzz*': 'sleep.gif',
 }
+
+PYBB_MARKUP_ENGINES_PATHS ={'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}
+PYBB_MARKUP = 'bbcode'
