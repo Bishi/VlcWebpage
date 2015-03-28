@@ -26,11 +26,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-
-ADMINS = ('Jernej', 'jernej.mrvar@gmail.com')
-
-MANAGERS = ('Jernej', 'jernej.mrvar@gmail.com')
-
 ALLOWED_HOSTS = ['127.0.0.1', 'vinlacvicek.ddns.net', 'www.vinlacvicek.com', 'vinlacvicek.com']
 
 
@@ -98,12 +93,41 @@ ROOT_URLCONF = 'VLCwebsite.urls'
 
 WSGI_APPLICATION = 'VLCwebsite.wsgi.application'
 
-EMAIL_USE_TLS = True
+ADMINS = (('Jernej', 'jernej.mrvar@gmail.com'),('Admin', 'admin@vinlacvicek.com'))
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vinlacvicek@gmail.com'
-EMAIL_HOST_PASSWORD = 'fqhsqklzkzxzelth'
+MANAGERS = (('Jernej', 'jernej.mrvar@gmail.com'),('Admin', 'admin@vinlacvicek.com'))
+
+#ADMINS =(('Jernej', 'jernej.mrvar@gmail.com'),)
+#MANAGERS =(('Jernej', 'jernej.mrvar@gmail.com'),)
+
+#ADMINS = (('admin', 'admin@vinlacvicek.com'),)
+#MANAGERS = (('admin', 'admin@vinlacvicek.com'),)
+
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+
+#EMAIL_USE_SSL = True    #port 465
+
+#Google
+#EMAIL_USE_TLS = True   #port 587
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'vinlacvicek@gmail.com'
+#EMAIL_HOST_PASSWORD = 'fqhsqklzkzxzelth'
+#EMAIL_PORT = 587
+
+
+DEFAULT_FROM_EMAIL = 'Vin la Cvicek <admin@vinlacvicek.com>'
+SERVER_EMAIL = 'admin@vinlacvicek.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'admin@vinlacvicek.com'
+EMAIL_HOST_PASSWORD = '6b2gbmk8wsqz'
+
+
 
 SITE_ID = 9
 
@@ -118,10 +142,8 @@ DATABASES = {
 }
 
 ENV_PATH = os.path.abspath(os.path.dirname(__file__))
-#MEDIA_ROOT = 'C:/Users/i7-2600K/DjangoProjects/VLCwebsite/static/'
 MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
 
-#MEDIA_ROOT = 'C:/Users/i7-2600K/DjangoProjects/VLCwebsite/VLCwebsite/static/assets'
 
 #MEDIA_URL = 'assets/'
 MEDIA_URL = '/media/'
@@ -160,7 +182,7 @@ STATICFILES_FINDERS = (
 )
 
 #account
-THEME_CONTACT_EMAIL = 'vinlacvicek@gmail.com'
+THEME_CONTACT_EMAIL = 'admin@vinlacvicek.com'
 
 #forum
 PYBB_DEFAULT_AUTOSUBSCRIBE = False

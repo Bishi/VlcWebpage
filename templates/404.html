@@ -2,9 +2,16 @@
 
 {% block title %}{% endblock %}
 
+{% block navigation %}
+    <div class="navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/forum">Forum</a></li>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div class="not_found">
-        <h1 id="not_found_h">Page not found</h1>
+        <h1 id="not_found_h">404 Page not found</h1>
         <p id="not_found_p">Sorry, but the requested page could not be found.</p>
     </div>
 {% endblock %}

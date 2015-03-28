@@ -24,7 +24,7 @@ urlpatterns += patterns('pybb.views',
                         # Index, Category, Forum
                         url('^$', IndexView.as_view(), name='index'),
                         url('^category/(?P<pk>\d+)/$', CategoryView.as_view(), name='category'),
-                        url('^forum/(?P<pk>\d+)/$', ForumView.as_view(), name='forum'),
+                        url('^topics/(?P<pk>\d+)/$', ForumView.as_view(), name='forum'),
 
                         # User
                         url('^users/(?P<username>[^/]+)/$', UserView.as_view(), name='user'),
@@ -47,7 +47,7 @@ urlpatterns += patterns('pybb.views',
                         url('^topic/latest/$', LatestTopicsView.as_view(), name='topic_latest'),
 
                         # Add topic/post
-                        url('^forum/(?P<forum_id>\d+)/topic/add/$', AddPostView.as_view(), name='add_topic'),
+                        url('^topics/(?P<forum_id>\d+)/topic/add/$', AddPostView.as_view(), name='add_topic'),
                         url('^topic/(?P<topic_id>\d+)/post/add/$', AddPostView.as_view(), name='add_post'),
 
                         # Post

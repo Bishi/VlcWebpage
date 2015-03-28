@@ -17,6 +17,9 @@
         <li class="in_menu">Welcome, {{ username }}</li>
         <li><a href="/account/logout">Logout</a></li>
         <li><a href="/account/settings">Settings</a> </li>
+        {% if group == 'Officer' %}
+            <li><a href="/admin">Admin</a> </li>
+        {% endif %}
         <li><a href="/articles/all">Articles</a></li>
         <li><a href="/forum">Forum</a></li>
     </div>

@@ -37,12 +37,32 @@
     </head>
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         <div class="{% block wrapper_class %}{% endblock %}">
-            <div class="forum_header"><div class="header_text"><a href="/">Vin la Cvicek work in progress page</a></div></div>
+
             {% block topbar_base %}
-                <div class="navigation">
-                    {% block account_bar %}
-                        {% include "_account_bar2.html" %}
+                <div class="navbar navbar-default {% block navbar_class %}navbar-fixed-top{% endblock %}">
+                    <div class="container">
+                    {% block topbar %}
+                        <div class="navbar-header">
+                            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            {% block site_brand %}<a class="navbar-brand" href="{% url "home" %}">{{ SITE_NAME }}</a>{% endblock %}
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            {% block nav %}
+                                {% comment %}
+                                    <ul class="nav">
+                                        <li><a href="#tab_one">One</a></li>
+                                        <li><a href="#tab_two">Two</a></li>
+                                    </ul>
+                                {% endcomment %}
+                            {% endblock %}
+                            {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+                        </div>
                     {% endblock %}
+                    </div>
                 </div>
             {% endblock %}
 

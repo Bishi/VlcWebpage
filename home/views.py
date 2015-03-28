@@ -21,11 +21,17 @@ import home.forms
 
 #homepage
 def index_view(request):
+    #index
     user = None
     if request.user.username:
         user = request.user.username
     else:
         user = None
+
+    #group
+    group_name = 'not_officer';
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
 
     #article pagination
     article_list = NewsArticle.objects.all().order_by('-pub_date')
@@ -45,7 +51,8 @@ def index_view(request):
     return render_to_response('home/index.html',
                              {'username': user,
                               'newsArticles': articles,
-                              'recruitment': recruitment_list},)
+                              'recruitment': recruitment_list,
+                              'group':group_name},)
 
 
 def home_redirect(response):
@@ -64,7 +71,6 @@ def news_articles(request):
     group_name = 'not_officer';
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
-        #group_name = request.user.groups.
 
     #list of articles
     article_list = NewsArticle.objects.all().order_by('-pub_date')
@@ -93,9 +99,16 @@ def news_article(request, article_id=1):
     else:
         user = None
 
+    #group
+    group_name = 'not_officer';
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
+
+
     return render_to_response('home/news_article.html',
                              {'newsArticle': NewsArticle.objects.get(id=article_id),
-                              'username': user})
+                              'username': user,
+                              'group': group_name})
 
 
 def create(request):
