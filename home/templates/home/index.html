@@ -11,7 +11,7 @@
 {% block navigation %}
     {% if not username %}
     <div class="navigation">
-        <li class="in_menu">Welcome, Guest</li>
+        <li><div class="in_menu">Welcome, Guest</div></li>
         <li><a href="/account/signup">Register</a></li>
         <li><a href="/account/login">Login</a></li>
         <li><a href="/articles/all">Articles</a></li>
@@ -19,7 +19,7 @@
     </div>
     {% else %}
     <div class="navigation">
-        <li class="in_menu">Welcome, {{ username }}</li>
+        <li><div class="in_menu">Welcome, {{ username }}</div></li>
         <li><a href="/account/logout">Logout</a></li>
         <li><a href="/account/settings">Settings</a> </li>
         {% if group == 'Officer' %}

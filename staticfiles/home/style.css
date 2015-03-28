@@ -251,6 +251,38 @@ a:visited {
     /*transform: rotate(360deg);*/
 }
 
+/*
+@media (min-width: 20px) {
+    .navigation {
+
+    }
+    .navigation a{
+        font-size: 16px;
+        padding: 5px;
+    }
+    .in_menu {
+        font-size: 16px;
+        padding: 5px;
+        width: 115px;
+    }
+}
+
+@media (min-width: 580px) {
+    .navigation {
+
+    }
+    .navigation a{
+        font-size: 16px;
+        padding: 10px;
+    }
+    .in_menu {
+        font-size: 16px;
+        padding: 10px;
+        width: 115px;
+    }
+}
+*/
+
 .wrapper .navigation {
     margin-top: 40px;
     width: 1000px;
@@ -273,7 +305,6 @@ a:visited {
     display: block;
     color: black;
     text-align: center;
-    padding: 10px;
     /*border-left: 1px solid rgba(255, 255, 255, 0.3);*/
     border-left: 1px solid rgba(166, 166, 166, 0.40);
 
@@ -281,11 +312,15 @@ a:visited {
     -moz-transition: all 0.3s;
     transition: all 0.5s;
     width: 60px;
+    font-size: 16px;
+    padding: 10px;
 }
 
 .wrapper .navigation .in_menu {
     color: black;
+    font-size: 16px;
     padding: 10px;
+    width: 115px;
 }
 
 .wrapper .navigation a:hover {

@@ -273,7 +273,6 @@ a:visited {
     display: block;
     color: black;
     text-align: center;
-    padding: 10px;
     /*border-left: 1px solid rgba(255, 255, 255, 0.3);*/
     border-left: 1px solid rgba(166, 166, 166, 0.40);
 
@@ -281,11 +280,15 @@ a:visited {
     -moz-transition: all 0.3s;
     transition: all 0.5s;
     width: 60px;
+    font-size: 16px;
+    padding: 10px;
 }
 
 .wrapper .navigation .in_menu {
     color: black;
+    font-size: 16px;
     padding: 10px;
+    width: 115px;
 }
 
 .wrapper .navigation a:hover {
