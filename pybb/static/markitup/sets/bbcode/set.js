@@ -16,6 +16,7 @@ mySettings = {
 		{name:'Italic', key:'I', openWith:'[i]', closeWith:'[/i]'},
 		{name:'Underline', key:'U', openWith:'[u]', closeWith:'[/u]'},
 		{separator:'---------------' },
+        {name:'Youtube', replaceWith:'[youtube][![Url]!][/youtube]'},
 		{name:'Picture', key:'P', replaceWith:'[img][![Url]!][/img]'},
 		{name:'Link', key:'L', openWith:'[url=[![Url]!]]', closeWith:'[/url]', placeHolder:'Your text to link here...'},
 		{separator:'---------------' },
