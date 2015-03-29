@@ -16,6 +16,7 @@ from account.compat import get_user_model, get_user_lookup_kwargs
 from account.conf import settings
 from account.hooks import hookset
 from account.models import EmailAddress
+from captcha.fields import CaptchaField
 
 
 alnum_re = re.compile(r"^\w+$")
@@ -46,6 +47,8 @@ class SignupForm(forms.Form):
         required=False,
         widget=forms.HiddenInput()
     )
+
+    captcha = CaptchaField()
 
     def clean_username(self):
         if not alnum_re.search(self.cleaned_data["username"]):
