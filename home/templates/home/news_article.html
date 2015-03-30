@@ -5,23 +5,23 @@
 {% endblock %}
 
 {% block navigation %}
-    {% if not username %}
+    {% if not user.is_authenticated %}
     <div class="navigation">
         <li class="in_menu">Welcome, Guest</li>
         <li><a href="/account/signup">Register</a></li>
         <li><a href="/account/login">Login</a></li>
-        <li><a href="/forum">Forum</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% else %}
     <div class="navigation">
-        <li class="in_menu">Welcome, {{ username }}</li>
+        <li class="in_menu">Welcome, {{ user.username }}</li>
         <li><a href="/account/logout">Logout</a></li>
         <li><a href="/account/settings">Settings</a> </li>
         {% if group == 'Officer' %}
             <li><a href="/admin">Admin</a> </li>
         {% endif %}
         <li><a href="/articles/all">Articles</a></li>
-        <li><a href="/forum">Forum</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% endif %}
 {% endblock %}
@@ -33,7 +33,7 @@
 
             {% if newsArticle.thumbnail %}
                 <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                    <img src="/media/{{newsArticle.thumbnail}}" width="966"/></a></p>
+                    <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
             {% endif %}
 
             <p class="article_body">{{ newsArticle.body }}</p>

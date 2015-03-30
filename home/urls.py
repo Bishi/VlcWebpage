@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^get/(?P<article_id>\d+)/$', 'home.views.news_article'),
     url(r'^create/$', 'home.views.create'),
     #url(r'^like/(?P<article_id>\d+)/$', 'home.views.like_article'),
+    url(r'^test/$', 'home.views.test_page', name='topic_latest'),
+    #url('^test/$', home.views.LatestTopicsView.as_view(), name='topic_latest'),
 )

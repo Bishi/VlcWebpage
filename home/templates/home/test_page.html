@@ -1,47 +1,99 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <style type="text/css">
-        .recruitment {
-            background: white;
-            border: 1px solid black;
-            width: 170px;
-            display: flex;
-            list-style: none;
-            flex-direction: column;
-            padding: 5px;
-        }
+{% extends 'home/base_page.html' %}
+{% load url from future %}
+{% load pybb_tags i18n %}
 
-        .class_entity {
-            display: flex;
-            flex-direction: row;
-            height: 20px;
-            padding: 5px;
-        }
+{% block title %}
+    <title>TEST PAGE PLEASE IGNORE</title>
+{% endblock %}
 
-        .class_name {
-            flex-grow: 1;
-            text-align: left;
-            align-self: center;
-        }
+{% block content %}
 
-        .class_role {
-            flex-grow: 1;
-            text-align: right;
-            align-self: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="recruitment">
-        {% for recruits in recruitment %}
-            <div class="class_entity">
-                <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
-                <li class="class_role">{{ recruits.class_role }}</li>
-            </div>
-        {% endfor %}
+<div class="content_wrapper">
+
+
+
+        <div class="article_wrapper">
+            {% for newsArticle in newsArticles %}
+                <div class="article">
+                    <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
+
+                    {% if newsArticle.thumbnail %}
+                        <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                            <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
+                    {% endif %}
+
+                    <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
+
+                    {% if newsArticle.author %}
+                        <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</body>
-</html>
+    <div class="sidebar">
+        <div class="recruitment_statement">
+            Recruitment:
+        </div>
+        <div class="recruitment">
+            {% for recruits in recruitment %}
+                <div class="class_entity">
+                    <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
+                    <li class="class_role">{{ recruits.class_role }}</li>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="latest_forum">
+
+
+
+            <table class="table topic-list">
+                <thead>
+                    <tr class="topic-row head-row">
+                        <th class="topic-name-first">
+                            {% trans "Latest forum posts" %}
+                        </th>
+                        {% comment %}
+                        <th class="topic-post-count">
+                            {% trans "Posts" %}
+                        </th>
+                        <th class="topic-view-count">
+                            {% trans "Views" %}
+                        </th>
+                        {% endcomment %}
+
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                {% for topic in topic_list|pybb_topic_unread:user %}
+                    <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
+                        <td class="topic-name{% if topic.unread %} topic-unread{% endif %}">
+                            <div class="state-indicator"></div>
+                            <a href="{{ topic.get_absolute_url }}">{{ topic.name|truncatechars:30 }}</a>
+                            <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">⇨</a>
+                            {% comment %}
+                            {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}
+                            {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}
+                            {% endcomment %}
+                            {% with topic|pybb_topic_inline_pagination as pages %}
+
+                            {% endwith %}
+                        </td>
+
+                    </tr>
+                    <td class="topic-last-post">
+                            <a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a> - {% if topic.updated %}{{ topic.updated|date:"M d.Y H:i" }}{% endif %}
+                        </td>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+{% endblock %}

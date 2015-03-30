@@ -9,46 +9,49 @@
 {% endblock %}
 
 {% block navigation %}
-    {% if not username %}
+    {% if not user.is_authenticated %}
     <div class="navigation">
         <li><div class="in_menu">Welcome, Guest</div></li>
         <li><a href="/account/signup">Register</a></li>
         <li><a href="/account/login">Login</a></li>
         <li><a href="/articles/all">Articles</a></li>
-        <li><a href="/forum">Forum</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% else %}
     <div class="navigation">
-        <li><div class="in_menu">Welcome, {{ username }}</div></li>
+        <li><div class="in_menu">Welcome, {{ user.username }}</div></li>
         <li><a href="/account/logout">Logout</a></li>
         <li><a href="/account/settings">Settings</a> </li>
         {% if group == 'Officer' %}
             <li><a href="/admin">Admin</a> </li>
         {% endif %}
         <li><a href="/articles/all">Articles</a></li>
-        <li><a href="/forum">Forum</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="article_wrapper">
-        {% for newsArticle in newsArticles %}
-            <div class="article">
-                <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
+    <div class="content_wrapper">
+        {% comment %} insert new stuff here {% endcomment %}
+        <div class="article_wrapper">
+            {% for newsArticle in newsArticles %}
+                <div class="article">
+                    <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
 
-                {% if newsArticle.thumbnail %}
-                    <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}" width="766"/></a></p>
-                {% endif %}
+                    {% if newsArticle.thumbnail %}
+                        <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                            <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
+                    {% endif %}
 
-                <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
+                    <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
 
-                {% if newsArticle.author %}
-                    <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
+                    {% if newsArticle.author %}
+                        <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="sidebar">
         <div class="recruitment_statement">
@@ -61,6 +64,9 @@
                     <li class="class_role">{{ recruits.class_role }}</li>
                 </div>
             {% endfor %}
+        </div>
+        <div class="latest_forum">
+            {% include "home/latest_topics.html" %}
         </div>
     </div>
 {% endblock %}

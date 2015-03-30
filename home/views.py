@@ -11,9 +11,13 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseForbidden
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
+from pybb import compat, defaults
+from pybb.permissions import perms
+from pybb.models import Category, Forum, Topic
 import datetime
 import account.views
 import home.forms
+from django.views.generic.edit import ModelFormMixin
 
 #class IndexView(generic.TemplateView):
 #    template_name = 'home/index.html'
@@ -22,9 +26,8 @@ import home.forms
 #homepage
 def index_view(request):
     #index
-    user = None
-    if request.user.username:
-        user = request.user.username
+    if request.user:
+        user = request.user
     else:
         user = None
 
@@ -35,6 +38,7 @@ def index_view(request):
 
     #article pagination
     article_list = NewsArticle.objects.all().order_by('-pub_date')
+
     #article_list.
     paginator = Paginator(article_list, 3)
     page = request.GET.get('page')
@@ -48,11 +52,17 @@ def index_view(request):
     #recruitment ordering alphabetical
     recruitment_list = Recruitment.objects.all().order_by('class_name__class_name_text','class_role')
 
+    #latest forum posts
+    qs = Topic.objects.all().select_related().order_by('-updated','-id')
+    qs = perms.filter_topics(request.user, qs)
+    qs = qs[:5]
+
     return render_to_response('home/index.html',
-                             {'username': user,
+                             {'user': user,
                               'newsArticles': articles,
                               'recruitment': recruitment_list,
-                              'group':group_name},)
+                              'group': group_name,
+                              'topic_list': qs},)
 
 
 def home_redirect(response):
@@ -62,8 +72,8 @@ def home_redirect(response):
 #/home/all
 def news_articles(request):
     #user
-    if request.user.username:
-        user = request.user.username
+    if request.user:
+        user = request.user
     else:
         user = None
 
@@ -87,15 +97,15 @@ def news_articles(request):
 
     return render_to_response('home/news_articles.html',
                              {'newsArticles': articles,
-                              'username': user,
+                              'user': user,
                               'group': group_name},)
 
 
 def news_article(request, article_id=1):
     #user
     user = None
-    if request.user.username:
-        user = request.user.username
+    if request.user:
+        user = request.user
     else:
         user = None
 
@@ -107,15 +117,15 @@ def news_article(request, article_id=1):
 
     return render_to_response('home/news_article.html',
                              {'newsArticle': NewsArticle.objects.get(id=article_id),
-                              'username': user,
+                              'user': user,
                               'group': group_name})
 
 
 def create(request):
     #if user is not logged in, forbidden
     user = None
-    if request.user.username:
-        user = request.user.username
+    if request.user:
+        user = request.user
     if user is None:
         #return HttpResponseForbidden()
         raise PermissionDenied()
@@ -140,7 +150,7 @@ def create(request):
     args.update(csrf(request))
 
     args['form'] = form
-    args['username'] = user
+    args['user'] = user
 
     return render_to_response('home/create_news_article.html', args,)
 
@@ -156,8 +166,19 @@ def like_article(request, article_id):
 
 
 def test_page(request):
-    recruitment_list = Recruitment.objects.all()
+    #recruitment_list = Recruitment.objects.all()
+    user = None
+    if request.user:
+        user = request.user
+    else:
+        user = None
+
+    qs = Topic.objects.all().select_related().order_by('-updated','-id')
+    qs = perms.filter_topics(request.user, qs)
+    qs = qs[:5]
 
     return render_to_response('home/test_page.html',
-                             {'recruitment': recruitment_list})
+                             {'topic_list': qs,
+                              'user':user})
+
 
