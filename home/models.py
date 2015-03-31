@@ -1,6 +1,5 @@
 from django.db import models
 from time import time
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 
@@ -50,3 +49,23 @@ class Recruitment(models.Model):
 
     def __str__(self):
         return self.class_name.class_name_text
+
+
+class WarcraftlogsAPI(models.Model):
+    id = models.CharField(max_length=20, primary_key=True)
+    title = models.CharField(max_length=20)
+    owner = models.CharField(max_length=20)
+    start = models.IntegerField()
+    end = models.IntegerField()
+    zone = models.IntegerField()
+
+    def __str__(self):
+        #return self.title
+        return '%s %s' % (self.id, self.title)
+
+
+class WarcraftlogsURL(models.Model):
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.url

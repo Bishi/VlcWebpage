@@ -300,12 +300,26 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: Calibri, sans-serif;
+
   line-height: 1.428571429;
   color: #333333;
   background-color: #ffffff;
 }
+
+@media (min-width: 20px){
+    body{
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 581px){
+    body{
+        font-size: 17px;
+    }
+}
+
 
 input,
 button,
@@ -2118,6 +2132,7 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #428bca;
   border-color: #357ebd;
+    font-size: 16px;
 }
 
 .btn-primary:hover,
@@ -6938,26 +6953,26 @@ td.visible-print {
   text-align: center;
 }
 .post-info .post-author {
-  font-size: 16px;
+  font-size: 18px;
   padding: 5px 0;
   text-decoration: none;
   text-color: black;
   text-align: center;
 }
 .post-info .post-author a {
-  font-size: 16px;
+  font-size: 18px;
   padding: 5px 0;
   text-decoration: none;
   color: black;
   font-weight: bold;
 }
 .post-info .post-extra-info {
-  font-size: 12px;
+  font-size: 14px;
   color: black;
   text-align: center;
 }
 .post-info .post-controls {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   text-decoration: none;
 }
@@ -7111,11 +7126,11 @@ html, body {
         margin-right: 15px;
     }
     .navigation a{
-        font-size: 10px;
+        font-size: 11px;
         padding: 5px;
     }
     .in_menu {
-        font-size: 10px;
+        font-size: 11px;
         padding: 5px;
     }
 }
@@ -7126,12 +7141,12 @@ html, body {
         margin-right: 15px;
     }
     .navigation a{
-        font-size: 16px;
+        font-size: 18px;
         width: 81px;
         padding: 10px;
     }
     .in_menu {
-        font-size: 16px;
+        font-size: 18px;
         padding: 10px;
     }
 }
@@ -7144,12 +7159,12 @@ html, body {
         margin-left: auto;
     }
     .navigation a{
-        font-size: 16px;
+        font-size: 18px;
         width: 81px;
         padding: 10px;
     }
     .in_menu {
-        font-size: 16px;
+        font-size: 18px;
         padding: 10px;
     }
 }
@@ -7161,12 +7176,12 @@ html, body {
         margin-left: auto;
     }
     .navigation a{
-        font-size: 16px;
+        font-size: 18px;
         width: 81px;
         padding: 10px;
     }
     .in_menu {
-        font-size: 16px;
+        font-size: 18px;
         padding: 10px;
     }
 }
@@ -7178,12 +7193,12 @@ html, body {
         margin-left: auto;
     }
     .navigation a{
-        font-size: 16px;
+        font-size: 18px;
         width: 81px;
         padding: 10px;
     }
     .in_menu {
-        font-size: 16px;
+        font-size: 18px;
         padding: 10px;
     }
 }
@@ -7276,3 +7291,16 @@ html, body {
 .forum_link{
     border-radius: 0 10px 0 0;
 }
+/*
+@media (min-width: 20px) {
+    #id_body {
+        width: 300px;
+    }
+}
+
+@media (min-width: 500px) {
+    #id_body {
+        width: 690px;
+    }
+}
+*/

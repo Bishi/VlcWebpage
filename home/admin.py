@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import NewsArticle, Recruitment, ClassName, ClassRole
+from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL
 
 #class ChoiceInLine(admin.TabularInline):
 #    model = NewsArticle
@@ -56,3 +56,16 @@ class RecruitmentAdmin(admin.ModelAdmin):
 admin.site.register(Recruitment, RecruitmentAdmin)
 
 
+class WarcraftlogsAPIAdmin(admin.ModelAdmin):
+    #fieldsets = [
+    #    ('Id',                   {'fields': ['id']}),
+    #    ('Title',                {'fields': ['title']}),
+    #]
+    list_display = ('id', 'title')
+
+admin.site.register(WarcraftlogsAPI, WarcraftlogsAPIAdmin)
+
+class WarcraftlogsUrlAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(WarcraftlogsURL, WarcraftlogsUrlAdmin)

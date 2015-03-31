@@ -1,23 +1,14 @@
-from django.shortcuts import render
-from django.views import generic
 from django.utils import timezone
 from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import context
+from django.http import HttpResponseRedirect
 from home.forms import NewsArticleForm
-from home.models import NewsArticle, Recruitment
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI
 from django.core.context_processors import csrf
-from django.http import HttpResponseForbidden
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
-from pybb import compat, defaults
 from pybb.permissions import perms
-from pybb.models import Category, Forum, Topic
-import datetime
-import account.views
-import home.forms
-from django.views.generic.edit import ModelFormMixin
+from pybb.models import Topic
+
 
 #class IndexView(generic.TemplateView):
 #    template_name = 'home/index.html'
@@ -25,21 +16,21 @@ from django.views.generic.edit import ModelFormMixin
 
 #homepage
 def index_view(request):
-    #index
+    #home
     if request.user:
         user = request.user
     else:
         user = None
 
     #group
-    group_name = 'not_officer';
+    group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
 
-    #article pagination
+    #article_list
     article_list = NewsArticle.objects.all().order_by('-pub_date')
 
-    #article_list.
+    #article pagination
     paginator = Paginator(article_list, 3)
     page = request.GET.get('page')
     try:
@@ -50,19 +41,24 @@ def index_view(request):
         articles = paginator.page(paginator.num_pages)
 
     #recruitment ordering alphabetical
-    recruitment_list = Recruitment.objects.all().order_by('class_name__class_name_text','class_role')
+    recruitment_list = Recruitment.objects.all().order_by('class_name__class_name_text', 'class_role')
 
     #latest forum posts
-    qs = Topic.objects.all().select_related().order_by('-updated','-id')
+    qs = Topic.objects.all().select_related().order_by('-updated', '-id')
     qs = perms.filter_topics(request.user, qs)
     qs = qs[:5]
+
+    #warcraftlogs
+    logs_list = WarcraftlogsAPI.objects.all().order_by('-end');
+    logs_list = logs_list[:5]
 
     return render_to_response('home/index.html',
                              {'user': user,
                               'newsArticles': articles,
                               'recruitment': recruitment_list,
                               'group': group_name,
-                              'topic_list': qs},)
+                              'topic_list': qs,
+                              'logs_list': logs_list},)
 
 
 def home_redirect(response):
@@ -78,7 +74,7 @@ def news_articles(request):
         user = None
 
     #group
-    group_name = 'not_officer';
+    group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
 
@@ -103,17 +99,15 @@ def news_articles(request):
 
 def news_article(request, article_id=1):
     #user
-    user = None
     if request.user:
         user = request.user
     else:
         user = None
 
     #group
-    group_name = 'not_officer';
+    group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
-
 
     return render_to_response('home/news_article.html',
                              {'newsArticle': NewsArticle.objects.get(id=article_id),
@@ -127,7 +121,6 @@ def create(request):
     if request.user:
         user = request.user
     if user is None:
-        #return HttpResponseForbidden()
         raise PermissionDenied()
 
     #if the user is not an officer, forbidden
@@ -167,18 +160,14 @@ def like_article(request, article_id):
 
 def test_page(request):
     #recruitment_list = Recruitment.objects.all()
-    user = None
     if request.user:
         user = request.user
     else:
         user = None
 
-    qs = Topic.objects.all().select_related().order_by('-updated','-id')
-    qs = perms.filter_topics(request.user, qs)
-    qs = qs[:5]
+    logs_list = WarcraftlogsAPI.objects.all().order_by('-end');
+    logs_list = logs_list[:5]
 
     return render_to_response('home/test_page.html',
-                             {'topic_list': qs,
-                              'user':user})
-
-
+                             {'user': user,
+                              'logs_list': logs_list})

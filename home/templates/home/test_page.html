@@ -44,53 +44,11 @@
             {% endfor %}
         </div>
 
-
-        <div class="latest_forum">
-
-
-
-            <table class="table topic-list">
-                <thead>
-                    <tr class="topic-row head-row">
-                        <th class="topic-name-first">
-                            {% trans "Latest forum posts" %}
-                        </th>
-                        {% comment %}
-                        <th class="topic-post-count">
-                            {% trans "Posts" %}
-                        </th>
-                        <th class="topic-view-count">
-                            {% trans "Views" %}
-                        </th>
-                        {% endcomment %}
-
-                    </tr>
-                </thead>
-                <tbody class="tbody">
-                {% for topic in topic_list|pybb_topic_unread:user %}
-                    <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
-                        <td class="topic-name{% if topic.unread %} topic-unread{% endif %}">
-                            <div class="state-indicator"></div>
-                            <a href="{{ topic.get_absolute_url }}">{{ topic.name|truncatechars:30 }}</a>
-                            <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">⇨</a>
-                            {% comment %}
-                            {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}
-                            {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}
-                            {% endcomment %}
-                            {% with topic|pybb_topic_inline_pagination as pages %}
-
-                            {% endwith %}
-                        </td>
-
-                    </tr>
-                    <td class="topic-last-post">
-                            <a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a> - {% if topic.updated %}{{ topic.updated|date:"M d.Y H:i" }}{% endif %}
-                        </td>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="logs">
+            {% for logs in logs_list %}
+                <li style="list-style: none"><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></li> {{ logs.start|unix_to_date }}
+            {% endfor %}
         </div>
-
 
 
 

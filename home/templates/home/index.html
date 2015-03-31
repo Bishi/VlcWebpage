@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load account_tags %}
 {% load url from future %}
+{% load pybb_tags i18n %}
 
 {% block title %}
     <title>Vin la Cvicek</title>
@@ -54,7 +55,7 @@
         </div>
     </div>
     <div class="sidebar">
-        <div class="recruitment_statement">
+        <div class="sidebar_statement">
             Recruitment:
         </div>
         <div class="recruitment">
@@ -67,6 +68,20 @@
         </div>
         <div class="latest_forum">
             {% include "home/latest_topics.html" %}
+        </div>
+        <div class="sidebar_statement">
+            Warcraftlogs:
+        </div>
+        <div class="logs">
+            {% for logs in logs_list %}
+                {% comment %}
+                <li style="list-style: none"><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></li> {{ logs.start|unix_to_date }}
+                {% endcomment %}
+                <div class="log_entity">
+                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></b></li>
+                    <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

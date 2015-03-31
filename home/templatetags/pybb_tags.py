@@ -18,6 +18,8 @@ from django.utils.translation import ugettext as _
 from django.utils import dateformat
 from django.utils.timezone import timedelta
 from django.utils.timezone import now as tznow
+from datetime import datetime
+from time import strftime
 
 try:
     import pytils
@@ -366,3 +368,10 @@ def pybb_posted_byT(post, user):
     Check if the post is writed by the user.
     """
     return post.user == user
+
+@register.filter
+def unix_to_date(unix):
+    unix = unix/1000
+    unix = int(unix)
+    time = datetime.fromtimestamp(int(unix)).strftime('%b %d.%Y')
+    return time

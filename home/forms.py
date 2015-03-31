@@ -1,6 +1,5 @@
 from django import forms
 from home.models import NewsArticle
-from django.forms.extras.widgets import SelectDateWidget
 
 
 class NewsArticleForm(forms.ModelForm):
