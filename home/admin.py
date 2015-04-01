@@ -57,11 +57,8 @@ admin.site.register(Recruitment, RecruitmentAdmin)
 
 
 class WarcraftlogsAPIAdmin(admin.ModelAdmin):
-    #fieldsets = [
-    #    ('Id',                   {'fields': ['id']}),
-    #    ('Title',                {'fields': ['title']}),
-    #]
-    list_display = ('id', 'title')
+    list_display = ('id', 'title', 'start')
+    ordering = ('start',)
 
 admin.site.register(WarcraftlogsAPI, WarcraftlogsAPIAdmin)
 

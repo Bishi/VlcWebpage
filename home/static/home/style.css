@@ -2,6 +2,19 @@ li a{
     color: green;
 }
 
+html {
+    height: 100%;
+}
+
+.element {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+}
+
 @media screen and (max-width: 1920px){
     body {
         background: black url("images/Illidan1920.jpg") no-repeat top fixed;
@@ -31,16 +44,17 @@ a:visited {
     font-family: Calibri, sans-serif;
     /*opacity: 0.95;*/
     opacity: 1;
+    /*border-collapse: collapse;*/
 }
 
 .header {
     height: 80px;
-    width: 1000px;
+    width: 1140px;
     clear: left;
     align-self: center;
     margin-bottom: 5px;
     background: whitesmoke;
-    border: 1px solid rgba(166, 166, 166, 0.40);
+    /*border: 1px solid rgba(166, 166, 166, 0.40);*/
     /*opacity: 0.95;*/
     border-radius: 6px;
 }
@@ -72,8 +86,8 @@ a:visited {
     border-bottom: 1px solid rgba(166, 166, 166, 0.40);*/
     padding-top: 20px;
     /*opacity: 0.95;*/
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    /*border-bottom-left-radius: 6px;*/
+    /*border-bottom-right-radius: 6px;*/
 }
 
 .footer_div {
@@ -288,6 +302,8 @@ a:visited {
     /*border-left: 1px solid rgba(166, 166, 166, 0.40);
     border-right: 1px solid rgba(166, 166, 166, 0.40);*/
     /*opacity: 0.95;*/
+    border-top: 1px solid rgba(166, 166, 166, 0.40);
+    margin-top: -1px;
 }
 
 .pagination .page a {
@@ -315,7 +331,10 @@ a:visited {
     display: flex;
     flex-direction: column;
     width: 1140px;
-    margin: 10px;
+    /*margin: 10px;*/
+    padding: 10px;
+    /*border-bottom: 1px solid rgba(166, 166, 166, 0.40);
+    max-height: 450px;*/
 }
 
 .form_container .form_name {

@@ -78,7 +78,7 @@
                 <li style="list-style: none"><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></li> {{ logs.start|unix_to_date }}
                 {% endcomment %}
                 <div class="log_entity">
-                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></b></li>
+                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
                     <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
                 </div>
             {% endfor %}

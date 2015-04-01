@@ -8,14 +8,25 @@ from pybb.compat import get_image_field_class, get_username_field
 
 
 TZ_CHOICES = [(float(x[0]), x[1]) for x in (
-    (-12, '-12'), (-11, '-11'), (-10, '-10'), (-9.5, '-09.5'), (-9, '-09'),
-    (-8.5, '-08.5'), (-8, '-08 PST'), (-7, '-07 MST'), (-6, '-06 CST'),
-    (-5, '-05 EST'), (-4, '-04 AST'), (-3.5, '-03.5'), (-3, '-03 ADT'),
-    (-2, '-02'), (-1, '-01'), (0, '00 GMT'), (1, '+01 CET'), (2, '+02'),
-    (3, '+03'), (3.5, '+03.5'), (4, '+04'), (4.5, '+04.5'), (5, '+05'),
-    (5.5, '+05.5'), (6, '+06'), (6.5, '+06.5'), (7, '+07'), (8, '+08'),
-    (9, '+09'), (9.5, '+09.5'), (10, '+10'), (10.5, '+10.5'), (11, '+11'),
-    (11.5, '+11.5'), (12, '+12'), (13, '+13'), (14, '+14'),
+    (-10, '-12'), (-9, '-11'), (-8, '-10'), (-7, '-09'),
+    (-6, '-08 PST'), (-5, '-07 MST'), (-4, '-06 CST'),
+    (-3, '-05 EST'), (-2, '-04 AST'), (-1, '-03 ADT'),
+    (0, '-02'), (1, '-01'), (2, '00 GMT'), (3, '+01 CET'), (4, '+02'),
+    (5, '+03'), (6, '+04'), (7, '+05'),
+    (8, '+06'), (9, '+07'), (10, '+08'),
+    (11, '+09'), (12, '+10'), (13, '+11'),
+    (14, '+12'), (15, '+13'), (16, '+14'),
+)]
+
+TZ_CHOICES2 = [(float(x[0]), x[1]) for x in (
+    (-9, '-12'), (-8, '-11'), (-7, '-10'), (-6, '-09'),
+    (-5, '-08 PST'), (-4, '-07 MST'), (-3, '-06 CST'),
+    (-2, '-05 EST'), (-1, '-04 AST'), (0, '-03 ADT'),
+    (1, '-02'), (2, '-01'), (3, '00 GMT'), (4, '+01 CET'), (5, '+02'),
+    (6, '+03'), (7, '+04'), (8, '+05'),
+    (9, '+06'), (10, '+07'), (11, '+08'),
+    (12, '+09'), (13, '+10'), (14, '+11'),
+    (15, '+12'), (16, '+13'), (17, '+14'),
 )]
 
 
@@ -33,7 +44,7 @@ class PybbProfile(models.Model):
     signature = models.TextField(_('Signature'), blank=True, max_length=defaults.PYBB_SIGNATURE_MAX_LENGTH)
     signature_html = models.TextField(_('Signature HTML Version'), blank=True,
                                       max_length=defaults.PYBB_SIGNATURE_MAX_LENGTH + 30)
-    time_zone = models.FloatField(_('Time zone'), choices=TZ_CHOICES, default=float(defaults.PYBB_DEFAULT_TIME_ZONE))
+    time_zone = models.FloatField(_('Time zone'), choices=TZ_CHOICES2, default=float(defaults.PYBB_DEFAULT_TIME_ZONE))
     language = models.CharField(_('Language'), max_length=10, blank=True, choices=settings.LANGUAGES,
                                 default=settings.LANGUAGE_CODE)
     show_signatures = models.BooleanField(_('Show signatures'), blank=True, default=True)

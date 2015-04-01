@@ -192,7 +192,7 @@ PYBB_ANONYMOUS_USERNAME = "Annonymous"
 PYBB_ATTACHMENT_ENABLE = False
 PYBB_TEMPLATE = "site_base.html"
 PYBB_SMILES_PREFIX = "emoticons/"
-PYBB_DEFAULT_TIME_ZONE = 3
+PYBB_DEFAULT_TIME_ZONE = 4
 PYBB_SMILES = {
     ':(': 'sad.gif',
     ':D': 'biggrin.gif',

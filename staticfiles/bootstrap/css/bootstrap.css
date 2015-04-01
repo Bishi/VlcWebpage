@@ -7075,7 +7075,7 @@ td.visible-print {
 
 
 body {
-  padding-top: 60px;
+  /*padding-top: 60px;*/
 }
 .main-block {
   background-color: whiteSmoke;
@@ -7245,27 +7245,28 @@ html, body {
 }
 
 .forum_header {
-    height: 82px;
-    max-width: 1002px;
+    height: 80px;
+    max-width: 1140px;
     clear: left;
     align-self: center;
     margin-bottom: 5px;
     background: whitesmoke;
-    border: 1px solid rgba(166, 166, 166, 0.40);
+    /*border: 1px solid rgba(166, 166, 166, 0.40);*/
     border-radius: 6px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     /*max-width: 1140px;*/
     /*max-width: 1000px;*/
-    margin-top: -52px;
+    /*margin-top: -60px;*/
 }
 
 .header_text {
     font-weight: bold;
     font-size: 30px;
-    margin-top: 22px;
+    /*margin-top: 22px;*/
     line-height: normal;
+    padding-top: 22px;
 }
 
 .forum_header h6 {
@@ -7304,3 +7305,7 @@ html, body {
     }
 }
 */
+
+body {
+    margin-top: 0px;
+}
