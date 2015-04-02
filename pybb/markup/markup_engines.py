@@ -5,7 +5,6 @@ import bbcode, re
 class CustomBBCodeParser(BBCodeParser):
     def __init__(self):
         super(CustomBBCodeParser, self).__init__()
-        parser = bbcode.Parser()
         self._parser.add_simple_formatter('ul', '<ul>%(value)s</ul>', transform_newlines=False, strip=True)
         self._parser.add_simple_formatter('li', '<li>%(value)s</li>', transform_newlines=False, strip=True)
         #self._parser.add_simple_formatter('img', '<img src="%(value)s">', replace_links=False)
@@ -14,9 +13,10 @@ class CustomBBCodeParser(BBCodeParser):
                                           replace_links=False)
         #self._parser.add_simple_formatter('youtube', """<script language="Javascript">var a = '%(value)s';var temp = new Array();temp = a.split('?v=');document.write('<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/' + temp[1] + '&rel=0&color1=0xd6d6d6&color2=0xf0f0f0&border=1"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/' + temp[1] + '&rel=0&color1=0xd6d6d6&color2=0xf0f0f0&border=1" type="application/x-shockwave-flash" wmode="transparent" width="425" height="344"></embed></object>');</script> """,
         #                                  replace_links=False)
-        self._parser.add_simple_formatter('size', ' <font size="6">%(value)s</font> ', replace_links=False)
+        #self._parser.add_simple_formatter('size', ' <font size="6">%(value)s</font> ', replace_links=False)
 
         self._parser.add_formatter('youtube', render_youtube, replace_links=False)
+        self._parser.add_formatter('size', render_size, replace_links=False)
 
 
 def render_youtube(tag_name, value, options, parent, context):
@@ -34,3 +34,7 @@ def youtube_url_validation(url):
     if youtube_regex_match:
         return youtube_regex_match.group(6)
     return youtube_regex_match
+
+def render_size(tag_name, value, options, parent, context):
+    text_size = options['size']
+    return '<font size="%s">%s</font>' % (text_size, value)
