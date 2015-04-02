@@ -41,6 +41,11 @@
 	height:300px;
 	margin:5px 0;
 }
+
+.markItUpPreviewFrame	body{
+	font-family: Calibri, sans-serif;
+}
+
 .markItUpFooter {
 	width:100%;
 	cursor:n-resize;

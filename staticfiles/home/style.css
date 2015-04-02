@@ -207,8 +207,8 @@ a:visited {
     flex-direction: row;
     height: 20px;
     padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 17px;
+    padding-right: 17px;
 }
 
 .class_name {
@@ -446,7 +446,7 @@ td, th {
 .topic-last-post{
     width: 32%;
     border-bottom: 1px solid #dddddd;
-    padding-left: 20px;
+    padding-left: 17px;
 }
 
 .content_wrapper{
@@ -464,7 +464,7 @@ td, th {
 
 .topic-name-first{
     width: 40%;
-    padding-left: 20px;
+    padding-left: 17px;
     padding-bottom: 19px;
     font-size: 22px;
     text-align: center;
@@ -493,8 +493,8 @@ td, th {
 .log_name {
     text-align: left;
     align-self: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 17px;
+    padding-right: 17px;
 }
 
 .log_name a{
@@ -507,6 +507,6 @@ td, th {
     align-self: center;
     font-size: 14px;
     border-bottom: 1px solid rgba(166, 166, 166, 0.40);
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 17px;
+    padding-right: 17px;
 }

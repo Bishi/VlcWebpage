@@ -54,3 +54,11 @@
 	background-image:url(images/preview.png);
     width: 56px;
 }
+
+.markItUp .size a {
+    background-image:url(images/font_size.png);
+}
+
+.markItUp .color a{
+    background-image:url(images/red.png);
+}

@@ -30,10 +30,11 @@
 .markItUpPreviewFrame	{
 	overflow:auto;
 	/*background-color:#FFF;*/
-	width:930px;
+	width:945px;
 	height:300px;
 	margin:5px 0;
     border: 1px solid #dddddd;
+    font-family: Calibri, sans-serif;
 }
 .markItUpFooter {
 	width:100%;
