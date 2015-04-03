@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm
 from home.models import NewsArticle, Recruitment, WarcraftlogsAPI
 from django.core.context_processors import csrf
@@ -109,10 +109,16 @@ def news_article(request, article_id=1):
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
 
+    try:
+        article = NewsArticle.objects.get(id=article_id)
+    except:
+        raise Http404("Article does not exist")
+
     return render_to_response('home/news_article.html',
-                             {'newsArticle': NewsArticle.objects.get(id=article_id),
+                             {'newsArticle': article,
                               'user': user,
                               'group': group_name})
+
 
 
 def create(request):
@@ -171,3 +177,21 @@ def test_page(request):
     return render_to_response('home/test_page.html',
                              {'user': user,
                               'logs_list': logs_list})
+
+
+def application_info(request):
+    #user
+    if request.user:
+        user = request.user
+    else:
+        user = None
+
+    #group
+    group_name = 'not_officer'
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
+
+
+    return render_to_response('home/application_info.html',
+                             {'user': user,
+                              'group': group_name})

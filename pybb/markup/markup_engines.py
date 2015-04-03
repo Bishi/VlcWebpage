@@ -36,5 +36,8 @@ def youtube_url_validation(url):
     return youtube_regex_match
 
 def render_size(tag_name, value, options, parent, context):
-    text_size = options['size']
+    try:
+        text_size = options['size']
+    except:
+        text_size = "6"
     return '<font size="%s">%s</font>' % (text_size, value)

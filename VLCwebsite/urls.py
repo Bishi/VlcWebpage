@@ -30,4 +30,5 @@ urlpatterns = patterns('',
     (r'^forum/', include('pybb.urls', namespace='pybb')),
 
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^apply/', 'home.views.application_info', name='apply'),
 )
