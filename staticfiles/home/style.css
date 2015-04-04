@@ -557,3 +557,28 @@ td, th {
     /*text-shadow: 0 0 1px #3faace;*/
     color: #3faace;
 }
+
+.realm_status {
+    /*margin-top: 13px;*/
+    align-self: center;
+    padding-top: 5px;
+}
+
+.realm_status_up {
+    background: url("images/status.gif") no-repeat scroll 0px 0px transparent;
+    background-position: -110px 0px;
+    margin: 0px auto;
+    height: 28px;
+    width: 27px;
+}
+
+.realm_status_down {
+    background: url("images/status.gif") no-repeat scroll 0px 0px transparent;
+    margin: 0px auto;
+    height: 28px;
+    width: 27px;
+}
+
+.realm_name {
+    font-size: 17px;
+}

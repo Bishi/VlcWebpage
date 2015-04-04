@@ -1,4 +1,4 @@
-from home.models import WarcraftlogsAPI, WarcraftlogsURL
+from home.models import WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
 import time
 import urllib.request, json
 from pprint import pprint
@@ -33,3 +33,29 @@ def create_logs(data):
             log = WarcraftlogsAPI(id=log["id"], title=log["title"], owner=log["owner"],
                                   start=log["start"], end=log["end"], zone=log["zone"])
             log.save(force_insert=True)
+
+
+class RealmStatusClient(object):
+    interval = 0
+
+    def fetch(self, **params):
+        delta = time.time() - RealmStatusClient.interval
+        if delta < 2:
+            time.sleep(2 - delta)
+        RealmStatusClient.interval = time.time()
+        url = 'http://eu.battle.net/api/wow/realm/status?realms=Mazrigos'
+        return self.fetch_json(url)
+
+    def fetch_json(self, url):
+        data = urllib.request.urlopen(url)
+        str_response = data.readall().decode('utf-8')
+        data = json.loads(str_response)
+        return data
+
+
+def create_status(data):
+    RealmStatusAPI.objects.all().delete()
+
+    maz_status = RealmStatusAPI(id=data['realms'][0]['name'], queue=data['realms'][0]['queue'],
+                             status=data['realms'][0]['status'])
+    maz_status.save(force_insert=True)

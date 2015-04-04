@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL
+from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
 
 #class ChoiceInLine(admin.TabularInline):
 #    model = NewsArticle
@@ -60,9 +60,18 @@ class WarcraftlogsAPIAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'start')
     ordering = ('start',)
 
+
 admin.site.register(WarcraftlogsAPI, WarcraftlogsAPIAdmin)
 
 class WarcraftlogsUrlAdmin(admin.ModelAdmin):
     pass
 
+
 admin.site.register(WarcraftlogsURL, WarcraftlogsUrlAdmin)
+
+
+class RealmStatusAPIAdmin(admin.ModelAdmin):
+    list_display = ('id', 'status')
+
+
+admin.site.register(RealmStatusAPI, RealmStatusAPIAdmin)

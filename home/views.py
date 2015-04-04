@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, RealmStatusAPI
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -52,13 +52,17 @@ def index_view(request):
     logs_list = WarcraftlogsAPI.objects.all().order_by('-end');
     logs_list = logs_list[:5]
 
+    #realm status
+    realm_status = RealmStatusAPI.objects.all()
+
     return render_to_response('home/index.html',
                              {'user': user,
                               'newsArticles': articles,
                               'recruitment': recruitment_list,
                               'group': group_name,
                               'topic_list': qs,
-                              'logs_list': logs_list},)
+                              'logs_list': logs_list,
+                              'realm_status': realm_status},)
 
 
 def home_redirect(response):

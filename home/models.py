@@ -69,3 +69,12 @@ class WarcraftlogsURL(models.Model):
 
     def __str__(self):
         return self.url
+
+
+class RealmStatusAPI(models.Model):
+    id = models.CharField(max_length=200, primary_key=True)
+    queue = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.id
