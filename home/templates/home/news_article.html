@@ -27,8 +27,14 @@
 {% endblock %}
 
 {% block content %}
+    <script>
+        function showDiv() {
+            document.getElementById('edit_form').style.display = "block";
+            document.getElementById('article_edit_button').style.display = "none";
+        }
+    </script>
     <div class="article_wrapper_articles">
-        <div class="article">
+        <div class="show_article">
             <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
 
             {% if newsArticle.thumbnail %}
@@ -42,5 +48,19 @@
                 <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
             {% endif %}
         </div>
+        {% if user.username == newsArticle.author.username %}
+            <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()"/>
+            <div id="edit_form" style="display: none">
+                <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form_name">{{ field.label_tag }}</div>
+                        <div class="form_input">{{ field }}</div>
+                        <div class="form_error">{{ field.errors }}</div>
+                    {% endfor %}
+                    <div class="form_button"><input type="submit" name="submit" value="Edit article"></div>
+                </form>
+            </div>
+        {% endif %}
     </div>
+
 {% endblock %}

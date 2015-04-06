@@ -7,6 +7,7 @@ from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
 from pybb.permissions import perms
+from django.shortcuts import get_object_or_404
 from pybb.models import Topic
 
 
@@ -118,10 +119,27 @@ def news_article(request, article_id=1):
     except:
         raise Http404("Article does not exist")
 
-    return render_to_response('home/news_article.html',
-                             {'newsArticle': article,
-                              'user': user,
-                              'group': group_name})
+
+    instance = get_object_or_404(NewsArticle, id=article_id)
+    form = NewsArticleForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/articles/all')
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+    args['user'] = user
+    args['group'] = group_name
+    args['newsArticle'] = article
+
+    #return render_to_response('home/news_article.html',
+    #                         {'newsArticle': article,
+    #                          'user': user,
+    #                          'group': group_name,
+    #                          'form': form})
+    return render_to_response('home/news_article.html', args)
 
 
 

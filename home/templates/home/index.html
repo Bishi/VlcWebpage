@@ -86,6 +86,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% comment %} }
         <div class="sidebar_statement">
             Realm status:
         </div>
@@ -98,6 +99,29 @@
                 {% endif %}
             {% endfor %}
         </table>
+        {% endcomment %}
     </div>
 {% endblock %}
 
+
+{% block footer %}
+    <div class="footer_div">
+        <table class="realm_status">
+            <tr>
+                <td class="footer_table">Vin la Cviček, Horde</td>
+                <td class="footer_table">Mazrigos-EU </td>
+                {% for rstatus in realm_status %}
+                    {% if rstatus.status  %}
+                        <td class="footer_table"><div class="realm_status_up" title="Up"></div></td>
+                    {% elif not rstatus.status %}
+                        <td class="footer_table"><div class="realm_status_down" title="Down"></div></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="footer_table">. Drinking since 2005</td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer_div  ">
+        Contact Frostmaster or Bishi ingame
+    </div>
+{% endblock %}
