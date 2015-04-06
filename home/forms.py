@@ -13,3 +13,10 @@ class NewsArticleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NewsArticleForm, self).__init__(*args, **kwargs)
         self.fields['thumbnail'].label = "Image"
+
+
+class DeleteNewsArticleForm(forms.ModelForm):
+
+    class Meta:
+        model = NewsArticle
+        fields = []

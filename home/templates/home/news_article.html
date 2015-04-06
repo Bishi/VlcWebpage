@@ -31,6 +31,7 @@
         function showDiv() {
             document.getElementById('edit_form').style.display = "block";
             document.getElementById('article_edit_button').style.display = "none";
+            document.getElementById('article_delete_button').style.display = "none";
         }
     </script>
     <div class="article_wrapper_articles">
@@ -48,8 +49,9 @@
                 <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
             {% endif %}
         </div>
-        {% if user.username == newsArticle.author.username %}
+        {% if user.username == newsArticle.author.username or  group == 'Officer' %}
             <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()"/>
+            <input type="button" name="delete" value="Delete" id="article_delete_button" onclick="location.href = '/articles/delete/{{ newsArticle.id }}/'"/>
             <div id="edit_form" style="display: none">
                 <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
                     {% for field in form %}
@@ -62,5 +64,4 @@
             </div>
         {% endif %}
     </div>
-
 {% endblock %}

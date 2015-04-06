@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
-from home.forms import NewsArticleForm
+from home.forms import NewsArticleForm, DeleteNewsArticleForm
 from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, RealmStatusAPI
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -134,11 +134,6 @@ def news_article(request, article_id=1):
     args['group'] = group_name
     args['newsArticle'] = article
 
-    #return render_to_response('home/news_article.html',
-    #                         {'newsArticle': article,
-    #                          'user': user,
-    #                          'group': group_name,
-    #                          'form': form})
     return render_to_response('home/news_article.html', args)
 
 
@@ -163,7 +158,6 @@ def create(request):
             instance.author = request.user
             instance.pub_date = timezone.now()
             instance.save()
-
             return HttpResponseRedirect('/articles/all')
     else:
         form = NewsArticleForm()
@@ -174,6 +168,44 @@ def create(request):
     args['user'] = user
 
     return render_to_response('home/create_news_article.html', args,)
+
+
+def delete_article(request, article_id):
+    #if user is not logged in, forbidden
+    user = None
+    if request.user:
+        user = request.user
+    if user is None:
+        raise PermissionDenied()
+
+    #group
+    group_name = 'not_officer'
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
+
+    try:
+        article = NewsArticle.objects.get(id=article_id)
+    except:
+        raise Http404("Article does not exist")
+
+    if request.user == article.author or group_name == 'Officer':
+        instance = get_object_or_404(NewsArticle, id=article_id)
+        form = DeleteNewsArticleForm(request.POST or None, instance=instance)
+        if form.is_valid():
+            article.delete()
+            return HttpResponseRedirect('/articles/all')
+    else:
+        raise PermissionDenied()
+
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+    args['user'] = user
+    args['newsArticle'] = article
+
+    return render_to_response('home/delete_news_article.html', args,)
 
 
 def like_article(request, article_id):
