@@ -78,3 +78,9 @@ class RealmStatusAPI(models.Model):
 
     def __str__(self):
         return self.id
+
+
+class Chatterbox(models.Model):
+    author = models.ForeignKey('auth.User')
+    body = models.TextField(max_length=140)
+    pub_date = models.DateTimeField('date published')

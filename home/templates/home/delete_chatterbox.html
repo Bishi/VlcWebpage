@@ -1,0 +1,16 @@
+{% extends 'home/base_page.html' %}
+
+{% block title %}
+    <title>Vin la Cvicek</title>
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <div>
+            Are you really sure you want to delete "{{ chatterbox_chat.body }}"?
+        </div>
+        <form action="/deletechat/{{ chatterbox_chat.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="form_button"><input type="submit" name="submit" value="Delete Chat"></div>
+        </form>
+    </div>
+{% endblock %}

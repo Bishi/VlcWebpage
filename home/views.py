@@ -1,8 +1,8 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
-from home.forms import NewsArticleForm, DeleteNewsArticleForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, RealmStatusAPI
+from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, RealmStatusAPI, Chatterbox
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -56,14 +56,37 @@ def index_view(request):
     #realm status
     realm_status = RealmStatusAPI.objects.all()
 
-    return render_to_response('home/index.html',
-                             {'user': user,
-                              'newsArticles': articles,
-                              'recruitment': recruitment_list,
-                              'group': group_name,
-                              'topic_list': qs,
-                              'logs_list': logs_list,
-                              'realm_status': realm_status},)
+    #chatterbox
+    chatterbox = Chatterbox.objects.all().order_by('-pub_date')
+    chatterbox = chatterbox[:5:-1]
+
+
+    if "chatterbox_form" in request.POST:
+        form = ChatterboxForm(request.POST, request.FILES)
+        if form.is_valid():
+            #form.save()
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.pub_date = timezone.now()
+            instance.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = ChatterboxForm()
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+    args['user'] = user
+    args['chatterbox'] = chatterbox
+    args['newsArticles'] = articles
+    args['recruitment'] = recruitment_list
+    args['group'] = group_name
+    args['topic_list'] = qs
+    args['logs_list'] = logs_list
+    args['realm_status'] = realm_status
+
+    return render_to_response('home/index.html',args)
 
 
 def home_redirect(response):
@@ -218,21 +241,6 @@ def like_article(request, article_id):
     return HttpResponseRedirect('/articles/get/%s' % article_id)
 
 
-def test_page(request):
-    #recruitment_list = Recruitment.objects.all()
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
-    logs_list = WarcraftlogsAPI.objects.all().order_by('-end');
-    logs_list = logs_list[:5]
-
-    return render_to_response('home/test_page.html',
-                             {'user': user,
-                              'logs_list': logs_list})
-
-
 def application_info(request):
     #user
     if request.user:
@@ -249,3 +257,74 @@ def application_info(request):
     return render_to_response('home/application_info.html',
                              {'user': user,
                               'group': group_name})
+
+
+def test_page(request):
+    #recruitment_list = Recruitment.objects.all()
+    if request.user:
+        user = request.user
+    else:
+        user = None
+
+    chatterbox = Chatterbox.objects.all().order_by('-pub_date')
+    chatterbox = chatterbox[:5:-1]
+
+
+    if "chatterbox_form" in request.POST:
+        form = ChatterboxForm(request.POST, request.FILES)
+        if form.is_valid():
+            #form.save()
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.pub_date = timezone.now()
+            instance.save()
+            return HttpResponseRedirect('/articles/test')
+    else:
+        form = ChatterboxForm()
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+    args['user'] = user
+    args['chatterbox'] = chatterbox
+
+
+    return render_to_response('home/test_page.html', args)
+
+def delete_chatterbox(request, chat_id):
+    #if user is not logged in, forbidden
+    user = None
+    if request.user:
+        user = request.user
+    if user is None:
+        raise PermissionDenied()
+
+    #group
+    group_name = 'not_officer'
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
+
+    try:
+        chatterbox_chat = Chatterbox.objects.get(id=chat_id)
+    except:
+        raise Http404("Chat does not exist")
+
+    if request.user == chatterbox_chat.author or group_name == 'Officer':
+        instance = get_object_or_404(Chatterbox, id=chat_id)
+        form = ChatterboxDeleteForm(request.POST or None, instance=instance)
+        if form.is_valid():
+            chatterbox_chat.delete()
+            return HttpResponseRedirect('/')
+    else:
+        raise PermissionDenied()
+
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+    args['user'] = user
+    args['chatterbox_chat'] = chatterbox_chat
+
+    return render_to_response('home/delete_chatterbox.html', args,)

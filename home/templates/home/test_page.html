@@ -32,26 +32,36 @@
         </div>
     </div>
     <div class="sidebar">
-        <div class="recruitment_statement">
-            Recruitment:
+        <div class="sidebar_statement">
+            Chatterbox:
         </div>
-        <div class="recruitment">
-            {% for recruits in recruitment %}
-                <div class="class_entity">
-                    <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
-                    <li class="class_role">{{ recruits.class_role }}</li>
+        <div class="chatterbox">
+            {% for chat in chatterbox %}
+                <div class="chat_line">
+                    <div class="chat_author">
+                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date }}
+                    </div>
+                    <div class="chat_body">
+                        {{ chat.body }}
+                    </div>
+                    {% if user.username == chat.author.username or  group == 'Officer' %}
+                        <div class="chat_delete">
+                            <a href="/articles/test/deletechat/{{ chat.id }}">Delete</a>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
-
-        <div class="logs">
-            {% for logs in logs_list %}
-                <li style="list-style: none"><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></li> {{ logs.start|unix_to_date }}
-            {% endfor %}
+        <div class="chatterbox_form">
+            <div class="chatterbox_form_container">
+                <form action="/articles/test/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                    {% for field in form %}
+                        <div class="chatterbox_form_input">{{ field }}</div>
+                    {% endfor %}
+                    <div class="chatterbox_form_button"><input type="submit" name="chatterbox_form" value="Send"></div>
+                </form>
+            </div>
         </div>
-
-
-
     </div>
 
 {% endblock %}

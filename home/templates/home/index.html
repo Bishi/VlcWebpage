@@ -73,6 +73,38 @@
             {% include "home/latest_topics.html" %}
         </div>
         <div class="sidebar_statement">
+            Chatterbox:
+        </div>
+        <div class="chatterbox">
+            {% for chat in chatterbox %}
+                <div class="chat_line">
+                    <div class="chat_author">
+                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date }}
+                    </div>
+                    <p class="chat_body">
+                        {{ chat.body }}
+                    </p>
+                    {% if user.username == chat.author.username or  group == 'Officer' %}
+                        <div class="chat_delete">
+                            <a href="/deletechat/{{ chat.id }}">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if  user.is_authenticated %}
+            <div class="chatterbox_form">
+                <div class="chatterbox_form_container">
+                    <form action="/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                        {% for field in form %}
+                            <div class="chatterbox_form_input">{{ field }}</div>
+                        {% endfor %}
+                        <div class="chatterbox_form_button"><input type="submit" name="chatterbox_form" value="Send"></div>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <div class="sidebar_statement">
             Warcraftlogs:
         </div>
         <div class="logs">
@@ -100,6 +132,7 @@
             {% endfor %}
         </table>
         {% endcomment %}
+
     </div>
 {% endblock %}
 

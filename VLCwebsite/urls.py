@@ -31,4 +31,5 @@ urlpatterns = patterns('',
 
     url(r'^captcha/', include('captcha.urls')),
     url(r'^apply/', 'home.views.application_info', name='apply'),
+    url(r'^deletechat/(?P<chat_id>\d+)/$', 'home.views.delete_chatterbox', name='delete_chatterbox'),
 )
