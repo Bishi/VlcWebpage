@@ -4,13 +4,33 @@
     <title>Vin la Cvicek</title>
 {% endblock %}
 
+{% block navigation %}
+    {% if not user.is_authenticated %}
+    <div class="navigation">
+        <li><div class="in_menu">Welcome, Guest</div></li>
+        <li><a href="/account/signup">Register</a></li>
+        <li><a href="/account/login">Login</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% else %}
+    <div class="navigation">
+        <li class="in_menu">Welcome, {{ user.username }}</li>
+        <li><a href="/account/logout">Logout</a></li>
+        <li><a href="/account/settings">Settings</a> </li>
+        <li><a href="/admin">Admin</a> </li>
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="form_container">
         <div>
             Are you really sure you want to delete "{{ chatterbox_chat.body }}"?
         </div>
         <form action="/deletechat/{{ chatterbox_chat.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
-            <div class="form_button"><input type="submit" name="submit" value="Delete Chat"></div>
+            <div class="form_button"><input type="submit" name="submit" value="Delete from chat" class="submit_button"></div>
         </form>
     </div>
 {% endblock %}

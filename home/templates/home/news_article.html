@@ -50,8 +50,8 @@
             {% endif %}
         </div>
         {% if user.username == newsArticle.author.username or  group == 'Officer' %}
-            <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()"/>
-            <input type="button" name="delete" value="Delete" id="article_delete_button" onclick="location.href = '/articles/delete/{{ newsArticle.id }}/'"/>
+            <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()" class="submit_button"/>
+            <input type="button" name="delete" value="Delete" id="article_delete_button" onclick="location.href = '/articles/delete/{{ newsArticle.id }}/'" class="submit_button"/>
             <div id="edit_form" style="display: none">
                 <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
                     {% for field in form %}
@@ -59,7 +59,7 @@
                         <div class="form_input">{{ field }}</div>
                         <div class="form_error">{{ field.errors }}</div>
                     {% endfor %}
-                    <div class="form_button"><input type="submit" name="submit" value="Edit article"></div>
+                    <div class="form_button"><input type="submit" name="submit" value="Edit article" class="submit_button"></div>
                 </form>
             </div>
         {% endif %}

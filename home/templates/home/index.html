@@ -67,7 +67,8 @@
             {% endfor %}
         </div>
         <div class="apply_button">
-                <a href="/apply">Application info</a>
+                {% comment %} <a href="/apply">Application info</a> {% endcomment %}
+                <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
         </div>
         <div class="latest_forum">
             {% include "home/latest_topics.html" %}
@@ -79,11 +80,11 @@
             {% for chat in chatterbox %}
                 <div class="chat_line">
                     <div class="chat_author">
-                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date }}
+                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d.Y H:i" }}
                     </div>
-                    <p class="chat_body">
+                    <div class="chat_body">
                         {{ chat.body }}
-                    </p>
+                    </div>
                     {% if user.username == chat.author.username or  group == 'Officer' %}
                         <div class="chat_delete">
                             <a href="/deletechat/{{ chat.id }}">Delete</a>
@@ -99,7 +100,7 @@
                         {% for field in form %}
                             <div class="chatterbox_form_input">{{ field }}</div>
                         {% endfor %}
-                        <div class="chatterbox_form_button"><input type="submit" name="chatterbox_form" value="Send"></div>
+                        <div class="chatterbox_form_button"><input type="submit" name="chatterbox_form" value="Send" class="submit_button"></div>
                     </form>
                 </div>
             </div>
