@@ -177,7 +177,7 @@ def news_article(request, article_id=1):
         raise Http404("Article does not exist")
 
 
-    #get news article
+    #edit article form
     instance = get_object_or_404(NewsArticle, id=article_id)
     form = NewsArticleForm(request.POST or None, instance=instance)
     if form.is_valid():
@@ -202,9 +202,9 @@ def news_article(request, article_id=1):
             instance.pub_date = timezone.now()
             instance.origin = article_c
             instance.save()
-            HttpResponseRedirect('/articles/get/%s' % article_id)
+            return HttpResponseRedirect('/articles/get/%s' % article_id)
     else:
-        form_comments = ChatterboxForm()
+        form_comments = CommentForm()
 
     args = {}
     args.update(csrf(request))
