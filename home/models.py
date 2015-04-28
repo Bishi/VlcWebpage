@@ -26,6 +26,16 @@ class NewsArticle(models.Model):
         return self.title
 
 
+class ArticleComment(models.Model):
+    author = models.ForeignKey('auth.User')
+    pub_date = models.DateTimeField('date published')
+    body = models.TextField(max_length=1000)
+    origin = models.ForeignKey(NewsArticle)
+
+    def __str__(self):
+        return self.body
+
+
 class ClassName(models.Model):
     class_name_text = models.CharField(max_length=20)
     pic = models.FileField(upload_to="class_thumbnails/")

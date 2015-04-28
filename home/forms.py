@@ -1,5 +1,5 @@
 from django import forms
-from home.models import NewsArticle, Chatterbox
+from home.models import NewsArticle, Chatterbox, ArticleComment
 
 
 class NewsArticleForm(forms.ModelForm):
@@ -14,9 +14,20 @@ class NewsArticleForm(forms.ModelForm):
         super(NewsArticleForm, self).__init__(*args, **kwargs)
         self.fields['thumbnail'].label = "Image"
 
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = ArticleComment
+        fields = ('body',)
 
 class DeleteNewsArticleForm(forms.ModelForm):
 
+    class Meta:
+        model = NewsArticle
+        fields = []
+
+
+class DeleteCommentForm(forms.ModelForm):
     class Meta:
         model = NewsArticle
         fields = []

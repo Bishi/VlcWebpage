@@ -39,6 +39,7 @@
             {% for newsArticle in newsArticles %}
                 <div class="article">
                     <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
+                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date }}</div>
 
                     {% if newsArticle.thumbnail %}
                         <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
@@ -46,10 +47,18 @@
                     {% endif %}
 
                     <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
+                    <p class="comment_count">
+                        {% for comment, count in comment_count.items %}
+                            {% if comment == newsArticle.id %}
+                                {% if count == 1 %}
+                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
+                                {% else %}
+                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
 
-                    {% if newsArticle.author %}
-                        <p class="article_published">Published by {{ newsArticle.author }} on {{ newsArticle.pub_date }}</p>
-                    {% endif %}
                 </div>
             {% endfor %}
         </div>

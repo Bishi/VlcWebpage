@@ -1,5 +1,6 @@
 from django.contrib import admin
 from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
+from home.models import ArticleComment
 from home.models import Chatterbox
 
 #class ChoiceInLine(admin.TabularInline):
@@ -82,3 +83,8 @@ class ChatterboxAdmin(admin.ModelAdmin):
     list_display = ('body', 'author')
 
 admin.site.register(Chatterbox, ChatterboxAdmin)
+
+class ArticleCommentAdmin(admin.ModelAdmin):
+    list_display = ('id','author','origin', 'body')
+
+admin.site.register(ArticleComment, ArticleCommentAdmin)

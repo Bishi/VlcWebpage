@@ -6980,6 +6980,7 @@ td.visible-print {
   vertical-align: top;
   padding: 10px;
   border: 1px solid red;
+    text-align: justify;
 }
 
 .img_thumb {

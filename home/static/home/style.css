@@ -153,11 +153,21 @@ a:visited {
     font-size: 40px;
     font-weight: bold;
     font-family: Calibri, sans-serif;
+    margin-bottom: 5px;
 }
 
 .article_title a {
     text-decoration: none;
     color: black;
+}
+
+.article_author {
+    font-size: 15px;
+}
+
+.article_author a{
+    text-decoration: none;
+    color: #3FAACE;
 }
 
 .article_thumbnail {
@@ -167,6 +177,21 @@ a:visited {
 .article_body{
 
 }
+
+.comment_count {
+    font-size: 13px;
+    text-align: right;
+}
+
+.comment_count a{
+    text-decoration: underline;
+    color: #525253;
+}
+
+.comment_count :hover{
+    color: #3FAACE;
+}
+
 /**/
 
 .sidebar {
@@ -330,7 +355,7 @@ a:visited {
 .form_container {
     display: flex;
     flex-direction: column;
-    width: 1140px;
+    width: 1120px;
     /*margin: 10px;*/
     padding: 10px;
     /*border-bottom: 1px solid rgba(166, 166, 166, 0.40);
@@ -361,6 +386,7 @@ a:visited {
     border: 1px solid #DDDDDD;
     -moz-transition: none 0s ease 0s;
     max-width: 99.5%;
+    font-family: monospace;
 }
 
 .form_input input[type=text]:focus, .form_input textarea:focus {
@@ -368,7 +394,7 @@ a:visited {
     padding: 3px 0 3px 3px;
     margin: 5px 1px 3px 0;
     border: 1px solid rgba(81, 203, 238, 1);
-    max-width: 99.5%;
+    max-width: 97.5%;
     /*transform: rotate(360deg);*/
 }
 
@@ -665,7 +691,7 @@ td, th {
 }
 
 .chat_delete {
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .chat_delete a {
@@ -713,4 +739,54 @@ td, th {
     padding-left: 17px;
     padding-right: 17px;
     text-align: justify;
+}
+
+.application_wrapper a{
+    text-decoration: none;
+    color: #3FAACE;
+}
+
+.comments {
+    /*border-top: 1px solid rgba(166, 166, 166, 0.40);*/
+
+    text-align: justify;
+}
+
+.comments a{
+    text-decoration: none;
+    color: #3FAACE;
+}
+
+.comment_statement {
+    padding: 0 17px 10px 17px;
+    text-align: justify;
+}
+
+.comment_author {
+    padding: 5px 17px 0px 17px;
+    border-top: 1px solid rgba(166, 166, 166, 0.40);
+}
+
+.comment_body {
+    padding: 0 17px 5px 17px;
+}
+
+.comment_form_container {
+    padding: 10px 17px 5px 17px;
+    border-top: 1px solid rgba(166, 166, 166, 0.40);
+}
+
+.comment_delete {
+    padding: 0 17px 0px 17px;
+    font-size: 11px;
+    padding-bottom: 5px;
+}
+
+.comment_delete a {
+    text-decoration: none;
+    color: #3faace;
+}
+
+.comment_form_button {
+    margin-top: 20px;
 }
