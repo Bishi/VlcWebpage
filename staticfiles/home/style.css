@@ -760,6 +760,8 @@ td, th {
 .comment_statement {
     padding: 0 17px 10px 17px;
     text-align: justify;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .comment_author {
@@ -773,7 +775,7 @@ td, th {
 
 .comment_form_container {
     padding: 10px 17px 5px 17px;
-    border-top: 1px solid rgba(166, 166, 166, 0.40);
+    /*border-top: 1px solid rgba(166, 166, 166, 0.40);*/
 }
 
 .comment_delete {
@@ -790,4 +792,30 @@ td, th {
 .comment_form_button {
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.comment_log_in {
+    padding: 10px 17px 10px 17px;
+    font-style: italic;
+}
+
+.comment_log_in a{
+    text-decoration: none;
+    color: #3FAACE;
+}
+
+.comment_no_comments {
+    padding: 0 17px 5px 17px;
+    font-style: italic;
+}
+
+.chat_log_in {
+    padding: 10px 17px 10px 17px;
+    font-style: italic;
+    border-bottom: 1px solid rgba(166, 166, 166, 0.40);
+}
+
+.chat_log_in a{
+    text-decoration: none;
+    color: #3FAACE;
 }

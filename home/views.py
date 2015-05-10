@@ -9,6 +9,8 @@ from django.core.exceptions import PermissionDenied
 from pybb.permissions import perms
 from django.shortcuts import get_object_or_404
 from pybb.models import Topic
+import bbcode
+from django.utils.safestring import mark_safe
 
 
 #class IndexView(generic.TemplateView):
@@ -50,7 +52,7 @@ def index_view(request):
     qs = qs[:5]
 
     #warcraftlogs
-    logs_list = WarcraftlogsAPI.objects.all().order_by('-end');
+    logs_list = WarcraftlogsAPI.objects.all().order_by('-end')
     logs_list = logs_list[:5]
 
     #realm status
@@ -75,7 +77,6 @@ def index_view(request):
             comment_count[comment.origin_id] += 1
         else:
             comment_count[comment.origin_id] = 1
-
 
     if "chatterbox_form" in request.POST:
         form = ChatterboxForm(request.POST, request.FILES)
@@ -103,7 +104,7 @@ def index_view(request):
     args['realm_status'] = realm_status
     args['comment_count'] = comment_count
 
-    return render_to_response('home/index.html',args)
+    return render_to_response('home/index.html', args)
 
 
 def home_redirect(response):
@@ -156,7 +157,7 @@ def news_articles(request):
                              {'newsArticles': articles,
                               'user': user,
                               'group': group_name,
-                              'comment_count':comment_count},)
+                              'comment_count': comment_count},)
 
 
 def news_article(request, article_id=1):
@@ -175,7 +176,6 @@ def news_article(request, article_id=1):
         article = NewsArticle.objects.get(id=article_id)
     except:
         raise Http404("Article does not exist")
-
 
     #edit article form
     instance = get_object_or_404(NewsArticle, id=article_id)
@@ -220,7 +220,6 @@ def news_article(request, article_id=1):
     return render_to_response('home/news_article.html', args)
 
 
-
 def create(request):
     #if user is not logged in, forbidden
     user = None
@@ -240,6 +239,8 @@ def create(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.pub_date = timezone.now()
+            #instance.body = bbcode.render_html(instance.body)
+            instance.body = mark_safe(instance.body.replace("\n", "<br/>"))
             instance.save()
             return HttpResponseRedirect('/articles/all')
     else:
@@ -280,7 +281,6 @@ def delete_article(request, article_id):
     else:
         raise PermissionDenied()
 
-
     args = {}
     args.update(csrf(request))
 
@@ -313,7 +313,6 @@ def application_info(request):
     if request.user.groups.filter(name='Officer'):
         group_name = 'Officer'
 
-
     return render_to_response('home/application_info.html',
                              {'user': user,
                               'group': group_name})
@@ -328,7 +327,6 @@ def test_page(request):
 
     chatterbox = Chatterbox.objects.all().order_by('-pub_date')
     chatterbox = chatterbox[:5:-1]
-
 
     if "chatterbox_form" in request.POST:
         form = ChatterboxForm(request.POST, request.FILES)
@@ -349,8 +347,8 @@ def test_page(request):
     args['user'] = user
     args['chatterbox'] = chatterbox
 
-
     return render_to_response('home/test_page.html', args)
+
 
 def delete_chatterbox(request, chat_id):
     #if user is not logged in, forbidden
@@ -379,7 +377,6 @@ def delete_chatterbox(request, chat_id):
     else:
         raise PermissionDenied()
 
-
     args = {}
     args.update(csrf(request))
 
@@ -388,6 +385,7 @@ def delete_chatterbox(request, chat_id):
     args['chatterbox_chat'] = chatterbox_chat
 
     return render_to_response('home/delete_chatterbox.html', args,)
+
 
 def delete_comment(request, comment_id):
     #if user is not logged in, forbidden
@@ -415,7 +413,6 @@ def delete_comment(request, comment_id):
             return HttpResponseRedirect('/')
     else:
         raise PermissionDenied()
-
 
     args = {}
     args.update(csrf(request))

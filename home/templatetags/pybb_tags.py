@@ -373,5 +373,5 @@ def pybb_posted_byT(post, user):
 def unix_to_date(unix):
     unix = unix/1000
     unix = int(unix)
-    time = datetime.fromtimestamp(int(unix)).strftime('%b %d.%Y')
+    time = datetime.fromtimestamp(int(unix)).strftime('%b %d. %Y')
     return time

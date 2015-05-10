@@ -39,14 +39,14 @@
             {% for newsArticle in newsArticles %}
                 <div class="article">
                     <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
-                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date }}</div>
+                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
 
                     {% if newsArticle.thumbnail %}
                         <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
                             <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
                     {% endif %}
 
-                    <p class="article_body">{{ newsArticle.body | truncatewords_html:500 }}</p>
+                    <p class="article_body">{{ newsArticle.body | truncatewords_html:500 | safe }}</p>
                     <p class="comment_count">
                         {% for comment, count in comment_count.items %}
                             {% if comment == newsArticle.id %}
@@ -89,7 +89,7 @@
             {% for chat in chatterbox %}
                 <div class="chat_line">
                     <div class="chat_author">
-                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d.Y H:i" }}
+                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
                     </div>
                     <div class="chat_body">
                         {{ chat.body }}
@@ -113,6 +113,9 @@
                     </form>
                 </div>
             </div>
+
+        {% else %}
+            <div class="chat_log_in"><a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.</div>
         {% endif %}
         <div class="sidebar_statement">
             Warcraftlogs:
@@ -151,13 +154,13 @@
     <div class="footer_div">
         <table class="realm_status">
             <tr>
-                <td class="footer_table">Vin la Cviček, Horde</td>
+                <td class="footer_table">Vin la Cvicek, Horde</td>
                 <td class="footer_table">Mazrigos-EU </td>
                 {% for rstatus in realm_status %}
                     {% if rstatus.status  %}
-                        <td class="footer_table"><div class="realm_status_up" title="Up"></div></td>
+                        <td class="footer_table"><div class="realm_status_up" title="Mazrigos is up"></div></td>
                     {% elif not rstatus.status %}
-                        <td class="footer_table"><div class="realm_status_down" title="Down"></div></td>
+                        <td class="footer_table"><div class="realm_status_down" title="Mazrigos is down"></div></td>
                     {% endif %}
                 {% endfor %}
                 <td class="footer_table">. Drinking since 2005</td>

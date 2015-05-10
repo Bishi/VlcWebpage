@@ -26,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'vinlacvicek.ddns.net', 'www.vinlacvicek.com', 'vinlacvicek.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'www.vinlacvicek.com', 'vinlacvicek.com']
 
 
 # Application definition
@@ -47,7 +47,8 @@ INSTALLED_APPS = (
     'pinax_theme_bootstrap',
     'bootstrapform',
     'captcha',
-    'compressor'
+    'compressor',
+    'precise_bbcode',
 )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),

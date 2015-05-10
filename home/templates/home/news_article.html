@@ -37,14 +37,14 @@
     <div class="article_wrapper_articles">
         <div class="show_article">
             <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
-            <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date }}</div>
+            <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
 
             {% if newsArticle.thumbnail %}
                 <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
                     <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
             {% endif %}
 
-            <p class="article_body">{{ newsArticle.body }}</p>
+            <p class="article_body">{{ newsArticle.body | safe }}</p>
         </div>
         {% if user.username == newsArticle.author.username or  group == 'Officer' %}
             <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()" class="submit_button"/>
@@ -61,34 +61,49 @@
             </div>
         {% endif %}
         <div class="comments">
-            {% for comment in comments %}
-                <div class="comment">
-                    <div class="comment_author">
-                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d.Y H:i" }}
-                    </div>
-                    <div class="comment_body">
-                        {{ comment.body }}
-                    </div>
-                    {% if user.username == comment.author.username or  group == 'Officer' %}
-                        <div class="comment_delete">
-                            <a href="/deletecomment/{{ comment.id }}">Delete</a>
+
+            <div class="comment_statement">
+            Comments:
+            </div>
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="comment">
+                        <div class="comment_author">
+                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d. Y H:i" }}
                         </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
+                        <div class="comment_body">
+                            {{ comment.body }}
+                        </div>
+                        {% if user.username == comment.author.username or  group == 'Officer' %}
+                            <div class="comment_delete">
+                                <a href="/deletecomment/{{ comment.id }}">Delete</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                 <div class="comment">
+                        <div class="comment_no_comments">
+                            There are no comments yet.
+                        </div>
+                 </div>
+            {% endif %}
         </div>
         {% if  user.is_authenticated %}
             <div class="comment_form">
                 <div class="comment_form_container">
                     <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
                         {% for field in form_comments %}
+                            <div class="form_name"><i>Add a comment:</i></div>
                             <div class="form_input">{{ field }}</div>
                             <div class="form_error">{{ field.errors }}</div>
                         {% endfor %}
-                        <div class="comment_form_button"><input type="submit" name="comment_form" value="Send comment" class="submit_button"></div>
+                        <div class="comment_form_button"><input type="submit" name="comment_form" value="Send" class="submit_button"></div>
                     </form>
                 </div>
             </div>
+        {% else %}
+            <div class="comment_log_in"><a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to comment.</div>
         {% endif %}
     </div>
 {% endblock %}
