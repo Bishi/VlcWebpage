@@ -12,6 +12,9 @@
     {% else %}
         <li><div class="in_menu">Welcome, {{ request.user.username }}</div></li>
         <li><a href="/account/logout">Logout</a></li>
+        {%  if request.user.is_superuser %}
+            <li><a href="/admin">Admin</a> </li>
+        {% endif %}
         <li><a href="/account/settings">Settings</a> </li>
         <li><a href="/forum/profile/edit/">Profile</a></li>
         <li><a href="/">Home</a></li>
