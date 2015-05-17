@@ -35,7 +35,9 @@
                     {{ forum.post_count }}
                 </td>
                 <td class="forum-last-post">
-                    {% include "pybb/forum_last_update_info.html" %} &nbsp;by&nbsp; <i><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a></i>
+                    {% if forum.last_post.user %}
+                        {% include "pybb/forum_last_update_info.html" %} &nbsp;by&nbsp; <i><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a></i>
+                    {% endif %}
                 </td>
             </tr>
         {% empty %}

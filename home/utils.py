@@ -43,7 +43,7 @@ class RealmStatusClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         RealmStatusClient.interval = time.time()
-        url = 'http://eu.battle.net/api/wow/realm/status?realms=Mazrigos'
+        url = 'http://eu.battle.net/api/wow/realm/status?realms=Draenor'
         return self.fetch_json(url)
 
     def fetch_json(self, url):

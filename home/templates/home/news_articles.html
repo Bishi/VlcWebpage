@@ -38,7 +38,7 @@
                         <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
                 {% endif %}
 
-                <p class="article_body">{{ newsArticle.body | truncatewords_html:500 | safe }}</p>
+                <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
                 <p class="comment_count">
                         {% for comment, count in comment_count.items %}
                             {% if comment == newsArticle.id %}

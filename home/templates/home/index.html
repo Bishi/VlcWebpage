@@ -46,7 +46,7 @@
                             <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
                     {% endif %}
 
-                    <p class="article_body">{{ newsArticle.body | truncatewords_html:500 | safe }}</p>
+                    <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
                     <p class="comment_count">
                         {% for comment, count in comment_count.items %}
                             {% if comment == newsArticle.id %}
@@ -155,12 +155,12 @@
         <table class="realm_status">
             <tr>
                 <td class="footer_table">Vin la Cvicek, Horde</td>
-                <td class="footer_table">Mazrigos-EU </td>
+                <td class="footer_table">Draenor-EU </td>
                 {% for rstatus in realm_status %}
                     {% if rstatus.status  %}
-                        <td class="footer_table"><div class="realm_status_up" title="Mazrigos is up"></div></td>
+                        <td class="footer_table"><div class="realm_status_up" title="Draenor is up"></div></td>
                     {% elif not rstatus.status %}
-                        <td class="footer_table"><div class="realm_status_down" title="Mazrigos is down"></div></td>
+                        <td class="footer_table"><div class="realm_status_down" title="Draenor is down"></div></td>
                     {% endif %}
                 {% endfor %}
                 <td class="footer_table">. Drinking since 2005</td>
@@ -168,6 +168,6 @@
         </table>
     </div>
     <div class="footer_div  ">
-        Contact Frostmaster or Bishi ingame
+        Contact Rapiu, Frostmaster or Bishi ingame
     </div>
 {% endblock %}

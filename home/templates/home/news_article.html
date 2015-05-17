@@ -44,7 +44,7 @@
                     <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
             {% endif %}
 
-            <p class="article_body">{{ newsArticle.body | safe }}</p>
+            <p class="article_body">{{ newsArticle.body_html | safe }}</p>
         </div>
         {% if user.username == newsArticle.author.username or  group == 'Officer' %}
             <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()" class="submit_button"/>

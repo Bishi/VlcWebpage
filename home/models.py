@@ -1,6 +1,8 @@
 from django.db import models
 from time import time
 from django.core.exceptions import ValidationError
+from pybb.markup.base import BaseParser
+from pybb.util import unescape, FilePathGenerator, _get_markup_formatter
 
 
 def get_upload_file_name(instance, filename):
@@ -17,6 +19,7 @@ class NewsArticle(models.Model):
 
     title = models.CharField(max_length=30)
     body = models.TextField(max_length=9000, blank=True)
+    body_html = models.TextField(max_length=9000, blank=True)
     pub_date = models.DateTimeField('date published')
     likes = models.IntegerField(default=0)
     thumbnail = models.ImageField(upload_to=get_upload_file_name, null=True, blank=True, validators=[validate_image])
@@ -24,6 +27,11 @@ class NewsArticle(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        #self.body_html = BaseParser().format(self.body)
+        self.body_html = _get_markup_formatter()(self.body)
+        super(NewsArticle, self).save(*args, **kwargs)
 
 
 class ArticleComment(models.Model):

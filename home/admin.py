@@ -14,6 +14,7 @@ class NewsArticleAdmin(admin.ModelAdmin):
         (None,                  {'fields': ['title']}),
         ('Date information',    {'fields': ['pub_date']}),
         ('Body',                {'fields': ['body']}),
+        ('Body_html',           {'fields': ['body_html']}),
         ('Img',                 {'fields': ['thumbnail']}),
         ('Author',              {'fields': ['author']}),
     ]

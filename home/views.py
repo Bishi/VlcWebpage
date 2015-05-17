@@ -240,7 +240,7 @@ def create(request):
             instance.author = request.user
             instance.pub_date = timezone.now()
             #instance.body = bbcode.render_html(instance.body)
-            instance.body = mark_safe(instance.body.replace("\n", "<br/>"))
+            #instance.body = mark_safe(instance.body.replace("\n", "<br/>"))
             instance.save()
             return HttpResponseRedirect('/articles/all')
     else:
