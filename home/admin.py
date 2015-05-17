@@ -3,10 +3,6 @@ from home.models import NewsArticle, Recruitment, ClassName, ClassRole, Warcraft
 from home.models import ArticleComment
 from home.models import Chatterbox
 
-#class ChoiceInLine(admin.TabularInline):
-#    model = NewsArticle
-#    extra = 3
-
 
 class NewsArticleAdmin(admin.ModelAdmin):
     #when we click on the artickle
@@ -17,11 +13,16 @@ class NewsArticleAdmin(admin.ModelAdmin):
         ('Body_html',           {'fields': ['body_html']}),
         ('Img',                 {'fields': ['thumbnail']}),
         ('Author',              {'fields': ['author']}),
+        #(('Additional options'), {
+        #        'classes': ('collapse',),
+        #        'fields': ('body_html',)
+        #        }
+        # ),
     ]
     #inlines = [ChoiceInLine]
 
     #displays al the articles with these
-    list_display = ('title','pub_date', 'likes')
+    list_display = ('title', 'pub_date', 'author')
 
 
 admin.site.register(NewsArticle, NewsArticleAdmin)
@@ -66,6 +67,7 @@ class WarcraftlogsAPIAdmin(admin.ModelAdmin):
 
 admin.site.register(WarcraftlogsAPI, WarcraftlogsAPIAdmin)
 
+
 class WarcraftlogsUrlAdmin(admin.ModelAdmin):
     pass
 
@@ -85,7 +87,8 @@ class ChatterboxAdmin(admin.ModelAdmin):
 
 admin.site.register(Chatterbox, ChatterboxAdmin)
 
+
 class ArticleCommentAdmin(admin.ModelAdmin):
-    list_display = ('id','author','origin', 'body')
+    list_display = ('id', 'author', 'origin', 'body')
 
 admin.site.register(ArticleComment, ArticleCommentAdmin)

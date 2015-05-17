@@ -3,6 +3,7 @@ import time
 import urllib.request, json
 from pprint import pprint
 
+
 class WarcraftlogsClient(object):
     interval = 0
 
@@ -12,8 +13,8 @@ class WarcraftlogsClient(object):
             time.sleep(2 - delta)
         WarcraftlogsClient.interval = time.time()
         #url = "https://www.warcraftlogs.com/v1/reports/guild/Vin%20la%20Cvicek/Mazrigos/EU?api_key=38f09f38b5243079de0c15cb5eded39a"
-        url=WarcraftlogsURL.objects.all()
-        url=url.values_list('url')[0][0]
+        url = WarcraftlogsURL.objects.all()
+        url = url.values_list('url')[0][0]
         return self.fetch_json(url)
 
     def fetch_json(self, url):

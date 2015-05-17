@@ -14,11 +14,13 @@ class NewsArticleForm(forms.ModelForm):
         super(NewsArticleForm, self).__init__(*args, **kwargs)
         self.fields['thumbnail'].label = "Image"
 
+
 class CommentForm(forms.ModelForm):
 
     class Meta:
         model = ArticleComment
         fields = ('body',)
+
 
 class DeleteNewsArticleForm(forms.ModelForm):
 

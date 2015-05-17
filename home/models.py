@@ -1,12 +1,11 @@
 from django.db import models
 from time import time
 from django.core.exceptions import ValidationError
-from pybb.markup.base import BaseParser
-from pybb.util import unescape, FilePathGenerator, _get_markup_formatter
+from pybb.util import _get_markup_formatter
 
 
 def get_upload_file_name(instance, filename):
-    return "uploaded_files/%s_%s" % (str(time()).replace('.','_'), filename)
+    return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 
 class NewsArticle(models.Model):
