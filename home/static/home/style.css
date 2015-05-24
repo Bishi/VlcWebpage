@@ -386,6 +386,8 @@ a:visited {
     border: 1px solid #DDDDDD;
     -moz-transition: none 0s ease 0s;
     max-width: 99.5%;
+    max-height: 1000px;
+    /*width: 99.5%;*/
     font-family: monospace;
 }
 
@@ -394,8 +396,13 @@ a:visited {
     padding: 3px 0 3px 3px;
     margin: 5px 1px 3px 0;
     border: 1px solid rgba(81, 203, 238, 1);
-    max-width: 97.5%;
-    /*transform: rotate(360deg);*/
+    max-width: 99.5%;
+    max-height: 1000px;
+    /*width: 99.5%;*/
+}
+
+.form_input #id_title {
+    width: 250px;
 }
 
 .not_found {
@@ -809,6 +816,10 @@ td, th {
     font-style: italic;
 }
 
+.comment_preview {
+
+}
+
 .chat_log_in {
     padding: 10px 17px 10px 17px;
     font-style: italic;
@@ -818,4 +829,16 @@ td, th {
 .chat_log_in a{
     text-decoration: none;
     color: #3FAACE;
+}
+
+.calculator {
+    padding: 10px 17px 10px 17px;
+}
+
+.calc_k, .calc_p, .calc_n, .result, .result2 {
+    display: flex;
+}
+
+.calc_k1, .calc_n1, .calc_p1, .res11, .res21 {
+    flex-grow: 1;
 }

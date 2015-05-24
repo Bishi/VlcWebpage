@@ -103,11 +103,12 @@ class MyUserAdmin(UserAdmin):
         if not obj:
             return self.add_fieldsets
 
+        #superuser
         if request.user.is_superuser:
             perm_fields = ('is_active', 'is_staff', 'is_superuser',
                            'groups', 'user_permissions')
+        #staff
         else:
-            # modify these to suit the fields you want your
             # staff user to be able to edit
             perm_fields = ('is_active', 'is_staff', 'groups')
 
@@ -115,6 +116,9 @@ class MyUserAdmin(UserAdmin):
                 (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
                 (_('Permissions'), {'fields': perm_fields}),
                 (_('Important dates'), {'fields': ('last_login', 'date_joined')})]
+
+    list_filter = ['is_staff', 'is_superuser', 'groups' , 'is_active', 'date_joined']
+    list_display = ('username', 'is_staff', 'date_joined')
 
 admin.site.unregister(User)
 admin.site.register(User, MyUserAdmin)

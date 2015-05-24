@@ -145,7 +145,45 @@
             {% endfor %}
         </table>
         {% endcomment %}
-
+        <div class="sidebar_statement">
+            Mount calculator:
+        </div>
+        <div class="calculator" ng-app="mount_calculator" ng-controller="MountCalculator as calc">
+            <div class="calc_k">
+                <div class="calc_k1">Number of mounts: </div>
+                <div class="calc_k2">
+                    <input type="number" min="0" ng-model="calc.k" required min="0" max="999" style="width: 50px">
+                </div>
+            </div>
+            <div class="calc_p">
+                <div class="calc_p1">Drop chance:</div>
+                <div class="calc_p2">
+                    <input type="number" min="0" ng-model="calc.p" required min="0" max="100" step="0.10" style="width: 39px">%
+                </div>
+            </div>
+            <div class="calc_n">
+                <div class="calc_n1">Number of kills: </div>
+                <div class="calc_n2">
+                    <input type="number" min="0" ng-model="calc.n" required min="0" max="999" style="width: 50px">
+                </div>
+            </div>
+            <div class="result">
+                <div class="res11">Chance: </div>
+                <div class="res12">
+                    {% verbatim %}
+                        {{ calc.drop_chance(calc.k, calc.n, calc.p) }}
+                    {% endverbatim %}
+                </div>
+            </div>
+            <div class="result2">
+                <div class="res21">At least one mount:</div>
+                <div class="res22">
+                    {% verbatim %}
+                        {{ calc.drop_chance_one(0, calc.n, calc.p) }}
+                    {% endverbatim %}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
