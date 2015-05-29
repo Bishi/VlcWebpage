@@ -9,6 +9,7 @@ from django.core.exceptions import PermissionDenied
 from pybb.permissions import perms
 from django.shortcuts import get_object_or_404
 from pybb.models import Topic
+from django.template import RequestContext
 import bbcode
 from django.utils.safestring import mark_safe
 
@@ -104,7 +105,7 @@ def index_view(request):
     args['realm_status'] = realm_status
     args['comment_count'] = comment_count
 
-    return render_to_response('home/index.html', args)
+    return render_to_response('home/index.html', args, context_instance=RequestContext(request))
 
 
 def home_redirect(response):
@@ -157,7 +158,8 @@ def news_articles(request):
                              {'newsArticles': articles,
                               'user': user,
                               'group': group_name,
-                              'comment_count': comment_count},)
+                              'comment_count': comment_count},
+                               context_instance=RequestContext(request))
 
 
 def news_article(request, article_id=1):
@@ -217,7 +219,7 @@ def news_article(request, article_id=1):
     args['comments'] = comments
     args['comment_number'] = comment_number
 
-    return render_to_response('home/news_article.html', args)
+    return render_to_response('home/news_article.html', args, context_instance=RequestContext(request))
 
 
 def create(request):
@@ -251,7 +253,7 @@ def create(request):
     args['form'] = form
     args['user'] = user
 
-    return render_to_response('home/create_news_article.html', args,)
+    return render_to_response('home/create_news_article.html', args, context_instance=RequestContext(request))
 
 
 def delete_article(request, article_id):
@@ -288,7 +290,7 @@ def delete_article(request, article_id):
     args['user'] = user
     args['newsArticle'] = article
 
-    return render_to_response('home/delete_news_article.html', args,)
+    return render_to_response('home/delete_news_article.html', args, context_instance=RequestContext(request))
 
 
 def like_article(request, article_id):
@@ -315,7 +317,8 @@ def application_info(request):
 
     return render_to_response('home/application_info.html',
                              {'user': user,
-                              'group': group_name})
+                              'group': group_name},
+                               context_instance=RequestContext(request))
 
 
 def test_page(request):
@@ -347,7 +350,7 @@ def test_page(request):
     args['user'] = user
     args['chatterbox'] = chatterbox
 
-    return render_to_response('home/test_page.html', args)
+    return render_to_response('home/test_page.html', args, context_instance=RequestContext(request))
 
 
 def delete_chatterbox(request, chat_id):
@@ -384,7 +387,7 @@ def delete_chatterbox(request, chat_id):
     args['user'] = user
     args['chatterbox_chat'] = chatterbox_chat
 
-    return render_to_response('home/delete_chatterbox.html', args,)
+    return render_to_response('home/delete_chatterbox.html', args, context_instance=RequestContext(request))
 
 
 def delete_comment(request, comment_id):
@@ -421,4 +424,4 @@ def delete_comment(request, comment_id):
     args['user'] = user
     args['comment'] = comment
 
-    return render_to_response('home/delete_comment.html', args,)
+    return render_to_response('home/delete_comment.html', args, context_instance=RequestContext(request))

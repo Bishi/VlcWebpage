@@ -62,17 +62,21 @@
                         <table class="realm_status">
                             <tr>
                                 <td class="footer_table">Vin la Cvicek, Horde</td>
-                                <td class="footer_table">Draenor-EU. </td>
-                                <td class="footer_table">Drinking since 2005</td>
+                                <td class="footer_table">Draenor-EU </td>
+                                {% for rstatus in realm_status %}
+                                    {% if rstatus.status  %}
+                                        <td class="footer_table"><div class="realm_status_up" title="Draenor is up"></div></td>
+                                    {% elif not rstatus.status %}
+                                        <td class="footer_table"><div class="realm_status_down" title="Draenor is down"></div></td>
+                                    {% endif %}
+                                {% endfor %}
+                                <td class="footer_table">. Drinking since 2005</td>
                             </tr>
                         </table>
                     </div>
-                    <div class="footer_div  ">Contact Rapiu, Frostmaster or Bishi ingame</div>
-                    {% comment %}
-                    <div itemscope itemtype="http://schema.org/Thing">
-                        <h1 itemprop="name">The Jungle Book</h1>
+                    <div class="footer_div  ">
+                        Contact: admin@vinlacvicek.com
                     </div>
-                    {% endcomment %}
                 {% endblock %}
             </div>
         </div>

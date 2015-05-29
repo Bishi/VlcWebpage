@@ -816,10 +816,6 @@ td, th {
     font-style: italic;
 }
 
-.comment_preview {
-
-}
-
 .chat_log_in {
     padding: 10px 17px 10px 17px;
     font-style: italic;
@@ -833,12 +829,20 @@ td, th {
 
 .calculator {
     padding: 10px 17px 10px 17px;
+    border-bottom: 1px solid rgba(166, 166, 166, 0.40);
 }
 
-.calc_k, .calc_p, .calc_n, .result, .result2 {
+.calc1 {
     display: flex;
 }
 
-.calc_k1, .calc_n1, .calc_p1, .res11, .res21 {
+.calc2 {
     flex-grow: 1;
+}
+
+.calc3 {
+    position:relative;
+}
+.calc3 span {
+    position: absolute; right: 20px; top:0px;
 }

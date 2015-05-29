@@ -85,6 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.debug',
+    'home.custom_context.add_realm_status',
 )
 
 #AUTH_PROFILE_MODULE = 'accounts.UserProfile'

@@ -11,7 +11,7 @@ angular.module('mount_calculator', []).controller('MountCalculator', function(){
         result = result * 100;
         result = Math.round(result * 1000) / 1000; //3 decimals
 
-        return (result + "%");
+        return (result + " %");
     };
 
     this.drop_chance_one = function drop_chance_f(k, n, p){
@@ -22,7 +22,7 @@ angular.module('mount_calculator', []).controller('MountCalculator', function(){
         result = result * 100;
         result = Math.round(result * 1000) / 1000;
 
-        return (result + "%");
+        return (result + " %");
     };
 
     //http://rosettacode.org/wiki/Evalate_binomial_coefficients#JavaScript
