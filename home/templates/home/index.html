@@ -58,7 +58,6 @@
                             {% endif %}
                         {% endfor %}
                     </p>
-
                 </div>
             {% endfor %}
         </div>
@@ -109,13 +108,16 @@
                         {% for field in form %}
                             <div class="chatterbox_form_input">{{ field }}</div>
                         {% endfor %}
-                        <div class="chatterbox_form_button"><input type="submit" name="chatterbox_form" value="Send" class="submit_button"></div>
+                        <div class="chatterbox_form_button">
+                            <input type="submit" name="chatterbox_form" value="Send" class="submit_button">
+                        </div>
                     </form>
                 </div>
             </div>
-
         {% else %}
-            <div class="chat_log_in"><a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.</div>
+            <div class="chat_log_in">
+                <a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.
+            </div>
         {% endif %}
         <div class="sidebar_statement">
             Warcraftlogs:
@@ -131,20 +133,18 @@
                 </div>
             {% endfor %}
         </div>
-        {% comment %} }
         <div class="sidebar_statement">
-            Realm status:
+            WoW Token price:
         </div>
-        <table class="realm_status">
-            {% for rstatus in realm_status %}
-                {% if rstatus.status  %}
-                        <tr><td class="realm_name">{{ rstatus.id }} </td><td><div class="realm_status_up"></div></td></tr>
-                {% elif not rstatus.status %}
-                        <tr><td class="realm_name">{{ rstatus.id }} </td><td><div class="realm_status_down"></div></td></tr>
-                {% endif %}
+        <div class="logs">
+            {% for token in wow_token %}
+                <div class="token_div">
+                    <li class="token_timestamp">{{ token.timestamp }}</li>
+                    <li class="token_price">{{ token.price }}</li>
+
+                </div>
             {% endfor %}
-        </table>
-        {% endcomment %}
+        </div>
         <div class="sidebar_statement">
             Mount calculator:
         </div>

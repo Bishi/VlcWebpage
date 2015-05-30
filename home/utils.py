@@ -1,7 +1,9 @@
-from home.models import WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
+from home.models import WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI, WowTokenApi
+from django.utils import timezone
 import time
-import urllib.request, json
-from pprint import pprint
+import urllib.request
+import json
+import datetime
 
 
 class WarcraftlogsClient(object):
@@ -58,5 +60,34 @@ def create_status(data):
     RealmStatusAPI.objects.all().delete()
 
     maz_status = RealmStatusAPI(id=data['realms'][0]['name'], queue=data['realms'][0]['queue'],
-                             status=data['realms'][0]['status'])
+                                status=data['realms'][0]['status'])
     maz_status.save(force_insert=True)
+
+
+class WowTokenApiClient(object):
+    interval = 0
+
+    def fetch(self, **params):
+        delta = time.time() - RealmStatusClient.interval
+        if delta < 2:
+            time.sleep(2 - delta)
+        RealmStatusClient.interval = time.time()
+        url = 'https://wowtoken.info/wowtoken.json'
+        return self.fetch_json(url)
+
+    def fetch_json(self, url):
+        data = urllib.request.urlopen(url)
+        str_response = data.readall().decode('utf-8')
+        data = json.loads(str_response)
+        return data
+
+
+def create_wowtoken(data):
+    WowTokenApi.objects.all().delete()
+    updated = data['update']['EU']['raw']['updated']
+    updated_time = timezone.now()
+
+    token_price = WowTokenApi(price = data['update']['EU']['formatted']['buy'],
+                              timestamp=datetime.datetime.fromtimestamp(updated).strftime("%b %d. %Y %H:%M"),
+                              pub_date = updated_time)
+    token_price.save(force_insert=True)

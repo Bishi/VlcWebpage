@@ -97,6 +97,15 @@ class RealmStatusAPI(models.Model):
         return self.id
 
 
+class WowTokenApi(models.Model):
+    price = models.CharField(max_length=10, blank=True)
+    timestamp = models.CharField(max_length=30)
+    pub_date = models.DateTimeField('date published', blank=True, null=True)
+
+    def __str__(self):
+        return self.timestamp
+
+
 class Chatterbox(models.Model):
     author = models.ForeignKey('auth.User')
     body = models.TextField(max_length=140)

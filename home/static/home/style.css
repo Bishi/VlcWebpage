@@ -410,7 +410,8 @@ a:visited {
 }
 
 .topic-unread .state-indicator, .forum-unread .state-indicator {
-  background-color: #5bc0de;
+  /*background-color: #5bc0de;*/
+  background-color: #3FAACE;
 }
 .state-indicator {
   display: block;
@@ -419,7 +420,7 @@ a:visited {
   height: 10px;
   width: 10px;
   border-radius: 4px;
-  margin: 3px 5px;
+  margin: 5px 5px;
 }
 
 .table{
@@ -668,8 +669,12 @@ td, th {
 }
 
 .chatterbox_form_input input[type=text]:focus, .chatterbox_form_input textarea:focus {
-
-    /*transform: rotate(360deg);*/
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+    /*padding: 3px 0 3px 3px;
+    margin: 5px 1px 3px 0;
+    max-width: 99.5%;
+    max-height: 1000px;*/
 }
 
 .chat_author {
@@ -845,4 +850,15 @@ td, th {
 }
 .calc3 span {
     position: absolute; right: 20px; top:0px;
+}
+
+.token_div {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 17px 5px 17px;
+    font-size: 15px;
+}
+
+.token_timestamp{
+    flex-grow: 1;
 }

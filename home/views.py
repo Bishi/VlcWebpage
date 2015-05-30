@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, RealmStatusAPI, Chatterbox, ArticleComment
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -10,12 +10,9 @@ from pybb.permissions import perms
 from django.shortcuts import get_object_or_404
 from pybb.models import Topic
 from django.template import RequestContext
+from django.contrib.auth.decorators import permission_required
 import bbcode
 from django.utils.safestring import mark_safe
-
-
-#class IndexView(generic.TemplateView):
-#    template_name = 'home/index.html'
 
 
 #homepage
@@ -56,8 +53,8 @@ def index_view(request):
     logs_list = WarcraftlogsAPI.objects.all().order_by('-end')
     logs_list = logs_list[:5]
 
-    #realm status
-    realm_status = RealmStatusAPI.objects.all()
+    #wowtoken
+    wow_token = WowTokenApi.objects.all()
 
     #chatterbox
     chatterbox = Chatterbox.objects.all().order_by('-pub_date')
@@ -102,7 +99,7 @@ def index_view(request):
     args['group'] = group_name
     args['topic_list'] = qs
     args['logs_list'] = logs_list
-    args['realm_status'] = realm_status
+    args['wow_token'] = wow_token
     args['comment_count'] = comment_count
 
     return render_to_response('home/index.html', args, context_instance=RequestContext(request))
@@ -222,6 +219,7 @@ def news_article(request, article_id=1):
     return render_to_response('home/news_article.html', args, context_instance=RequestContext(request))
 
 
+@permission_required('home.add_newsarticle', raise_exception=True)
 def create(request):
     #if user is not logged in, forbidden
     user = None
@@ -231,8 +229,8 @@ def create(request):
         raise PermissionDenied()
 
     #if the user is not an officer, forbidden
-    if not request.user.groups.filter(name='Officer'):
-        raise PermissionDenied()
+    #if not request.user.groups.filter(name='Officer'):
+    #    raise PermissionDenied()
 
     if request.POST:
         form = NewsArticleForm(request.POST, request.FILES)

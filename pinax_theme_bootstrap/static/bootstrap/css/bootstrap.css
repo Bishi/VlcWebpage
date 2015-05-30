@@ -7047,7 +7047,7 @@ td.visible-print {
   height: 10px;
   width: 10px;
   border-radius: 4px;
-  margin: 3px 5px;
+  margin: 5px 5px;
 }
 .topic-unread a,
 .forum-unread a {
@@ -7055,7 +7055,8 @@ td.visible-print {
 }
 .topic-unread .state-indicator,
 .forum-unread .state-indicator {
-  background-color: #5bc0de;
+  /*background-color: #5bc0de;*/
+  background-color: #3FAACE;
 }
 /* --- Moderation --- */
 .on-moderation {

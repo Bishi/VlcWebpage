@@ -1,6 +1,6 @@
 from django.contrib import admin
 from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
-from home.models import ArticleComment
+from home.models import ArticleComment, WowTokenApi
 from home.models import Chatterbox
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -85,6 +85,12 @@ class RealmStatusAPIAdmin(admin.ModelAdmin):
 admin.site.register(RealmStatusAPI, RealmStatusAPIAdmin)
 
 
+class WowTokenApiAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(WowTokenApi, WowTokenApiAdmin)
+
+
 class ChatterboxAdmin(admin.ModelAdmin):
     list_display = ('body', 'author')
 
@@ -117,7 +123,7 @@ class MyUserAdmin(UserAdmin):
                 (_('Permissions'), {'fields': perm_fields}),
                 (_('Important dates'), {'fields': ('last_login', 'date_joined')})]
 
-    list_filter = ['is_staff', 'is_superuser', 'groups' , 'is_active', 'date_joined']
+    list_filter = ['is_staff', 'is_superuser', 'groups', 'is_active', 'date_joined']
     list_display = ('username', 'is_staff', 'date_joined')
 
 admin.site.unregister(User)

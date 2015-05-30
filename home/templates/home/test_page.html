@@ -8,15 +8,11 @@
 
 {% block content %}
 
-<div class="content_wrapper">
-
-
-
+    <div class="content_wrapper">
         <div class="article_wrapper">
             {% for newsArticle in newsArticles %}
                 <div class="article">
                     <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
-
                     {% if newsArticle.thumbnail %}
                         <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
                             <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
