@@ -288,6 +288,9 @@ class Post(RenderableItem):
     def get_absolute_url(self):
         return reverse('pybb:post', kwargs={'pk': self.id})
 
+    def get_post_number(self):
+        return self.id
+
     def delete(self, *args, **kwargs):
         self_id = self.id
         head_post_id = self.topic.posts.order_by('created', 'id')[0].id

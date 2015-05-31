@@ -9,7 +9,7 @@
     <thead class="post-header">
     <tr>
     <th colspan="2">
-        <a class="permalink" href="{{ post.get_absolute_url }}">#</a>
+        <a class="permalink" href="{{ post.get_absolute_url }}">#{{ post.get_post_number }}</a>
         <span class="updated">{% pybb_time post.created %}</span>
     </th>
     </tr>

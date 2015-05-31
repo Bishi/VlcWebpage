@@ -837,6 +837,16 @@ td, th {
     border-bottom: 1px solid rgba(166, 166, 166, 0.40);
 }
 
+.calculator input[type=number]{
+    outline: none;
+    border: 1px solid #DDDDDD;
+}
+
+.calculator input[type=number]:focus{
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
 .calc1 {
     display: flex;
 }
@@ -862,3 +872,4 @@ td, th {
 .token_timestamp{
     flex-grow: 1;
 }
+
