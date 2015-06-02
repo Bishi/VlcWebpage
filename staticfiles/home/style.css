@@ -908,6 +908,11 @@ td, th {
 }
 
 .tr_title a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tr_title a{
     text-decoration: none;
     display:block;
     color: black;
@@ -916,6 +921,10 @@ td, th {
 
 .tr_title a:visited{
     color: black;
+}
+
+.tr_title th{
+
 }
 
 .td_thumbnail{

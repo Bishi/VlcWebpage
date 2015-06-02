@@ -4,6 +4,7 @@ import time
 import urllib.request
 import json
 import datetime
+import http.client
 
 
 class WarcraftlogsClient(object):
@@ -128,6 +129,13 @@ def update_roster(data):
         except:
             char_spec = 'Unknown'
 
+        #check if thumbnail is valid
+        curr_thumbnail = "http://eu.battle.net/static-render/eu/"+curr_thumbnail
+        url = curr_thumbnail[20:]
+        status = check_thumbnail(url)
+        if status == 404:
+            curr_thumbnail = "http://media.blizzard.com/wow/icons/36/inv_misc_questionmark.jpg"
+
         #save new guild member
         if not Member.objects.filter(name=char_name):
             new_member = Member(name=char_name,
@@ -161,3 +169,11 @@ def update_roster(data):
             member.delete()
 
     print("Last updated: ", curr_timestamp)
+
+
+def check_thumbnail(url):
+    conn = http.client.HTTPConnection("eu.battle.net", 80, timeout=5)
+    conn.request("HEAD", url)
+    r1 = conn.getresponse()
+    #print(r1.status, r1.reason)
+    return r1.status

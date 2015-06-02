@@ -32,21 +32,31 @@
 {% block content %}
     {% autoescape off %}
         <table class="roster">
+            <thead>
             <tr class="tr_title">
-                <td class="td_thumbnail"></td>
-                {% comment %}<td class="td_name"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></td>{% endcomment %}
-                <td class="td_level"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></td>
-                <td class="td_level"><a href="?{% url_replace request 'sort' 'l' %}">Level</a></td>
-                <td class="td_spec"><a href="?{% url_replace request 'sort' 's' %}">Spec</a></td>
-                <td class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></td>
-                <td class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></td>
-                <td class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></td>
+                <th class="td_thumbnail"></th>
+                <th class="td_level"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></th>
+                <th class="td_level"><a href="?{% url_replace request 'sort' 'l' %}">Level</a></th>
+                <th class="td_spec"><a href="?{% url_replace request 'sort' 's' %}">Spec</a></th>
+                <th class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></th>
+                <th class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></th>
+                <th class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></th>
+                {% comment %}
+                <th class="td_thumbnail"></th>
+                <th class="td_level">Name</th>
+                <th class="td_level">Level</th>
+                <th class="td_spec">Spec</th>
+                <th class="td_class">Class</th>
+                <th class="td_rank">Rank</th>
+                <th class="td_timestamp">Last Updated</th>{% endcomment %}
             </tr>
+            </thead>
+            <tbody>
             {% for member in members %}
-                {% if member.level > 20 %}
+                {% if member.level > 0 %}
                     <tr>
-                        <td class="td_thumbnail"><img src="http://eu.battle.net/static-render/eu/{{ member.thumbnail }}" width="50px" height="50px"></td>
-                        <td class="td_name"><a href="http://eu.battle.net/wow/en/character/draenor/{{ member.name }}/simple">{{ member.name }}</a></td>
+                        <td class="td_thumbnail"><img src="{{ member.thumbnail }}" height="50px"></td>
+                        <td class="td_name"><a href="http://eu.battle.net/wow/en/character/draenor/{{ member.name }}/advanced">{{ member.name }}</a></td>
                         <td class="td_level">{{ member.level }}</td>
                         <td class="td_spec">{{ member.spec }}</td>
                         <td class="td_class">{{ member.player_class_string }}</td>
@@ -55,6 +65,7 @@
                     </tr>
                 {% endif %}
             {% endfor %}
+            </tbody>
         </table>
     {% endautoescape %}
 {% endblock %}
