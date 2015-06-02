@@ -662,10 +662,11 @@ td, th {
     outline: none;
     border: 1px solid #DDDDDD;
     -moz-transition: none 0s ease 0s;
-    width: 246px;
+    width: 243px;
     height: 32px;
     resize: none;
     padding: 0;
+    padding: 3px 0 3px 3px;
 }
 
 .chatterbox_form_input input[type=text]:focus, .chatterbox_form_input textarea:focus {
@@ -865,11 +866,66 @@ td, th {
 .token_div {
     display: flex;
     flex-direction: row;
-    padding: 5px 17px 5px 17px;
+    padding: 10px 17px 10px 17px;
     font-size: 15px;
+    border-bottom: 1px solid rgba(166, 166, 166, 0.40);
 }
 
 .token_timestamp{
     flex-grow: 1;
 }
 
+.roster{
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 10px 17px 10px 17px;
+    width: 1106px;
+}
+
+.roster tbody{
+    font-size: 15px;
+}
+
+.roster a{
+    text-decoration: none;
+}
+
+.roster a:visited{
+    text-decoration: none;
+    color: #0a6aff;
+}
+
+.roster tr:nth-child(even){
+    background-color: #e1e1e1;
+}
+
+.tr_title{
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.tr_title a{
+    text-decoration: none;
+    display:block;
+    color: black;
+    font-weight: bold;
+}
+
+.tr_title a:visited{
+    color: black;
+}
+
+.td_thumbnail{
+    width: 50px;
+}
+
+.td_name, .td_timestamp{
+    width: 20%;
+}
+
+.td_spec, .td_class, .td_rank{
+    width: 15%;
+}

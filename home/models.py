@@ -110,3 +110,46 @@ class Chatterbox(models.Model):
     author = models.ForeignKey('auth.User')
     body = models.TextField(max_length=140)
     pub_date = models.DateTimeField('date published')
+
+
+def get_rank(rank):
+    current_ranks = ['Guild Master', 'Officer', 'Officer Alt',
+                     'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
+    try:
+        c_string = current_ranks[rank]
+    except:
+        c_string = 'Unknown'
+
+    return c_string
+
+
+def get_class(player_class):
+    classes = ['Unknown', 'Warrior', 'Paladin', 'Hunter', 'Rogue',
+               'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock','Monk', 'Druid']
+    try:
+        c_string = classes[player_class]
+    except:
+        c_string = 'Unknown'
+
+    return c_string
+
+
+class Member(models.Model):
+    name = models.CharField(max_length=20)
+    spec = models.CharField(max_length=25, null=True)
+    rank = models.IntegerField()
+    rank_string = models.CharField(max_length=20, default="Wrong Rank")
+    player_class = models.IntegerField()
+    player_class_string = models.CharField(max_length=15, default="Unknown")
+    level = models.IntegerField()
+    timestamp = models.DateTimeField('timestamp')
+    pub_date = models.DateTimeField('date published')
+    thumbnail = models.CharField(max_length=40, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.player_class_string = get_class(self.player_class)
+        self.rank_string = get_rank(self.rank)
+        super(Member, self).save(*args, **kwargs)

@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -123,6 +123,27 @@ def news_articles(request):
         group_name = 'Officer'
 
     #list of articles
+    # sort_by = request.GET.get('order_by', '-pub_date')
+    # if sort_by not in ['-pub_date', 'pub_date', '-author', 'author']:
+    #     sort_by = '-pub_date'
+    # article_list = NewsArticle.objects.order_by(sort_by)
+    #
+    # VALID_SORTS = {
+    #    "pk": "pk",
+    #     "pkd": "-pk",
+    #    "em": "eminence",
+    #    "emd": "-eminence",
+    #}
+    #DEFAULT_SORT = 'pk'
+    #def search(request):
+    #    sort_key = request.GET.get('sort', DEFAULT_SORT) # Replace pk with your default.
+    #    sort = VALID_SORTS.get(sort_key, DEFAULT_SORT)
+
+    #    eList = Employer.objects.filter(eminence__lt=4).order_by(sort)
+
+    #search
+    ##article_list = NewsArticle.objects.filter(title__contains='a')
+
     article_list = NewsArticle.objects.all().order_by('-pub_date')
     paginator = Paginator(article_list, 5)
 
@@ -423,3 +444,35 @@ def delete_comment(request, comment_id):
     args['comment'] = comment
 
     return render_to_response('home/delete_comment.html', args, context_instance=RequestContext(request))
+
+
+def roster(request):
+    #group
+    group_name = 'not_officer'
+    if request.user.groups.filter(name='Officer'):
+        group_name = 'Officer'
+
+    #get list of members
+    valid_sorts = {
+        "n": "name",
+        "-n": "-name",
+        "l": "level",
+        "-l": "-level",
+        "s": "spec",
+        "-s": "-spec",
+        "c": "player_class",
+        "-c": "-player_class",
+        "r": "rank",
+        "-r": "-rank",
+        "u": "timestamp",
+        "-u": "-timestamp",
+    }
+    default_sort = 'name'
+    sort_key = request.GET.get('sort', default_sort)
+    sort = valid_sorts.get(sort_key, default_sort)
+
+    members = Member.objects.all().order_by(sort)
+    #members = Member.objects.all().order_by('name')
+
+    return render_to_response('home/roster.html', {'members': members,
+                                                   'group': group_name}, context_instance=RequestContext(request))

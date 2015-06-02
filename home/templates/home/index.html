@@ -16,6 +16,7 @@
         <li><a href="/account/signup">Register</a></li>
         <li><a href="/account/login">Login</a></li>
         <li><a href="/articles/all">Articles</a></li>
+        <li><a href="/roster">Roster</a></li>
         <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% else %}
@@ -27,6 +28,7 @@
             <li><a href="/admin">Admin</a> </li>
         {% endif %}
         <li><a href="/articles/all">Articles</a></li>
+        <li><a href="/roster">Roster</a></li>
         <li><a class="forum_link" href="/forum">Forum</a></li>
     </div>
     {% endif %}
@@ -34,18 +36,15 @@
 
 {% block content %}
     <div class="content_wrapper">
-        {% comment %} insert new stuff here {% endcomment %}
         <div class="article_wrapper">
             {% for newsArticle in newsArticles %}
                 <div class="article">
                     <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
                     <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-
                     {% if newsArticle.thumbnail %}
                         <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
                             <img src="/media/{{newsArticle.thumbnail}}" width="822"/></a></p>
                     {% endif %}
-
                     <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
                     <p class="comment_count">
                         {% for comment, count in comment_count.items %}
@@ -75,7 +74,6 @@
             {% endfor %}
         </div>
         <div class="apply_button">
-                {% comment %} <a href="/apply">Application info</a> {% endcomment %}
                 <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
         </div>
         <div class="latest_forum">
@@ -124,9 +122,6 @@
         </div>
         <div class="logs">
             {% for logs in logs_list %}
-                {% comment %}
-                <li style="list-style: none"><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title }}</a></li> {{ logs.start|unix_to_date }}
-                {% endcomment %}
                 <div class="log_entity">
                     <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
                     <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
@@ -141,7 +136,6 @@
                 <div class="token_div">
                     <li class="token_timestamp">{{ token.timestamp }}</li>
                     <li class="token_price">{{ token.price }}</li>
-
                 </div>
             {% endfor %}
         </div>

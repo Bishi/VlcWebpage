@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r"^accounts/login/$", account.views.LoginView.as_view(), name="auth_login"),
     url(r"^accounts/password/$", account.views.ChangePasswordView.as_view(), name="auth_password_change"),
     (r'^forum/', include('pybb.urls', namespace='pybb')),
+    url(r'^roster/$', 'home.views.roster', name='roster'),
 
     url(r'^captcha/', include('captcha.urls')),
     url(r'^apply/', 'home.views.application_info', name='apply'),

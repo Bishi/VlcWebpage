@@ -1,6 +1,6 @@
 from django.contrib import admin
 from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
-from home.models import ArticleComment, WowTokenApi
+from home.models import ArticleComment, WowTokenApi, Member
 from home.models import Chatterbox
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -128,3 +128,9 @@ class MyUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, MyUserAdmin)
+
+#roster
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ('name', 'rank_string', 'player_class_string', 'spec', 'level', 'timestamp', 'pub_date')
+
+admin.site.register(Member, MemberAdmin)

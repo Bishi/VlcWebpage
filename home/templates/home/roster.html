@@ -1,0 +1,60 @@
+{% extends 'home/base_page.html' %}
+{% load url from future %}
+{% load pybb_tags i18n %}
+
+{% block title %}
+    <title>VLC Roster</title>
+{% endblock %}
+
+{% block navigation %}
+    {% if not user.is_authenticated %}
+    <div class="navigation">
+        <li><div class="in_menu">Welcome, Guest</div></li>
+        <li><a href="/account/signup">Register</a></li>
+        <li><a href="/account/login">Login</a></li>
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% else %}
+    <div class="navigation">
+        <li><div class="in_menu">Welcome, {{ user.username }}</div></li>
+        <li><a href="/account/logout">Logout</a></li>
+        <li><a href="/account/settings">Settings</a> </li>
+        {% if group == 'Officer' %}
+            <li><a href="/admin">Admin</a> </li>
+        {% endif %}
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% autoescape off %}
+        <table class="roster">
+            <tr class="tr_title">
+                <td class="td_thumbnail"></td>
+                {% comment %}<td class="td_name"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></td>{% endcomment %}
+                <td class="td_level"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></td>
+                <td class="td_level"><a href="?{% url_replace request 'sort' 'l' %}">Level</a></td>
+                <td class="td_spec"><a href="?{% url_replace request 'sort' 's' %}">Spec</a></td>
+                <td class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></td>
+                <td class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></td>
+                <td class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></td>
+            </tr>
+            {% for member in members %}
+                {% if member.level > 20 %}
+                    <tr>
+                        <td class="td_thumbnail"><img src="http://eu.battle.net/static-render/eu/{{ member.thumbnail }}" width="50px" height="50px"></td>
+                        <td class="td_name"><a href="http://eu.battle.net/wow/en/character/draenor/{{ member.name }}/simple">{{ member.name }}</a></td>
+                        <td class="td_level">{{ member.level }}</td>
+                        <td class="td_spec">{{ member.spec }}</td>
+                        <td class="td_class">{{ member.player_class_string }}</td>
+                        <td class="td_rank">{{ member.rank_string }}</td>
+                        <td class="td_timestamp">{{ member.timestamp }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endautoescape %}
+{% endblock %}

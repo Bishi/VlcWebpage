@@ -375,3 +375,18 @@ def unix_to_date(unix):
     unix = int(unix)
     time = datetime.fromtimestamp(int(unix)).strftime('%b %d. %Y')
     return time
+
+#http://stackoverflow.com/questions/2272370/sortable-table-columns-in-django
+@register.simple_tag
+def url_replace(request, field, value):
+    dict_ = request.GET.copy()
+    if field == 'sort' and field in dict_.keys():
+        if dict_[field].startswith('-') and dict_[field].lstrip('-') == value:
+        # click twice on same column, revert ascending/descending
+            dict_[field] = value
+        else:
+            dict_[field] = "-"+value
+    else:
+        dict_[field] = value
+
+    return dict_.urlencode()
