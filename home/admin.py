@@ -1,6 +1,6 @@
 from django.contrib import admin
 from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
-from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit
+from home.models import ArticleComment, WowTokenApi, Member, SpecName, Recruit
 from home.models import Chatterbox
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -63,11 +63,11 @@ class RecruitmentAdmin(admin.ModelAdmin):
 #admin.site.register(Recruitment, RecruitmentAdmin)
 
 
-class SpecAdmin(admin.ModelAdmin):
+class SpecNameAdmin(admin.ModelAdmin):
     list_display = ('spec_name', 'is_needed')
 
 
-admin.site.register(Spec, SpecAdmin)
+admin.site.register(SpecName, SpecNameAdmin)
 
 
 class RecruitAdmin(admin.ModelAdmin):

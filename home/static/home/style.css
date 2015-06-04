@@ -264,7 +264,7 @@ a:visited {
 }
 
 .not_needed {
-    opacity: 0.15;
+    opacity: 0.2;
 }
 
 .class_role:hover {
@@ -718,12 +718,9 @@ td, th {
 }
 
 .chat_body {
-    /*overflow: auto;*/
+    overflow: auto;
     margin-top: 0;
     word-wrap: break-word;
-    padding: 1px 0 3px 4px;
-    font-size: 15px;
-    line-height: 99%;
 }
 
 .submit_button {
@@ -791,11 +788,7 @@ td, th {
 }
 
 .comment_body {
-    padding: 1px 17px 5px 21px;
-    margin-top: 0;
-    word-wrap: break-word;
-    font-size: 15px;
-    line-height: 99%;
+    padding: 0 17px 5px 17px;
 }
 
 .comment_form_container {
