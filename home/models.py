@@ -68,7 +68,7 @@ class Recruitment(models.Model):
         return self.class_name.class_name_text
 
 
-class SpecName(models.Model):
+class Spec(models.Model):
     spec_name = models.CharField(max_length=20)
     thumbnail = models.FileField(upload_to="class_thumbnails/class_icons/")
     is_needed = models.BooleanField(default=False)
@@ -80,9 +80,9 @@ class SpecName(models.Model):
 class Recruit(models.Model):
     name_text = models.CharField(max_length=20)
     thumbnail = models.FileField(upload_to="class_thumbnails/")
-    spec1 = models.ForeignKey(SpecName, related_name="spec1")
-    spec2 = models.ForeignKey(SpecName, related_name="spec2")
-    spec3 = models.ForeignKey(SpecName, related_name="spec3")
+    spec1 = models.ForeignKey(Spec, related_name="spec1")
+    spec2 = models.ForeignKey(Spec, related_name="spec2")
+    spec3 = models.ForeignKey(Spec, related_name="spec3")
 
     def __str__(self):
         return self.name_text

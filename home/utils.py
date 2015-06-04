@@ -5,6 +5,7 @@ import urllib.request
 import json
 import datetime
 import http.client
+import logging
 
 
 class WarcraftlogsClient(object):
@@ -116,6 +117,7 @@ class RosterClient(object):
 def update_roster(data):
     current_roster = Member.objects.all()
     curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified']/1000))
+    #logging.basicConfig(filename='C:/Users/i7-2600k/Desktop/sync.log', level=logging.DEBUG)
 
     for member in data['members']:
         #ò -> &#242 etc;
@@ -147,6 +149,7 @@ def update_roster(data):
                                 pub_date=timezone.now(),
                                 thumbnail=curr_thumbnail)
             new_member.save(force_insert=True)
+            #logging.debug("NEW ENTRY: %s %s %s %s %s %s", char_name, char_spec, char_class, char_rank, char_level, curr_timestamp )
             print("NEW ENTRY: ", char_name, char_spec, char_class, char_rank, char_level)
 
         #update guild member if level or rank or spec or thumbnail changed
@@ -160,11 +163,13 @@ def update_roster(data):
             guildie.pub_date = timezone.now()
             guildie.thumbnail = curr_thumbnail
             guildie.save()
+            #logging.debug("UPDATED: %s %s", guildie.name, guildie.timestamp)
             print("UPDATED:", guildie.name)
 
     #if the guild member is no longer in the guild -> delete
     for member in current_roster:
         if str(member) not in str(data['members']).encode('ascii', 'xmlcharrefreplace').decode('utf-8'):
+            #logging.debug("DELETED: %s", str(member) )
             print('DELETED: ', member)
             member.delete()
 
