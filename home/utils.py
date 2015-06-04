@@ -175,5 +175,4 @@ def check_thumbnail(url):
     conn = http.client.HTTPConnection("eu.battle.net", 80, timeout=5)
     conn.request("HEAD", url)
     r1 = conn.getresponse()
-    #print(r1.status, r1.reason)
     return r1.status

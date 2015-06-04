@@ -65,9 +65,9 @@
                                 <td class="footer_table">Draenor-EU </td>
                                 {% for rstatus in realm_status %}
                                     {% if rstatus.status  %}
-                                        <td class="footer_table"><div class="realm_status_up" title="Draenor is up"></div></td>
+                                        <td class="footer_table"><div class="realm_status_up" data-tooltip="Draenor is up"></div></td>
                                     {% elif not rstatus.status %}
-                                        <td class="footer_table"><div class="realm_status_down" title="Draenor is down"></div></td>
+                                        <td class="footer_table"><div class="realm_status_down" data-tooltip="Draenor is down"></div></td>
                                     {% endif %}
                                 {% endfor %}
                                 <td class="footer_table">. Drinking since 2005</td>

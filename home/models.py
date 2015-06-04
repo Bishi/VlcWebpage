@@ -68,6 +68,26 @@ class Recruitment(models.Model):
         return self.class_name.class_name_text
 
 
+class SpecName(models.Model):
+    spec_name = models.CharField(max_length=20)
+    thumbnail = models.FileField(upload_to="class_thumbnails/class_icons/")
+    is_needed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.spec_name
+
+
+class Recruit(models.Model):
+    name_text = models.CharField(max_length=20)
+    thumbnail = models.FileField(upload_to="class_thumbnails/")
+    spec1 = models.ForeignKey(SpecName, related_name="spec1")
+    spec2 = models.ForeignKey(SpecName, related_name="spec2")
+    spec3 = models.ForeignKey(SpecName, related_name="spec3")
+
+    def __str__(self):
+        return self.name_text
+
+
 class WarcraftlogsAPI(models.Model):
     id = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=20)
@@ -144,7 +164,7 @@ class Member(models.Model):
     level = models.IntegerField()
     timestamp = models.DateTimeField('timestamp')
     pub_date = models.DateTimeField('date published')
-    thumbnail = models.CharField(max_length=40, blank=True)
+    thumbnail = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.name

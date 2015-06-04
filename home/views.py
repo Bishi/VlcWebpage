@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member
+from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -43,6 +43,9 @@ def index_view(request):
 
     #recruitment ordering alphabetical
     recruitment_list = Recruitment.objects.all().order_by('class_name__class_name_text', 'class_role')
+
+    #recruit
+    recruits = Recruit.objects.all().order_by('name_text')
 
     #latest forum posts
     qs = Topic.objects.all().select_related().order_by('-updated', '-id')
@@ -101,6 +104,7 @@ def index_view(request):
     args['logs_list'] = logs_list
     args['wow_token'] = wow_token
     args['comment_count'] = comment_count
+    args['recruits'] = recruits
 
     return render_to_response('home/index.html', args, context_instance=RequestContext(request))
 

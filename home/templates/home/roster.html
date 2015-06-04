@@ -41,14 +41,6 @@
                 <th class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></th>
                 <th class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></th>
                 <th class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></th>
-                {% comment %}
-                <th class="td_thumbnail"></th>
-                <th class="td_level">Name</th>
-                <th class="td_level">Level</th>
-                <th class="td_spec">Spec</th>
-                <th class="td_class">Class</th>
-                <th class="td_rank">Rank</th>
-                <th class="td_timestamp">Last Updated</th>{% endcomment %}
             </tr>
             </thead>
             <tbody>
@@ -61,7 +53,7 @@
                         <td class="td_spec">{{ member.spec }}</td>
                         <td class="td_class">{{ member.player_class_string }}</td>
                         <td class="td_rank">{{ member.rank_string }}</td>
-                        <td class="td_timestamp">{{ member.timestamp }}</td>
+                        <td class="td_timestamp">{{ member.timestamp|date:"M d. Y H:i" }}</td>
                     </tr>
                 {% endif %}
             {% endfor %}
