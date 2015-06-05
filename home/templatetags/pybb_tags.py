@@ -390,3 +390,8 @@ def url_replace(request, field, value):
         dict_[field] = value
 
     return dict_.urlencode()
+
+@register.filter
+def pybb_may_view_topic(topic, user):
+
+    return perms.may_view_topic(user, topic)

@@ -50,6 +50,9 @@ def index_view(request):
     #latest forum posts
     qs = Topic.objects.all().select_related().order_by('-updated', '-id')
     qs = perms.filter_topics(request.user, qs)
+
+
+
     qs = qs[:5]
 
     #warcraftlogs

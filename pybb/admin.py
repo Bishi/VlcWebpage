@@ -70,6 +70,23 @@ class TopicAdmin(admin.ModelAdmin):
                 }
          ),
         )
+    def get_fieldsets(self, request, obj=None):
+        if request.user.groups.filter(name='Officer'):
+            fieldsets = (
+        (None, {
+                'fields': ('forum', 'name', 'user', ('created', 'updated'), 'poll_type',)
+                }
+         ),
+        (_('Additional options'), {
+                'classes': ('collapse',),
+                'fields': (('views', 'post_count'), ('sticky', 'closed'), 'subscribers')
+                }
+         ),
+        )
+        else:
+            fieldsets = ()
+        return fieldsets
+
     inlines = [PollAnswerAdmin, ]
 
 class TopicReadTrackerAdmin(admin.ModelAdmin):
@@ -87,21 +104,26 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['-created']
     date_hierarchy = 'created'
     search_fields = ['body']
-    fieldsets = (
-        (None, {
-                'fields': ('topic', 'user')
-                }
-         ),
-        (_('Additional options'), {
-                'classes': ('collapse',),
-                'fields' : (('created', 'updated'), 'user_ip')
-                }
-         ),
-        (_('Message'), {
-                'fields': ('body', 'body_html', 'body_text')
-                }
-         ),
-        )
+    def get_fieldsets(self, request, obj=None):
+        if request.user.groups.filter(name='Officer'):
+            fieldsets = (
+                (None, {
+                        'fields': ('topic', 'user')
+                        }
+                 ),
+                (_('Additional options'), {
+                        'classes': ('collapse',),
+                        'fields' : (('created', 'updated'), 'user_ip')
+                        }
+                 ),
+                (_('Message'), {
+                        'fields': ('body', 'body_html', 'body_text')
+                        }
+                 ),
+                )
+        else:
+            fieldsets = ()
+        return fieldsets
 
 
 class ProfileAdmin(admin.ModelAdmin):

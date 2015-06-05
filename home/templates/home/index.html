@@ -96,22 +96,6 @@
         <div class="apply_button">
                 <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
         </div>
-        {% comment %}
-        <div class="sidebar_statement">
-            Recruitment:
-        </div>
-        <div class="recruitment">
-            {% for recruits in recruitment %}
-                <div class="class_entity">
-                    <li class="class_name"><img src="/media/{{ recruits.class_name.pic }}"/> {{ recruits.class_name }} </li>
-                    <li class="class_role">{{ recruits.class_role }}</li>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="apply_button">
-                <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
-        </div>
-        {% endcomment %}
         <div class="latest_forum">
             {% include "home/latest_topics.html" %}
         </div>

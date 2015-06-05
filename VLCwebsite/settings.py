@@ -219,3 +219,4 @@ PYBB_SMILES = {
 
 PYBB_MARKUP_ENGINES_PATHS ={'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}
 PYBB_MARKUP = 'bbcode'
+PYBB_PERMISSION_HANDLER = 'pybb.permissions_custom.MyPermissionHandler'

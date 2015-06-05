@@ -366,3 +366,9 @@ def pybb_posted_byT(post, user):
     Check if the post is writed by the user.
     """
     return post.user == user
+
+
+@register.filter
+def pybb_may_view_topic(topic, user):
+
+    return perms.may_view_topic(user, topic)

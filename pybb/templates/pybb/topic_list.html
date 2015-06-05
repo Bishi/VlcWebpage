@@ -19,6 +19,7 @@
     </thead>
     <tbody>
     {% for topic in topic_list|pybb_topic_unread:user %}
+        {% if topic|pybb_may_view_topic:user %}
         <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
             <td class="topic-name{% if topic.unread %} topic-unread{% endif %}">
                 <div class="state-indicator"></div>
@@ -53,6 +54,7 @@
                 {% include "pybb/topic_last_message_info.html" %} &nbsp;by&nbsp; <i><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></i>
             </td>
         </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>
