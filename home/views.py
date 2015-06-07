@@ -41,11 +41,18 @@ def index_view(request):
     except EmptyPage:
         articles = paginator.page(paginator.num_pages)
 
-    #recruitment ordering alphabetical
-    recruitment_list = Recruitment.objects.all().order_by('class_name__class_name_text', 'class_role')
-
     #recruit
     recruits = Recruit.objects.all().order_by('name_text')
+    #order by if recruits are needed
+    tmp = []
+    for recruit in recruits:
+        if recruit.spec1.is_needed or recruit.spec2.is_needed or recruit.spec3.is_needed:
+            tmp.append(recruit)
+    for recruit in recruits:
+        if not recruit.spec1.is_needed and not recruit.spec2.is_needed and not recruit.spec3.is_needed:
+            tmp.append(recruit)
+
+    recruits = tmp
 
     #latest forum posts
     qs = Topic.objects.all().select_related().order_by('-updated', '-id')
@@ -101,7 +108,6 @@ def index_view(request):
     args['user'] = user
     args['chatterbox'] = chatterbox
     args['newsArticles'] = articles
-    args['recruitment'] = recruitment_list
     args['group'] = group_name
     args['topic_list'] = qs
     args['logs_list'] = logs_list

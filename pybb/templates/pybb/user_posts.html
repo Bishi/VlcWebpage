@@ -21,8 +21,10 @@
         {% include "pybb/pagination.html" %}
 
         {% for post in object_list %}
+
             {% cycle 'odd' 'even' as rowcolors silent %}
             {% include "pybb/post_template.html" with topic=post.topic %}
+
         {% endfor %}
 
         {% include "pybb/pagination.html" %}

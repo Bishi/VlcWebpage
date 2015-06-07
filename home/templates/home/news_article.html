@@ -66,18 +66,21 @@
             </div>
             {% if comments %}
                 {% for comment in comments %}
-                    <div class="comment">
-                        <div class="comment_author">
-                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d. Y H:i" }}
-                        </div>
-                        <div class="comment_body">
-                            {{ comment.body }}
-                        </div>
-                        {% if user.username == comment.author.username or  group == 'Officer' %}
-                            <div class="comment_delete">
-                                <a href="/deletecomment/{{ comment.id }}">Delete</a>
+                    <div class="comment_container">
+                        {% include 'pybb/avatar.html' with user=comment.author %}
+                        <div class="comment">
+                            <div class="comment_author">
+                                <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d. Y H:i" }}
                             </div>
-                        {% endif %}
+                            <div class="comment_body">
+                                {{ comment.body }}
+                            </div>
+                            {% if user.username == comment.author.username or  group == 'Officer' %}
+                                <div class="comment_delete">
+                                    <a href="/deletecomment/{{ comment.id }}">Delete</a>
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 {% endfor %}
             {% else %}

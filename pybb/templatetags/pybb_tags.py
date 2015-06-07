@@ -372,3 +372,9 @@ def pybb_posted_byT(post, user):
 def pybb_may_view_topic(topic, user):
 
     return perms.may_view_topic(user, topic)
+
+@register.filter
+def pybb_may_view_post(post, user):
+
+    return perms.may_view_topic(user, post)
+

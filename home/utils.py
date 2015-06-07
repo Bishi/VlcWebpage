@@ -114,6 +114,32 @@ class RosterClient(object):
         return data
 
 
+class SpecClient(object):
+    interval = 0
+
+    def fetch(self, name, **params):
+        delta = time.time() - RealmStatusClient.interval
+        if delta < 2:
+            time.sleep(2 - delta)
+        RealmStatusClient.interval = time.time()
+        url = 'https://eu.api.battle.net/wow/character/Draenor/'+name+'?fields=talents&locale=en_GB&' \
+              'apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
+
+        # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
+        url = urllib.parse.urlsplit(url)
+        url = list(url)
+        url[2] = urllib.parse.quote(url[2])
+        url = urllib.parse.urlunsplit(url)
+
+        return self.fetch_json(url)
+
+    def fetch_json(self, url):
+        data = urllib.request.urlopen(url)
+        str_response = data.readall().decode('utf-8')
+        data = json.loads(str_response)
+        return data
+
+
 def update_roster(data):
     current_roster = Member.objects.all()
     curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified']/1000))
@@ -122,14 +148,30 @@ def update_roster(data):
     for member in data['members']:
         #ò -> &#242 etc;
         char_name = member['character']['name'].encode('ascii', 'xmlcharrefreplace').decode('utf-8')
+        tmp_char_name = member['character']['name']
+        #SPECS
+        # print(char_name)
+        try:
+            spec_client = SpecClient()
+            spec_data = spec_client.fetch(tmp_char_name)
+            char_spec = ""
+            try:
+                for spec in spec_data['talents']:
+                    char_spec = char_spec + "/" + spec['spec']['name']
+            except:
+                char_spec = spec_data['talents'][0]['spec']['name']
+
+            if char_spec.startswith("/"):
+                    char_spec = char_spec[1:]
+
+            # print(char_spec)
+        except:
+            char_spec = 'Unknown'
+
         char_level = member['character']['level']
         char_class = member['character']['class']
         char_rank = member['rank']
         curr_thumbnail = member['character']['thumbnail']
-        try:
-            char_spec = member['character']['spec']['name']
-        except:
-            char_spec = 'Unknown'
 
         #check if thumbnail is valid
         curr_thumbnail = "http://eu.battle.net/static-render/eu/"+curr_thumbnail

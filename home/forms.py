@@ -40,6 +40,9 @@ class ChatterboxForm(forms.ModelForm):
     class Meta:
         model = Chatterbox
         fields = ('body',)
+        widgets = {
+            'body': forms.Textarea(attrs={'placeholder': 'Write something'})
+        }
 
 
 class ChatterboxDeleteForm(forms.ModelForm):

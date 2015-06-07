@@ -1,5 +1,6 @@
 from pybb.permissions import DefaultPermissionHandler
 from django.db.models import Q
+from pybb import defaults
 
 
 class MyPermissionHandler(DefaultPermissionHandler):
@@ -73,3 +74,36 @@ class MyPermissionHandler(DefaultPermissionHandler):
     def may_create_topic(self, user, forum):
         """ return True if `user` is allowed to create a new topic in `forum` """
         return user.has_perm('pybb.add_post')
+
+    def may_view_post(self, user, post):
+        """ return True if `user` may view `post`, False otherwise """
+        if user.is_superuser:
+            return True
+        if post.on_moderation:
+            return post.user == user or user in post.topic.forum.moderators.all()
+        if post.topic.forum.category.name == 'Officer' and not user.groups.filter(name='Officer'):
+            return False
+        return True
+
+    def filter_posts(self, user, qs):
+        """ return a queryset with posts `user` is allowed to see """
+
+        # first filter by topic availability
+        if not user.is_staff:
+            qs = qs.filter(Q(topic__forum__hidden=False) & Q(topic__forum__category__hidden=False))
+
+        if not defaults.PYBB_PREMODERATION or user.is_superuser:
+            # superuser may see all posts, also if premoderation is turned off moderation
+            # flag is ignored
+            if not user.groups.filter(name='Officer'):
+                qs = qs.exclude(Q(topic__forum__category__name='Officer'))
+            return qs
+        elif user.is_authenticated():
+            # post is visible if user is author, post is not on moderation, or user is moderator
+            # for this forum
+            qs = qs.filter(Q(user=user) | Q(on_moderation=False) | Q(topic__forum__moderators=user))
+        else:
+            # anonymous user may not see posts which are on moderation
+            qs = qs.filter(on_moderation=False)
+
+        return qs

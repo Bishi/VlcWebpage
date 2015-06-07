@@ -3,14 +3,10 @@
 
 
 {% block content %}
+<div class="sidebar_statement">
+    Latest forum posts:
+</div>
 <table class="table topic-list">
-    <thead>
-        <tr class="topic-row head-row">
-            <th class="topic-name-first">
-                {% trans "Latest forum posts:" %}
-            </th>
-        </tr>
-    </thead>
     <tbody class="tbody">
     {% for topic in topic_list|pybb_topic_unread:user %}
         <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
@@ -34,5 +30,8 @@
     {% endfor %}
     </tbody>
 </table>
+<div class="chat_log_in">
+    See all the latest posts <a href="/forum/topic/latest/">here.</a>
+</div>
 
 {% endblock %}
