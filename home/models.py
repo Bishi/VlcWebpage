@@ -133,7 +133,9 @@ class Chatterbox(models.Model):
 
 
 def get_rank(rank):
-    current_ranks = ['Guild Master', 'Officer', 'Officer Alt',
+    # current_ranks = ['Guild Master', 'Officer', 'Officer Alt',
+    #                  'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
+    current_ranks = ['Guild Master', 'Officer', 'Officer Alt', 'Trial Officer',
                      'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
     try:
         c_string = current_ranks[rank]
@@ -162,6 +164,7 @@ class Member(models.Model):
     player_class = models.IntegerField()
     player_class_string = models.CharField(max_length=15, default="Unknown")
     level = models.IntegerField()
+    item_level = models.CharField(max_length=20, null=True, blank=True)
     timestamp = models.DateTimeField('timestamp')
     pub_date = models.DateTimeField('date published')
     thumbnail = models.CharField(max_length=100, blank=True)

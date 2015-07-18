@@ -49,11 +49,7 @@
                     <p class="comment_count">
                         {% for comment, count in comment_count.items %}
                             {% if comment == newsArticle.id %}
-                                {% if count == 1 %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
-                                {% else %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
-                                {% endif %}
+                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
                             {% endif %}
                         {% endfor %}
                     </p>
@@ -62,7 +58,7 @@
         </div>
     </div>
     <div class="sidebar">
-    <div class="sidebar_statement">
+        <div class="sidebar_statement">
             Recruitment:
         </div>
         <div class="recruitment">
@@ -76,21 +72,21 @@
                     {% if recruit.spec1.is_needed %}
                         <li class="class_role"><img src="/media/{{ recruit.spec1.thumbnail }}"
                                                     title="{{ recruit.spec1.spec_name }}"></li>
-                        {% else %}
+                    {% else %}
                         <li class="class_role not_needed"><img src="/media/{{ recruit.spec1.thumbnail }}"
                                                     title="{{ recruit.spec1.spec_name }}"></li>
                     {% endif %}
                     {% if recruit.spec2.is_needed %}
                         <li class="class_role"><img src="/media/{{ recruit.spec2.thumbnail }}"
                                                     title="{{ recruit.spec2.spec_name }}"></li>
-                        {% else %}
+                    {% else %}
                         <li class="class_role not_needed"><img src="/media/{{ recruit.spec2.thumbnail }}"
                                                     title="{{ recruit.spec2.spec_name }}"></li>
                     {% endif %}
                     {% if recruit.spec3.is_needed %}
                         <li class="class_role"><img src="/media/{{ recruit.spec3.thumbnail }}"
                                                     title="{{ recruit.spec3.spec_name }}"></li>
-                        {% else %}
+                    {% else %}
                         <li class="class_role not_needed"><img src="/media/{{ recruit.spec3.thumbnail }}"
                                                     title="{{ recruit.spec3.spec_name }}"></li>
                     {% endif %}
@@ -109,11 +105,16 @@
         <div class="chatterbox">
             {% for chat in chatterbox %}
                 <div class="chat_line">
-                    <div class="chat_author">
-                        <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                    <div class="author_container">
+                        <div style="height: 16px; width: 16px;">
+                            {% include 'pybb/avatar2.html' with user=chat.author %}
+                        </div>
+                        <div class="chat_author">
+                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                        </div>
                     </div>
                     <div class="chat_body">
-                        {{ chat.body }}
+                        {{ chat.body|urlize }}
                     </div>
                     {% if user.username == chat.author.username or  group == 'Officer' %}
                         <div class="chat_delete">
@@ -150,6 +151,10 @@
                     <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
                     <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
                 </div>
+            {% empty %}
+                <div class="token_div">
+                    No logs available at this time.
+                </div>
             {% endfor %}
         </div>
         <div class="sidebar_statement">
@@ -160,6 +165,10 @@
                 <div class="token_div">
                     <li class="token_timestamp">{{ token.timestamp }}</li>
                     <li class="token_price">{{ token.price }}</li>
+                </div>
+            {% empty %}
+                <div class="token_div">
+                    No price available at this time.
                 </div>
             {% endfor %}
         </div>

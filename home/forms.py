@@ -20,6 +20,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = ArticleComment
         fields = ('body',)
+        widgets = {
+            'body': forms.Textarea(attrs={'placeholder': 'Write a comment'})
+        }
 
 
 class DeleteNewsArticleForm(forms.ModelForm):

@@ -146,6 +146,6 @@ admin.site.register(User, MyUserAdmin)
 
 #roster
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('name', 'rank_string', 'player_class_string', 'spec', 'level', 'timestamp', 'pub_date')
+    list_display = ('name', 'rank_string', 'player_class_string', 'spec', 'level', 'item_level', 'timestamp', 'pub_date')
 
 admin.site.register(Member, MemberAdmin)

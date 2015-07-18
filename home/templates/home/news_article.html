@@ -64,39 +64,39 @@
             <div class="comment_statement">
             Comments:
             </div>
-            {% if comments %}
-                {% for comment in comments %}
-                    <div class="comment_container">
-                        {% include 'pybb/avatar.html' with user=comment.author %}
-                        <div class="comment">
-                            <div class="comment_author">
-                                <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d. Y H:i" }}
-                            </div>
-                            <div class="comment_body">
-                                {{ comment.body }}
-                            </div>
-                            {% if user.username == comment.author.username or  group == 'Officer' %}
-                                <div class="comment_delete">
-                                    <a href="/deletecomment/{{ comment.id }}">Delete</a>
-                                </div>
-                            {% endif %}
-                        </div>
+            {% for comment in comments %}
+                <div class="comment_container">
+                    <div style="height: 80px; width: 80px;">
+                        {% include 'pybb/avatar2.html' with user=comment.author %}
                     </div>
-                {% endfor %}
-            {% else %}
-                 <div class="comment">
-                        <div class="comment_no_comments">
-                            There are no comments yet.
+                    <div class="comment">
+                        <div class="comment_author">
+                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ comment.author }}/">{{ comment.author }}</a></i> on {{ comment.pub_date|date:"M d. Y H:i" }}
                         </div>
-                 </div>
-            {% endif %}
+                        <div class="comment_body">
+                            {{ comment.body }}
+                        </div>
+                        {% if user.username == comment.author.username or  group == 'Officer' %}
+                            <div class="comment_delete">
+                                <a href="/deletecomment/{{ comment.id }}">Delete</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="comment">
+                    <div class="comment_no_comments">
+                        There are no comments yet.
+                    </div>
+             </div>
+            {% endfor %}
         </div>
         {% if  user.is_authenticated %}
             <div class="comment_form">
                 <div class="comment_form_container">
                     <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
                         {% for field in form_comments %}
-                            <div class="form_name"><i>Add a comment:</i></div>
+                            {% comment %}<div class="form_name"><i>Add a comment:</i></div> {% endcomment %}
                             <div class="form_input">{{ field }}</div>
                             <div class="form_error">{{ field.errors }}</div>
                         {% endfor %}

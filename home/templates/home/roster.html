@@ -31,33 +31,38 @@
 
 {% block content %}
     {% autoescape off %}
-        <table class="roster">
-            <thead>
-            <tr class="tr_title">
-                <th class="td_thumbnail"></th>
-                <th class="td_name"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></th>
-                <th class="td_level"><a href="?{% url_replace request 'sort' 'l' %}">Level</a></th>
-                <th class="td_spec"><a href="?{% url_replace request 'sort' 's' %}">Spec</a></th>
-                <th class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></th>
-                <th class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></th>
-                <th class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for member in members %}
-                {% if member.level > 0 %}
-                    <tr>
-                        <td class="td_thumbnail"><img src="{{ member.thumbnail }}" height="50px"></td>
-                        <td class="td_name"><a href="http://eu.battle.net/wow/en/character/draenor/{{ member.name }}/advanced">{{ member.name }}</a></td>
-                        <td class="td_level">{{ member.level }}</td>
-                        <td class="td_spec">{{ member.spec }}</td>
-                        <td class="td_class">{{ member.player_class_string }}</td>
-                        <td class="td_rank">{{ member.rank_string }}</td>
-                        <td class="td_timestamp">{{ member.timestamp|date:"M d. Y H:i" }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table_div">
+            <input class="roster_search" type="text" id="roster_search" placeholder="Search roster">
+            <table class="roster" id="roster_table">
+                <thead>
+                <tr class="tr_title">
+                    <th class="td_thumbnail"></th>
+                    <th class="td_name" id="td_name"><a href="?{% url_replace request 'sort' 'n' %}">Name</a></th>
+                    <th class="td_level"><a href="?{% url_replace request 'sort' 'l' %}">Level</a></th>
+                    <th class="td_ilevel"><a href="?{% url_replace request 'sort' 'il' %}">Item Level</a></th>
+                    <th class="td_spec"><a href="?{% url_replace request 'sort' 's' %}">Spec</a></th>
+                    <th class="td_class"><a href="?{% url_replace request 'sort' 'c' %}">Class</a></th>
+                    <th class="td_rank"><a href="?{% url_replace request 'sort' 'r' %}">Rank</a></th>
+                    <th class="td_timestamp"><a href="?{% url_replace request 'sort' 'u' %}">Last Updated</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                    {% if member.level > 0 %}
+                        <tr>
+                            <td class="td_thumbnail"><img src="{{ member.thumbnail }}" height="50px"></td>
+                            <td class="td_name"><a href="http://eu.battle.net/wow/en/character/draenor/{{ member.name }}/advanced">{{ member.name }}</a></td>
+                            <td class="td_level">{{ member.level }}</td>
+                            <td class="td_ilevel">{{ member.item_level }}</td>
+                            <td class="td_spec">{{ member.spec }}</td>
+                            <td class="td_class">{{ member.player_class_string }}</td>
+                            <td class="td_rank">{{ member.rank_string }}</td>
+                            <td class="td_timestamp">{{ member.timestamp|date:"M d. Y H:i" }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endautoescape %}
 {% endblock %}

@@ -479,13 +479,24 @@ def roster(request):
         "-r": "-rank",
         "u": "timestamp",
         "-u": "-timestamp",
+        "il": "item_level",
+        "-il": "-item_level"
     }
     default_sort = 'name'
     sort_key = request.GET.get('sort', default_sort)
     sort = valid_sorts.get(sort_key, default_sort)
 
-    members = Member.objects.all().order_by(sort)
+    if sort_key != 'il' and sort_key != '-il':
+        members = Member.objects.all().order_by(sort)
+    elif sort_key == 'il':
+        members = Member.objects.extra(select={'tmp': 'CAST(-item_level AS INTEGER)'}).order_by('tmp')
+    elif sort_key == '-il':
+        members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
+
+    #members = Member.objects.all().order_by(sort)
     #members = Member.objects.all().order_by('name')
+
+    #members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
 
     return render_to_response('home/roster.html', {'members': members,
                                                    'group': group_name}, context_instance=RequestContext(request))

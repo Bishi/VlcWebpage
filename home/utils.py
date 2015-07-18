@@ -122,7 +122,7 @@ class SpecClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         RealmStatusClient.interval = time.time()
-        url = 'https://eu.api.battle.net/wow/character/Draenor/'+name+'?fields=talents&locale=en_GB&' \
+        url = 'https://eu.api.battle.net/wow/character/Draenor/'+name+'?fields=talents%2C+items&locale=en_GB&' \
               'apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
 
         # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
@@ -149,7 +149,7 @@ def update_roster(data):
         #ò -> &#242 etc;
         char_name = member['character']['name'].encode('ascii', 'xmlcharrefreplace').decode('utf-8')
         tmp_char_name = member['character']['name']
-        #SPECS
+        #Sspec and item level
         # print(char_name)
         try:
             spec_client = SpecClient()
@@ -163,10 +163,13 @@ def update_roster(data):
 
             if char_spec.startswith("/"):
                     char_spec = char_spec[1:]
-
+            char_item_level = str(spec_data['items']['averageItemLevel']) + \
+                              "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
             # print(char_spec)
         except:
             char_spec = 'Unknown'
+            char_item_level = 'Unknown'
+
 
         char_level = member['character']['level']
         char_class = member['character']['class']
@@ -187,6 +190,7 @@ def update_roster(data):
                                 rank=char_rank,
                                 player_class=char_class,
                                 level=char_level,
+                                item_level=char_item_level,
                                 timestamp=curr_timestamp,
                                 pub_date=timezone.now(),
                                 thumbnail=curr_thumbnail)
@@ -197,8 +201,9 @@ def update_roster(data):
         #update guild member if level or rank or spec or thumbnail changed
         guildie = Member.objects.get(name=char_name)
         if guildie.level != char_level or guildie.rank != char_rank or guildie.spec != char_spec \
-                or guildie.thumbnail != curr_thumbnail:
+                or guildie.thumbnail != curr_thumbnail or guildie.item_level != char_item_level:
             guildie.level = char_level
+            guildie.item_level = char_item_level
             guildie.spec = char_spec
             guildie.rank = char_rank
             guildie.timestamp = curr_timestamp
