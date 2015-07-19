@@ -1,4 +1,4 @@
-//inde.html mount calculator script
+//index.html mount calculator script
 angular.module('mount_calculator', []).controller('MountCalculator', function(){
     this.p = 1.00;  //chance
     this.k = 1;     //number of drops

@@ -17,7 +17,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'y^#gaaox+2pn71-7v#eofd(&#bi+7s3kp=yy#p=1n=oj1@4uac'
 with open('c:/Users/i7-2600K/DjangoProjects/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
