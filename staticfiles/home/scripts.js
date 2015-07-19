@@ -1,3 +1,4 @@
+//inde.html mount calculator script
 angular.module('mount_calculator', []).controller('MountCalculator', function(){
     this.p = 1.00;  //chance
     this.k = 1;     //number of drops
@@ -32,4 +33,15 @@ angular.module('mount_calculator', []).controller('MountCalculator', function(){
         for (var i = 1;     i <= k; i++) coeff /= i;
         return coeff;
     }
+});
+
+//roster.html jquery script
+var $rows = $('#roster_table tbody tr');
+$('#roster_search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
 });
