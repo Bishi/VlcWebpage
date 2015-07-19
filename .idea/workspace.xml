@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.767624" vertical-offset="12213" max-vertical-offset="19771">
+            <state vertical-scroll-proportion="0.0" vertical-offset="12213" max-vertical-offset="19771">
               <caret line="753" column="26" selection-start-line="753" selection-start-column="26" selection-end-line="753" selection-end-column="26" />
               <folding />
             </state>
@@ -68,6 +68,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-54.26923" vertical-offset="0" max-vertical-offset="1547">
               <caret line="83" column="30" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.63352275" vertical-offset="1968" max-vertical-offset="3876">
+              <caret line="142" column="66" selection-start-line="142" selection-start-column="66" selection-end-line="142" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -115,16 +125,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news_article.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home/templates/home/news_article.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.384615" vertical-offset="513" max-vertical-offset="1989">
-              <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -165,7 +165,6 @@
         <option value="$PROJECT_DIR$/pybb/templates/pybb/user_posts.html" />
         <option value="$PROJECT_DIR$/pybb/permissions.py" />
         <option value="$PROJECT_DIR$/pybb/permissions_custom.py" />
-        <option value="$PROJECT_DIR$/VLCwebsite/settings.py" />
         <option value="$PROJECT_DIR$/templates/site_base.html" />
         <option value="$PROJECT_DIR$/home/static/home/style2.css" />
         <option value="$PROJECT_DIR$/home/static/home/style3.css" />
@@ -186,6 +185,7 @@
         <option value="$PROJECT_DIR$/home/models.py" />
         <option value="$PROJECT_DIR$/home/templates/home/base_page.html" />
         <option value="$PROJECT_DIR$/home/static/home/scripts.js" />
+        <option value="$PROJECT_DIR$/VLCwebsite/settings.py" />
       </list>
     </option>
   </component>
@@ -772,7 +772,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="309" y="115" width="1361" height="934" extended-state="0" />
+    <frame x="309" y="115" width="1361" height="934" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1072,14 +1072,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="3859">
-          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3502" max-vertical-offset="3995">
@@ -1204,8 +1196,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.767624" vertical-offset="12213" max-vertical-offset="19771">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12213" max-vertical-offset="19771">
           <caret line="753" column="26" selection-start-line="753" selection-start-column="26" selection-end-line="753" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63352275" vertical-offset="1968" max-vertical-offset="3876">
+          <caret line="142" column="66" selection-start-line="142" selection-start-column="66" selection-end-line="142" selection-end-column="66" />
           <folding />
         </state>
       </provider>

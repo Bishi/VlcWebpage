@@ -139,7 +139,8 @@ SITE_ID = 9
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'c:/Users/i7-2600K/DjangoProjects/db_vlc.sqlite3',
     }
 }
 
