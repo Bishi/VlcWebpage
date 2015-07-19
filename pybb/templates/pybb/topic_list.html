@@ -1,4 +1,5 @@
 {% load i18n pybb_tags %}
+{% load staticfiles %}
 
 <table class="table topic-list">
     <thead>
@@ -25,8 +26,10 @@
                 <div class="state-indicator"></div>
                 <a href="{{ topic.get_absolute_url }}">{{ topic.name|truncatechars:70 }}</a>
                 <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">⇨</a>
-                {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}
-                {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}
+{#                {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}#}
+                {% if topic.sticky %} &nbsp;<img src="{% static 'home/images/sticky.png' %}" width="20px" height="20px" title="sticky">{% endif %}
+{#                {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}#}
+                {% if topic.closed %} &nbsp;<img src="{% static 'home/images/locked.png' %}" width="20px" height="20px" title="locked"> {% endif %}
                 {% with topic|pybb_topic_inline_pagination as pages %}
                     {% if pages|length > 1 %}
                         <span class="mini-pagination">
