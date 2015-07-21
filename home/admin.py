@@ -125,28 +125,16 @@ class RaidBossInLine(admin.TabularInline):
 
 
 class RaidProgressAdmin(admin.ModelAdmin):
-    list_display = ('name', 'difficulty', 'tier', 'get_defeated', 'get_bosses',)
+    list_display = ('name', 'difficulty', 'tier', '_get_defeated', 'bosses',)
     inlines = [ RaidBossInLine ]
+    fieldsets = ['name', 'difficulty', 'tier', 'order']
+    fieldsets = [
+        ('Raid Info',               {'fields': ['name', 'difficulty', 'tier', 'order']}),
+    ]
 
-    def get_bosses(self, obj):
-        raid_bosses = RaidBoss.objects.all()
-        count = 0
-        for boss in raid_bosses:
-            if boss.raid_instance.name == obj.name and boss.raid_instance.difficulty == obj.difficulty:
-                count += 1
-        return count
-
-    get_bosses.short_description = 'Bosses'
-
-    def get_defeated(self, obj):
-        raid_bosses = RaidBoss.objects.all()
-        count = 0
-        for boss in raid_bosses:
-            if boss.raid_instance.name == obj.name and boss.raid_instance.difficulty == obj.difficulty and boss.defeated:
-                count += 1
-        return count
-
-    get_defeated.short_description = 'Defeated'
+    def _get_defeated(self, obj):
+        return obj.defeated_bosses
+    _get_defeated.short_description = 'Defeated'
 
 admin.site.register(RaidProgress, RaidProgressAdmin)
 
@@ -157,6 +145,7 @@ class RaidBossAdmin(admin.ModelAdmin):
 
     def get_difficulty(self, obj):
         return obj.raid_instance.difficulty
+
 
 admin.site.register(RaidBoss, RaidBossAdmin)
 

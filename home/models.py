@@ -181,10 +181,27 @@ class Member(models.Model):
 class RaidProgress(models.Model):
     name = models.CharField(max_length=30)
     difficulty = models.CharField(max_length=30)
-    tier = models.IntegerField()
+    tier = models.IntegerField(default=0)
+    bosses = models.IntegerField(default=0)
+    defeated_bosses = models.IntegerField(default=0)
+    order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        raid_bosses = RaidBoss.objects.all()
+        boss_count = 0
+        defeated_count = 0
+        for boss in raid_bosses:
+            if boss.raid_instance.name == self.name and boss.raid_instance.difficulty == self.difficulty:
+                boss_count += 1
+        for boss in raid_bosses:
+            if boss.raid_instance.name == self.name and boss.raid_instance.difficulty == self.difficulty and boss.defeated:
+                defeated_count += 1
+        self.bosses = boss_count
+        self.defeated_bosses = defeated_count
+        super(RaidProgress, self).save(*args, **kwargs)
 
 
 class RaidBoss(models.Model):
