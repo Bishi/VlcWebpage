@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     #url(r'^like/(?P<article_id>\d+)/$', 'home.views.like_article'),
     url(r'^test/$', 'home.views.test_page', name='topic_latest'),
     #url(r'^deletechat/(?P<chat_id>\d+)/$', 'home.views.delete_chatterbox', name='delete_chatterbox'),
-    #url('^test/$', home.views.LatestTopicsView.as_view(), name='topic_latest'),
+    url('^test/$', 'home.views.test_page', name='topic_latest'),
 )

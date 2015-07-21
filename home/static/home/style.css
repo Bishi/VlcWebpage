@@ -1015,6 +1015,76 @@ td, th {
     width: 20%;
 }
 
+.raid_progress_wrapper{
+    margin: 0 17px 0 17px;
+}
+
+.raid_progress_wrapper h3{
+    margin: 0 0 0 0;
+}
+
+.raid{
+    width: 248px;
+    height: 70px;
+    background-size: cover;
+    margin-top: 5px;
+}
+
+.raid:hover{
+    cursor: pointer;
+}
+
+.highmaul_raid{
+    background: black url("images/highmaul.jpg") no-repeat center;
+}
+
+.foundry_raid{
+    background: black url("images/foundry.jpg") no-repeat center;
+}
+
+.citadel_raid{
+    background: black url("images/hellfire_citadel.jpg") no-repeat center;
+}
+
+.raid_info{
+    color: white;
+    /*font-family: 'Bitter', Arial, sans-serif;*/
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.upper_raid{
+    padding: 20px 0 0 0;
+}
+
+.bottom_raid{
+    display: flex;
+    flex-direction: row;
+}
+
+.raid_name{
+    flex-grow: 1;
+    padding: 0 0 0 10px;
+    font-size: 110%;
+}
+
+.raid_difficulty{
+    padding: 0 0 0 10px;
+    font-size: 80%;
+}
+
+.raid_defeated{
+    padding: 0 10px 0 0;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.boss_names{
+    display: flex;
+}
+
+.boss_name{
+    flex-grow: 1;
+}
 
 /**
  * Tooltip Styles

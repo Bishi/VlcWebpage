@@ -1,5 +1,6 @@
 from django.db import models
 from time import time
+import time
 from django.core.exceptions import ValidationError
 from pybb.util import _get_markup_formatter
 
@@ -195,11 +196,12 @@ class Member(models.Model):
 
 class RaidProgress(models.Model):
     name = models.CharField(max_length=30)
-    difficulty = models.CharField(max_length=30)
+    difficulty = models.CharField(max_length=30, choices=[('Normal', 'Normal'), ('Heroic', 'Heroic'),
+                                                          ('Mythic', 'Mythic')])
     tier = models.IntegerField(default=0)
     bosses = models.IntegerField(default=0)
     defeated_bosses = models.IntegerField(default=0)
-    order = models.IntegerField(default=0)
+    order = models.IntegerField(default=0, help_text='Chronological order of raid instances.')
 
     def __str__(self):
         return self.name
@@ -212,7 +214,8 @@ class RaidProgress(models.Model):
             if boss.raid_instance.name == self.name and boss.raid_instance.difficulty == self.difficulty:
                 boss_count += 1
         for boss in raid_bosses:
-            if boss.raid_instance.name == self.name and boss.raid_instance.difficulty == self.difficulty and boss.defeated:
+            if boss.raid_instance.name == self.name and boss.raid_instance.difficulty == self.difficulty\
+                    and boss.defeated:
                 defeated_count += 1
         self.bosses = boss_count
         self.defeated_bosses = defeated_count

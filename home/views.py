@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
-from home.models import NewsArticle, Recruitment, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit
+from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit, RaidProgress, RaidBoss
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -101,6 +101,10 @@ def index_view(request):
     else:
         form = ChatterboxForm()
 
+    #raid progress
+    raid_progress = RaidProgress.objects.all()
+    raid_bosses = RaidBoss.objects.all()
+
     args = {}
     args.update(csrf(request))
 
@@ -114,6 +118,8 @@ def index_view(request):
     args['wow_token'] = wow_token
     args['comment_count'] = comment_count
     args['recruits'] = recruits
+    args['raid_progress'] = raid_progress
+    args['raid_bosses'] = raid_bosses
 
     return render_to_response('home/index.html', args, context_instance=RequestContext(request))
 

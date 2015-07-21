@@ -130,6 +130,14 @@ class RaidProgressAdmin(admin.ModelAdmin):
     fieldsets = ['name', 'difficulty', 'tier', 'order']
     fieldsets = [('Raid Info',          {'fields': ['name', 'difficulty', 'tier', 'order']}),]
 
+    #child must be saved before the parent
+    def save_model(self, request, obj, form, change):
+        pass
+
+    def save_formset(self, request, form, formset, change):
+        formset.save()
+        form.instance.save()
+
     def _get_defeated(self, obj):
         return obj.defeated_bosses
     _get_defeated.short_description = 'Defeated'
