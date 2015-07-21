@@ -4,6 +4,7 @@
 {% load account_tags %}
 {% load url from future %}
 {% load pybb_tags i18n %}
+{% load staticfiles %}
 
 {% block navigation %}
     {% if not user.is_authenticated %}
@@ -139,48 +140,15 @@
             </div>
         {% endif %}
         <div class="sidebar_statement">
-            Warcraftlogs:
+            Raid progress:
         </div>
-        <div class="logs">
-            {% for logs in logs_list %}
-                <div class="log_entity">
-                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
-                    <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
-                </div>
-            {% empty %}
-                <div class="token_div">
-                    No logs available at this time.
-                </div>
-            {% endfor %}
-        </div>
-        <div class="sidebar_statement">
-            Raid Progress:
-        </div>
-{#        <div class="raid_progress_wrapper">#}
-{#            {% for raid in raid_progress %}#}
-{#                    <div class="raid {% if raid.name == 'Highmaul' %} highmaul_raid {% elif raid.name == 'Blackrock Foundry' %} foundry_raid {% elif raid.name == 'Hellfire Citadel' %} citadel_raid {% endif %}">#}
-{#                        <div class="raid_info">#}
-{#                            <div class="bottom_raid">#}
-{#                                <span class="raid_difficulty">{{ raid.difficulty }}</span>#}
-{#                            </div>#}
-{#                            <div class="upper_raid">#}
-{#                                <span class="raid_name">{{ raid.name }}</span>#}
-{#                                <span class="raid_defeated">{{ raid.defeated_bosses }}/{{ raid.bosses }}</span>#}
-{#                            </div>#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-{#            {% empty %}#}
-{#                <div class="token_div">#}
-{#                    No progression available at this time.#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
         <div class="raid_progress_wrapper">
             <div id="accordion">
                 {% for raid in raid_progress %}
                     <h3>
-                        <div class="raid {% if raid.name == 'Highmaul' %} highmaul_raid {% elif raid.name == 'Blackrock Foundry' %} foundry_raid {% elif raid.name == 'Hellfire Citadel' %} citadel_raid {% endif %}">
+{#                        <div class="raid {% if raid.name == 'Highmaul' %} highmaul_raid {% elif raid.name == 'Blackrock Foundry' %} foundry_raid {% elif raid.name == 'Hellfire Citadel' %} citadel_raid {% endif %}">#}
+                        <div class="raid">
+                            <img src="/media/{{ raid.thumbnail }}" width="249px" height="75px">
                             <div class="raid_info">
                                 <div class="upper_raid">
                                     <span class="raid_difficulty">{{ raid.difficulty }}</span>
@@ -189,7 +157,6 @@
                                     <span class="raid_name">{{ raid.name }}</span>
                                     <span class="raid_defeated">{{ raid.defeated_bosses }}/{{ raid.bosses }}</span>
                                 </div>
-
                             </div>
                         </div>
                     </h3>
@@ -219,6 +186,21 @@
                 </div>
             {% endfor %}
             </div>
+        </div>
+        <div class="sidebar_statement">
+            Warcraftlogs:
+        </div>
+        <div class="logs">
+            {% for logs in logs_list %}
+                <div class="log_entity">
+                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
+                    <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
+                </div>
+            {% empty %}
+                <div class="token_div">
+                    No logs available at this time.
+                </div>
+            {% endfor %}
         </div>
         <div class="sidebar_statement">
             WoW Token price:

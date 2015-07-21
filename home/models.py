@@ -199,9 +199,10 @@ class RaidProgress(models.Model):
     difficulty = models.CharField(max_length=30, choices=[('Normal', 'Normal'), ('Heroic', 'Heroic'),
                                                           ('Mythic', 'Mythic')])
     tier = models.IntegerField(default=0)
-    bosses = models.IntegerField(default=0)
-    defeated_bosses = models.IntegerField(default=0)
+    bosses = models.IntegerField(default=0, null=True)
+    defeated_bosses = models.IntegerField(default=0, null=True)
     order = models.IntegerField(default=0, help_text='Chronological order of raid instances.')
+    thumbnail = models.FileField(upload_to="raid_thumbnail/", null=True)
 
     def __str__(self):
         return self.name

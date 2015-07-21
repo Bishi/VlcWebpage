@@ -875,7 +875,7 @@ td, th {
 
 .calculator {
     padding: 10px 17px 10px 17px;
-    border-bottom: 1px solid rgba(166, 166, 166, 0.40);
+    /*border-bottom: 1px solid rgba(166, 166, 166, 0.40);*/
 }
 
 .calculator input[type=number]{
@@ -1021,35 +1021,54 @@ td, th {
 
 .raid_progress_wrapper h3{
     margin: 0 0 0 0;
+    height: 75px;
 }
 
 .raid{
-    width: 248px;
-    height: 70px;
+    width: 249px;
+    height: 75px;
     background-size: cover;
     margin-top: 5px;
+    position: relative;
+    /*border: 1px solid red;*/
+    overflow: hidden;
 }
 
 .raid:hover{
     cursor: pointer;
 }
 
-.highmaul_raid{
-    background: black url("images/highmaul.jpg") no-repeat center;
+.raid img{
+    width: 400px;
+    height: 225px;
+    margin: -65px 0 0 -93px;
 }
 
-.foundry_raid{
-    background: black url("images/foundry.jpg") no-repeat center;
-}
+/*.highmaul_raid{*/
+    /*background: black url("images/highmaul.jpg") no-repeat center;*/
+/*}*/
 
-.citadel_raid{
-    background: black url("images/hellfire_citadel.jpg") no-repeat center;
-}
+/*.foundry_raid{*/
+    /*background: black url("images/foundry.jpg") no-repeat center;*/
+/*}*/
+
+/*.citadel_raid{*/
+    /*background: black url("images/hellfire_citadel.jpg") no-repeat center;*/
+/*}*/
+
+.ui-state-focus:focus { outline: none !important }
 
 .raid_info{
     color: white;
     /*font-family: 'Bitter', Arial, sans-serif;*/
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+    width: 249px;
+    height: 75px;
+    /*border: 1px solid yellow;*/
 }
 
 .upper_raid{
