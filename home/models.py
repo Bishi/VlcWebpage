@@ -176,3 +176,21 @@ class Member(models.Model):
         self.player_class_string = get_class(self.player_class)
         self.rank_string = get_rank(self.rank)
         super(Member, self).save(*args, **kwargs)
+
+
+class RaidProgress(models.Model):
+    name = models.CharField(max_length=30)
+    difficulty = models.CharField(max_length=30)
+    tier = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class RaidBoss(models.Model):
+    raid_instance = models.ForeignKey(RaidProgress)
+    name = models.CharField(max_length=30)
+    defeated = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name

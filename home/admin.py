@@ -1,6 +1,6 @@
 from django.contrib import admin
 from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
-from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit
+from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit, RaidProgress, RaidBoss
 from home.models import Chatterbox
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -118,6 +118,49 @@ class ArticleCommentAdmin(admin.ModelAdmin):
 admin.site.register(ArticleComment, ArticleCommentAdmin)
 
 
+class RaidBossInLine(admin.TabularInline):
+    model = RaidBoss
+    can_delete = False
+    extra = 0
+
+
+class RaidProgressAdmin(admin.ModelAdmin):
+    list_display = ('name', 'difficulty', 'tier', 'get_defeated', 'get_bosses',)
+    inlines = [ RaidBossInLine ]
+
+    def get_bosses(self, obj):
+        raid_bosses = RaidBoss.objects.all()
+        count = 0
+        for boss in raid_bosses:
+            if boss.raid_instance.name == obj.name and boss.raid_instance.difficulty == obj.difficulty:
+                count += 1
+        return count
+
+    get_bosses.short_description = 'Bosses'
+
+    def get_defeated(self, obj):
+        raid_bosses = RaidBoss.objects.all()
+        count = 0
+        for boss in raid_bosses:
+            if boss.raid_instance.name == obj.name and boss.raid_instance.difficulty == obj.difficulty and boss.defeated:
+                count += 1
+        return count
+
+    get_defeated.short_description = 'Defeated'
+
+admin.site.register(RaidProgress, RaidProgressAdmin)
+
+
+class RaidBossAdmin(admin.ModelAdmin):
+    list_display = ('name', 'raid_instance', 'get_difficulty', 'defeated')
+    list_editable = ('defeated',)
+
+    def get_difficulty(self, obj):
+        return obj.raid_instance.difficulty
+
+admin.site.register(RaidBoss, RaidBossAdmin)
+
+
 #custom user admin, only superusers can change 'is superuser' status
 class MyUserAdmin(UserAdmin):
     def get_fieldsets(self, request, obj=None):
@@ -143,6 +186,7 @@ class MyUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, MyUserAdmin)
+
 
 #roster
 class MemberAdmin(admin.ModelAdmin):
