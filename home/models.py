@@ -100,12 +100,18 @@ class WarcraftlogsAPI(models.Model):
         #return self.title
         return '%s %s' % (self.id, self.title)
 
+    class Meta:
+        verbose_name_plural = "Warcraftlogs"
+
 
 class WarcraftlogsURL(models.Model):
     url = models.CharField(max_length=200)
 
     def __str__(self):
         return self.url
+
+    class Meta:
+        verbose_name_plural = "Warcraftlogs url"
 
 
 class RealmStatusAPI(models.Model):
@@ -116,6 +122,9 @@ class RealmStatusAPI(models.Model):
     def __str__(self):
         return self.id
 
+    class Meta:
+        verbose_name_plural = "Realm status api"
+
 
 class WowTokenApi(models.Model):
     price = models.CharField(max_length=10, blank=True)
@@ -125,11 +134,17 @@ class WowTokenApi(models.Model):
     def __str__(self):
         return self.timestamp
 
+    class Meta:
+        verbose_name_plural = "WoW Token api"
+
 
 class Chatterbox(models.Model):
     author = models.ForeignKey('auth.User')
     body = models.TextField(max_length=140)
     pub_date = models.DateTimeField('date published')
+
+    class Meta:
+        verbose_name_plural = "Chatterbox"
 
 
 def get_rank(rank):
@@ -203,6 +218,9 @@ class RaidProgress(models.Model):
         self.defeated_bosses = defeated_count
         super(RaidProgress, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = "Raid progress"
+
 
 class RaidBoss(models.Model):
     raid_instance = models.ForeignKey(RaidProgress)
@@ -211,3 +229,6 @@ class RaidBoss(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Raid bosses"
