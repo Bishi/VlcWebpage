@@ -127,7 +127,6 @@ class RaidBossInLine(admin.TabularInline):
 class RaidProgressAdmin(admin.ModelAdmin):
     list_display = ('name', 'difficulty', 'tier', '_get_defeated', 'bosses',)
     inlines = [RaidBossInLine]
-    fieldsets = ['name', 'difficulty', 'tier', 'order']
     fieldsets = [('Raid Info',          {'fields': ['name', 'difficulty', 'tier', 'order', 'thumbnail']}),]
 
     #child must be saved before the parent

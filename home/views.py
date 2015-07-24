@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
 from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit, RaidProgress, RaidBoss
@@ -17,17 +18,6 @@ from django.utils.safestring import mark_safe
 
 #homepage
 def index_view(request):
-    #home
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
     #article_list
     article_list = NewsArticle.objects.all().order_by('-pub_date')
 
@@ -55,12 +45,9 @@ def index_view(request):
     recruits = tmp
 
     #latest forum posts
-    qs = Topic.objects.all().select_related().order_by('-updated', '-id')
-    qs = perms.filter_topics(request.user, qs)
-
-
-
-    qs = qs[:5]
+    topic_list = Topic.objects.all().select_related().order_by('-updated', '-id')
+    topic_list = perms.filter_topics(request.user, topic_list)
+    topic_list = topic_list[:5]
 
     #warcraftlogs
     logs_list = WarcraftlogsAPI.objects.all().order_by('-end')
@@ -109,11 +96,9 @@ def index_view(request):
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
     args['chatterbox'] = chatterbox
     args['newsArticles'] = articles
-    args['group'] = group_name
-    args['topic_list'] = qs
+    args['topic_list'] = topic_list
     args['logs_list'] = logs_list
     args['wow_token'] = wow_token
     args['comment_count'] = comment_count
@@ -130,39 +115,6 @@ def home_redirect(response):
 
 #/home/all
 def news_articles(request):
-    #user
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
-    #list of articles
-    # sort_by = request.GET.get('order_by', '-pub_date')
-    # if sort_by not in ['-pub_date', 'pub_date', '-author', 'author']:
-    #     sort_by = '-pub_date'
-    # article_list = NewsArticle.objects.order_by(sort_by)
-    #
-    # VALID_SORTS = {
-    #    "pk": "pk",
-    #     "pkd": "-pk",
-    #    "em": "eminence",
-    #    "emd": "-eminence",
-    #}
-    #DEFAULT_SORT = 'pk'
-    #def search(request):
-    #    sort_key = request.GET.get('sort', DEFAULT_SORT) # Replace pk with your default.
-    #    sort = VALID_SORTS.get(sort_key, DEFAULT_SORT)
-
-    #    eList = Employer.objects.filter(eminence__lt=4).order_by(sort)
-
-    #search
-    ##article_list = NewsArticle.objects.filter(title__contains='a')
-
     article_list = NewsArticle.objects.all().order_by('-pub_date')
     paginator = Paginator(article_list, 5)
 
@@ -191,26 +143,12 @@ def news_articles(request):
         else:
             comment_count[comment.origin_id] = 1
 
-    return render_to_response('home/news_articles.html',
-                             {'newsArticles': articles,
-                              'user': user,
-                              'group': group_name,
-                              'comment_count': comment_count},
-                               context_instance=RequestContext(request))
+    args = {'newsArticles': articles, 'comment_count': comment_count}
+
+    return render_to_response('home/news_articles.html', args, context_instance=RequestContext(request))
 
 
 def news_article(request, article_id=1):
-    #user
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
     try:
         article = NewsArticle.objects.get(id=article_id)
     except:
@@ -250,8 +188,6 @@ def news_article(request, article_id=1):
 
     args['form'] = form
     args['form_comments'] = form_comments
-    args['user'] = user
-    args['group'] = group_name
     args['newsArticle'] = article
     args['comments'] = comments
     args['comment_number'] = comment_number
@@ -261,17 +197,6 @@ def news_article(request, article_id=1):
 
 @permission_required('home.add_newsarticle', raise_exception=True)
 def create(request):
-    #if user is not logged in, forbidden
-    user = None
-    if request.user:
-        user = request.user
-    if user is None:
-        raise PermissionDenied()
-
-    #if the user is not an officer, forbidden
-    #if not request.user.groups.filter(name='Officer'):
-    #    raise PermissionDenied()
-
     if request.POST:
         form = NewsArticleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -279,29 +204,20 @@ def create(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.pub_date = timezone.now()
-            #instance.body = bbcode.render_html(instance.body)
-            #instance.body = mark_safe(instance.body.replace("\n", "<br/>"))
             instance.save()
             return HttpResponseRedirect('/articles/all')
     else:
         form = NewsArticleForm()
+
     args = {}
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
 
     return render_to_response('home/create_news_article.html', args, context_instance=RequestContext(request))
 
-
+@login_required
 def delete_article(request, article_id):
-    #if user is not logged in, forbidden
-    user = None
-    if request.user:
-        user = request.user
-    if user is None:
-        raise PermissionDenied()
-
     #group
     group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
@@ -325,7 +241,6 @@ def delete_article(request, article_id):
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
     args['newsArticle'] = article
 
     return render_to_response('home/delete_news_article.html', args, context_instance=RequestContext(request))
@@ -342,30 +257,10 @@ def like_article(request, article_id):
 
 
 def application_info(request):
-    #user
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
-    return render_to_response('home/application_info.html',
-                             {'user': user,
-                              'group': group_name},
-                               context_instance=RequestContext(request))
+    return render_to_response('home/application_info.html', context_instance=RequestContext(request))
 
 
 def test_page(request):
-    #recruitment_list = Recruitment.objects.all()
-    if request.user:
-        user = request.user
-    else:
-        user = None
-
     chatterbox = Chatterbox.objects.all().order_by('-pub_date')
     chatterbox = chatterbox[:5:-1]
 
@@ -385,20 +280,13 @@ def test_page(request):
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
     args['chatterbox'] = chatterbox
 
     return render_to_response('home/test_page.html', args, context_instance=RequestContext(request))
 
 
+@login_required
 def delete_chatterbox(request, chat_id):
-    #if user is not logged in, forbidden
-    user = None
-    if request.user:
-        user = request.user
-    if user is None:
-        raise PermissionDenied()
-
     #group
     group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
@@ -422,20 +310,13 @@ def delete_chatterbox(request, chat_id):
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
     args['chatterbox_chat'] = chatterbox_chat
 
     return render_to_response('home/delete_chatterbox.html', args, context_instance=RequestContext(request))
 
 
+@login_required
 def delete_comment(request, comment_id):
-    #if user is not logged in, forbidden
-    user = None
-    if request.user:
-        user = request.user
-    if user is None:
-        raise PermissionDenied()
-
     #group
     group_name = 'not_officer'
     if request.user.groups.filter(name='Officer'):
@@ -459,18 +340,12 @@ def delete_comment(request, comment_id):
     args.update(csrf(request))
 
     args['form'] = form
-    args['user'] = user
     args['comment'] = comment
 
     return render_to_response('home/delete_comment.html', args, context_instance=RequestContext(request))
 
 
 def roster(request):
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
     #get list of members
     valid_sorts = {
         "n": "name",
@@ -499,10 +374,8 @@ def roster(request):
     elif sort_key == '-il':
         members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
 
-    #members = Member.objects.all().order_by(sort)
-    #members = Member.objects.all().order_by('name')
-
     #members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
 
-    return render_to_response('home/roster.html', {'members': members,
-                                                   'group': group_name}, context_instance=RequestContext(request))
+    args = {'members': members}
+
+    return render_to_response('home/roster.html', args, context_instance=RequestContext(request))

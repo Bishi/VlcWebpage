@@ -1030,7 +1030,6 @@ td, th {
     background-size: cover;
     margin-top: 5px;
     position: relative;
-    /*border: 1px solid red;*/
     overflow: hidden;
 }
 
@@ -1044,18 +1043,6 @@ td, th {
     margin: -65px 0 0 -93px;
 }
 
-/*.highmaul_raid{*/
-    /*background: black url("images/highmaul.jpg") no-repeat center;*/
-/*}*/
-
-/*.foundry_raid{*/
-    /*background: black url("images/foundry.jpg") no-repeat center;*/
-/*}*/
-
-/*.citadel_raid{*/
-    /*background: black url("images/hellfire_citadel.jpg") no-repeat center;*/
-/*}*/
-
 .ui-state-focus:focus { outline: none !important }
 
 .raid_info{
@@ -1068,7 +1055,6 @@ td, th {
     z-index: 1000;
     width: 249px;
     height: 75px;
-    /*border: 1px solid yellow;*/
 }
 
 .upper_raid{
@@ -1104,6 +1090,18 @@ td, th {
 .boss_name{
     flex-grow: 1;
 }
+
+/*.highmaul_raid{*/
+    /*background: black url("images/highmaul.jpg") no-repeat center;*/
+/*}*/
+
+/*.foundry_raid{*/
+    /*background: black url("images/foundry.jpg") no-repeat center;*/
+/*}*/
+
+/*.citadel_raid{*/
+    /*background: black url("images/hellfire_citadel.jpg") no-repeat center;*/
+/*}*/
 
 /**
  * Tooltip Styles

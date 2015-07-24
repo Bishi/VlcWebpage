@@ -6,11 +6,6 @@ import VLCwebsite.views
 import account.views
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'VLCwebsite.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    #url(r'^$', home_redirect),
     url(r'^$', 'home.views.index_view',name='home'),
     url(r'^articles/', include('home.urls', namespace="home")),
     url(r'^admin/', include(admin.site.urls)),

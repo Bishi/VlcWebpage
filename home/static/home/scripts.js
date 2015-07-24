@@ -39,9 +39,17 @@ angular.module('mount_calculator', []).controller('MountCalculator', function(){
 var $rows = $('#roster_table tbody tr');
 $('#roster_search').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
     }).hide();
+});
+
+//index.html raid progression accordion script
+$(function() {
+    $( "#accordion" ).accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: "content"
+    });
 });
