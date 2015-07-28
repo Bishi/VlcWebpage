@@ -3,52 +3,60 @@
 
 <table class="table topic-list">
     <thead>
-        <tr class="forum-row head-row" >
-            <th class="forum-name" colspan="4" style="padding: 4px 10px; border: none;">
+        <tr class="topic-row head-row">
+            <th class="topic-name">
                 {% trans "Topic" %}
+            </th>
+            <th class="topic-post-count">
+                {% trans "Posts" %}
+            </th>
+            <th class="topic-view-count">
+                {% trans "Views" %}
+            </th>
+            <th class="topic-last-post">
+                {% trans "Last posts" %}
             </th>
         </tr>
     </thead>
     <tbody>
     {% for topic in topic_list|pybb_topic_unread:user %}
         {% if topic|pybb_may_view_topic:user %}
-        <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% if topic.on_moderation %} on-moderation {% endif %}">
-            <td class="topic-name{% if topic.unread %} topic-unread{% endif %}" style="vertical-align: middle;">
-                <li class="upper_li">
-                    <div class="state-indicator"></div>
-                    {% if topic.closed %}<img src="{% static 'home/images/locked.png' %}" width="20px" height="20px" title="locked"> &nbsp;{% endif %}
-                    <a href="{{ topic.get_absolute_url }}">{{ topic.name|truncatechars:70 }}</a>
-                    <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">⇨</a>
-                    {% if topic.sticky %} &nbsp;<img src="{% static 'home/images/sticky.png' %}" width="20px" height="20px" title="sticky">{% endif %}
-                    {% with topic|pybb_topic_inline_pagination as pages %}
-                        {% if pages|length > 1 %}
-                            <span class="mini-pagination">
-                                {% trans "pages" %}:
-                                {% for page in pages %}
-                                    <span class="page">
-                                    {% if page == "..." %}
-                                        ...
-                                    {% else %}
-                                        <a href="{{ topic.get_absolute_url }}?page={{ page }}">{{ page }}</a>
-                                    {% endif %}
-                                    </span>
-                                {% endfor %}
-                            </span>
-                        {% endif %}
-                    {% endwith %}
-                </li>
-                <li class="bottom_li user_li">Started by <a href="http://www.vinlacvicek.com/forum/users/{{ topic.user }}/">{{ topic.user }}</a> on {{ topic.created|date:"d.m.Y H:i" }} </li>
+        <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
+            <td class="topic-name{% if topic.unread %} topic-unread{% endif %}">
+                <div class="state-indicator"></div>
+{#                {% if topic.sticky %}<img src="{% static 'home/images/sticky.png' %}" width="20px" height="20px" title="sticky">&nbsp;{% endif %}#}
+                {% if topic.closed %}<img src="{% static 'home/images/locked.png' %}" width="20px" height="20px" title="locked"> &nbsp;{% endif %}
+                <a href="{{ topic.get_absolute_url }}">{{ topic.name|truncatechars:70 }}</a>
+                <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">⇨</a>
+{#                {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}#}
+                {% if topic.sticky %} &nbsp;<img src="{% static 'home/images/sticky.png' %}" width="20px" height="20px" title="sticky">{% endif %}
+{#                {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}#}
+{#                {% if topic.closed %} &nbsp;<img src="{% static 'home/images/locked.png' %}" width="20px" height="20px" title="locked"> {% endif %}#}
+                {% with topic|pybb_topic_inline_pagination as pages %}
+                    {% if pages|length > 1 %}
+                        <span class="mini-pagination">
+                            {% trans "pages" %}:
+                            {% for page in pages %}
+                                <span class="page">
+                                {% if page == "..." %}
+                                    ...
+                                {% else %}
+                                    <a href="{{ topic.get_absolute_url }}?page={{ page }}">{{ page }}</a>
+                                {% endif %}
+                                </span>
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                {% endwith %}
             </td>
-            <td class="topic-post-count" style="vertical-align: middle;">
-                <li class="upper_li">{{ topic.post_count }} repl{{ topic.post_count|pluralize:"y,ies" }}</li>
-                <li class="bottom_li">{{ topic|pybbm_calc_topic_views }} view{{ topic|pybbm_calc_topic_views|pluralize }}</li>
+            <td class="topic-post-count">
+                {{ topic.post_count }}
             </td>
-            <td class="topic_avatar" style="vertical-align: middle;">
-                {% include "pybb/avatar3.html" with user=topic.last_post.user %}
+            <td class="topic-view-count">
+                {{ topic|pybbm_calc_topic_views }}
             </td>
-            <td class="topic-last-post" style="vertical-align: middle;">
-                <li class="upper_li last_user_li"><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></li>
-                <li class="bottom_li">{% include "pybb/topic_last_message_info.html" %}</li>
+            <td class="topic-last-post">
+                {% include "pybb/topic_last_message_info.html" %} &nbsp;by&nbsp; <i><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></i>
             </td>
         </tr>
         {% endif %}

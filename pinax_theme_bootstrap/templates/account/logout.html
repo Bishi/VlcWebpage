@@ -8,7 +8,7 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-5">
-            <form method="POST" action="{% url "account_logout" %}{% if request.GET.next %}?next={{ request.GET.next }} {% endif %}">
+            <form method="POST" action="{% url "account_logout" %}">
                 <legend>{% trans "Log out" %}</legend>
                 <fieldset>
                     {% csrf_token %}

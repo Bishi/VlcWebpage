@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-DB_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -52,7 +51,7 @@ INSTALLED_APPS = (
 )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
-                 # 'C:/Users/i7-2600K/DjangoProjectsDev/VLCwebsite/home/templates',
+                 'C:/Users/i7-2600K/DjangoProjects/VLCwebsite/home/templates',
                  'C:/Python34/Lib/site-packages/pybb/templates',]
 
 TEMPLATE_LOADERS = (
@@ -85,7 +84,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.debug',
-    'home.custom_context.home_context',
+    'home.custom_context.add_realm_status',
 )
 
 #AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -139,9 +138,8 @@ SITE_ID = 9
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'NAME': 'c:/Users/i7-2600K/DjangoProjectsDev/db_vlc.sqlite3',
-        'NAME': os.path.join(DB_DIR, 'db_vlc.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'c:/Users/i7-2600K/DjangoProjects/db_vlc.sqlite3',
     }
 }
 

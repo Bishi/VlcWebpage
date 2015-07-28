@@ -1,11 +1,10 @@
 {% load staticfiles %}
-{% load url from future %}
 
 
 <!DOCTYPE html>
 <html>
     <head lang="en">
-        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}?v=26072015" title="default" />
+        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}?v=210720153" title="default" />
         <link rel="shortcut icon" href="http://www.vinlacvicek.com/favicon.ico?v=2" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=1140px, maximum-scale=1.0" />
@@ -16,37 +15,14 @@
         <div class="wrapper">
             {% block header %}
                 <div class="header">
-                    <div class="account_header">
-                        {% if user.is_authenticated %}
-                            <span>Welcome, {{ user.username }}</span>
-                            <span><a href="/account/settings">Settings</a></span>
-                            <span><a href="/forum/profile/edit/">Profile</a></span>
-                            <span><a href="/account/logout?next={{ request.path }}">Logout</a></span>
-                        {% else %}
-                            <form action="{% url "account_login" %}?next={{ request.path }}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="login_remember"><span>Remember me?</span> {{ login_form.remember }}</div>
-                                <span class="login_username">{{ login_form.username }}</span>
-                                <span class="login_password">{{ login_form.password }}</span>
-                                <input type="submit" name="login_form" value="Login" class="login_button">
-                                <span><a href="/account/signup">Register</a></span>
-                            </form>
-                        {% endif %}
-                    </div>
                     <div class="header_text">
                         <a href="/">Vin la Cvicek work in progress page</a>
                     </div>
                 </div>
             {% endblock %}
-            <div class="navigation">
-                {% if group == 'Officer' %}
-                    <li><a href="/admin">Admin</a> </li>
-                {% endif %}
-                <li><a href="/apply">Apply</a></li>
-                <li><a href="/articles/all">Articles</a></li>
-                <li><a href="/roster">Roster</a></li>
-                <li><a class="forum_link" href="/forum">Forum</a></li>
-            </div>
+            {% block navigation %}
+
+            {% endblock %}
             <div class="content">
                 {% block content %}
 
@@ -93,18 +69,18 @@
         </div>
     </body>
 {#        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>#}
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow79.js"></script>
-    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="{% static 'home/scripts.js' %}"></script>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow79.js"></script>
+        <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="{% static 'home/scripts.js' %}"></script>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-61040857-2', 'auto');
-    ga('send', 'pageview');
-    </script>
+        ga('create', 'UA-61040857-2', 'auto');
+        ga('send', 'pageview');
+        </script>
 </html>

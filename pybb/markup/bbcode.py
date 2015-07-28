@@ -34,10 +34,10 @@ class BBCodeParser(BaseParser):
 
     def _render_quote(self, name, value, options, parent, context):
         if options and 'quote' in options:
-            origin_author_html = '<div class="quote_author"><b>%s said:</b></div>' % options['quote']
+            origin_author_html = '<em>%s</em><br>' % options['quote']
         else:
             origin_author_html = ''
-        return '<blockquote class="quote_post">%s<div class="quote_text">%s</div></blockquote>' % (origin_author_html, value)
+        return '<blockquote>%s%s</blockquote>' % (origin_author_html, value)
 
     def __init__(self):
         self._parser = Parser()

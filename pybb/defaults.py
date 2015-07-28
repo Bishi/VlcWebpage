@@ -24,7 +24,7 @@ PYBB_ATTACHMENT_ENABLE = getattr(settings, 'PYBB_ATTACHMENT_ENABLE', False)
 PYBB_ATTACHMENT_UPLOAD_TO = getattr(settings, 'PYBB_ATTACHMENT_UPLOAD_TO', os.path.join('pybb_upload', 'attachments'))
 
 PYBB_DEFAULT_AVATAR_URL = getattr(settings, 'PYBB_DEFAULT_AVATAR_URL',
-                                  getattr(settings, 'STATIC_URL', '') + 'pybb/img/default_avatar.png')
+                                  getattr(settings, 'STATIC_URL', '') + 'pybb/img/default_avatar.jpg')
 
 PYBB_DEFAULT_TITLE = getattr(settings, 'PYBB_DEFAULT_TITLE', 'PYBB Powered Forum')
 

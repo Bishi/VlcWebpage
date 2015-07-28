@@ -1,5 +1,27 @@
 {% extends 'home/base_page.html' %}
 
+{% block navigation %}
+    {% if not user.is_authenticated %}
+    <div class="navigation">
+        <li><div class="in_menu">Welcome, Guest</div></li>
+        <li><a href="/account/signup">Register</a></li>
+        <li><a href="/account/login">Login</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% else %}
+    <div class="navigation">
+        <li class="in_menu">Welcome, {{ user.username }}</li>
+        <li><a href="/account/logout">Logout</a></li>
+        <li><a href="/account/settings">Settings</a> </li>
+        {% if group == 'Officer' %}
+            <li><a href="/admin">Admin</a> </li>
+        {% endif %}
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a class="forum_link" href="/forum">Forum</a></li>
+    </div>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <script>
         function showDiv() {
@@ -9,24 +31,20 @@
         }
     </script>
     <div class="article_wrapper_articles">
-        <div class="article_border">
-            <div class="article">
-                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
-                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+        <div class="show_article">
+            <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
+            <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
 
-                {% if newsArticle.thumbnail %}
-                    <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}" width="1058"/></a></div>
-                {% endif %}
+            {% if newsArticle.thumbnail %}
+                <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                    <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
+            {% endif %}
 
-                <p class="article_body">{{ newsArticle.body_html | safe }}</p>
-            </div>
+            <p class="article_body">{{ newsArticle.body_html | safe }}</p>
         </div>
         {% if user.username == newsArticle.author.username or  group == 'Officer' %}
-            <div class="article_buttons">
-                <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()" class="submit_button"/>
-                <input type="button" name="delete" value="Delete" id="article_delete_button" onclick="location.href = '/articles/delete/{{ newsArticle.id }}/'" class="submit_button"/>
-            </div>
+            <input type="button" name="edit" value="Edit" id="article_edit_button" onclick="showDiv()" class="submit_button"/>
+            <input type="button" name="delete" value="Delete" id="article_delete_button" onclick="location.href = '/articles/delete/{{ newsArticle.id }}/'" class="submit_button"/>
             <div id="edit_form" style="display: none">
                 <form action="/articles/get/{{ newsArticle.id }}/" method="post" enctype="multipart/form-data"> {% csrf_token %}
                     {% for field in form %}
@@ -62,9 +80,11 @@
                     </div>
                 </div>
             {% empty %}
-                <div class="comment_no_comments">
-                    There are no comments yet.
-                </div>
+                <div class="comment">
+                    <div class="comment_no_comments">
+                        There are no comments yet.
+                    </div>
+             </div>
             {% endfor %}
         </div>
         {% if  user.is_authenticated %}
@@ -81,7 +101,7 @@
                 </div>
             </div>
         {% else %}
-                <div class="comment_log_in {% if not comments %} no_comm {% endif %}"><a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to comment.</div>
+            <div class="comment_log_in"><a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to comment.</div>
         {% endif %}
     </div>
 {% endblock %}
