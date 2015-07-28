@@ -18,6 +18,7 @@ from django.utils.translation import ugettext as _
 from django.utils import dateformat
 from django.utils.timezone import timedelta
 from django.utils.timezone import now as tznow
+from django.contrib.auth.models import User
 from datetime import datetime
 from time import strftime
 
@@ -395,3 +396,13 @@ def url_replace(request, field, value):
 def pybb_may_view_topic(topic, user):
 
     return perms.may_view_topic(user, topic)
+
+@register.filter
+def pybb_is_superuser(user):
+    tmp_user = User.objects.get_by_natural_key(username=user)
+    return tmp_user.is_superuser
+
+@register.filter
+def pybb_is_moderator(topic, user):
+    tmp_user = User.objects.get_by_natural_key(username=user)
+    return perms.may_moderate_topic(tmp_user, topic)

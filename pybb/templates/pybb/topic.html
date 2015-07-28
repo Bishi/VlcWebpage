@@ -24,7 +24,7 @@
 
 {% block content %}
     <div class="topic">
-        <h1>{{ topic.name }}</h1>
+        <div class="category_name">{{ topic.name }}</div>
         {% with _('Posts') as label %}
             {% include "pybb/pagination.html" %}
         {% endwith %}

@@ -1,42 +1,39 @@
 {% load pybb_tags i18n %}
 
 {% if forum_list %}
-    <table class="table {% if category %}category-table{% elif parent_forum %}child-forums-table{% endif %}">
+    <table class="table {% if category %}topic-list{% elif parent_forum %}topic_list_child{% endif %}">
         <thead>
-            <tr class="forum-row head-row">
-                <th class="forum-name">
+            <tr class="forum-row head-row" >
+                <th class="forum-name" colspan="4" style="padding: 4px 10px; border: none;">
                     {% trans "Forum" %}
-                </th>
-                <th class="forum-topic-count">
-                    {% trans "Topics" %}
-                </th>
-                <th class="forum-post-count">
-                    {% trans "Posts" %}
-                </th>
-                <th class="forum-last-post">
-                    {% trans "Last posts" %}
                 </th>
             </tr>
         </thead>
         <tbody>
         {% for forum in forum_list|pybb_forum_unread:user %}
-            <tr class="forum-row">
-                <td class="forum-name {% if forum.unread %} forum-unread{% endif %}">
-                    <div class="state-indicator"></div>
-                    <a href="{{ forum.get_absolute_url }}">{{ forum.name }}</a> {% if forum.hidden %}[{% trans "Hidden" %}]{% endif %}
-                    <div class="forum-description">
-                        {{ forum.description|safe }}
-                    </div>
+            <tr class="topic-row">
+                <td class="topic-name {% if forum.unread %} forum-unread{% endif %} " style="vertical-align: middle;">
+                    <li class="upper_li">
+                        <div class="state-indicator"></div>
+                        <a href="{{ forum.get_absolute_url }}">{{ forum.name }}</a> {% if forum.hidden %}[{% trans "Hidden" %}]{% endif %}
+                    </li>
+                    <li class="bottom_li user_li">
+                        {{ forum.description|safe }}&nbsp;
+                    </li>
                 </td>
-                <td class="forum-topic-count">
-                    {{ forum.topic_count }}
+                <td class="topic-post-count" style="vertical-align: middle;">
+                    <li class="upper_li">{{ forum.topic_count }} topic{{ forum.topic_count|pluralize }}</li>
+                    <li class="bottom_li">{{ forum.post_count }} post{{ forum.post_count|pluralize }}</li>
                 </td>
-                <td class="forum-post-count">
-                    {{ forum.post_count }}
-                </td>
-                <td class="forum-last-post">
+                <td class="topic_avatar" style="vertical-align: middle;">
                     {% if forum.last_post.user %}
-                        {% include "pybb/forum_last_update_info.html" %} &nbsp;by&nbsp; <i><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a></i>
+                        {% include "pybb/avatar3.html" with user=forum.last_post.user %}
+                    {% endif %}
+                </td>
+                <td class="topic-last-post" style="vertical-align: middle;">
+                    {% if forum.last_post.user %}
+                        <li class="upper_li last_user_li"><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a></li>
+                        <li class="bottom_li">{% include "pybb/forum_last_update_info.html" %}</li>
                     {% endif %}
                 </td>
             </tr>

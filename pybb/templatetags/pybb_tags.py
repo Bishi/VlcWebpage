@@ -377,4 +377,3 @@ def pybb_may_view_topic(topic, user):
 def pybb_may_view_post(post, user):
 
     return perms.may_view_topic(user, post)
-

@@ -6,29 +6,6 @@
     VLC Roster
 {% endblock %}
 
-{% block navigation %}
-    {% if not user.is_authenticated %}
-    <div class="navigation">
-        <li><div class="in_menu">Welcome, Guest</div></li>
-        <li><a href="/account/signup">Register</a></li>
-        <li><a href="/account/login">Login</a></li>
-        <li><a href="/articles/all">Articles</a></li>
-        <li><a class="forum_link" href="/forum">Forum</a></li>
-    </div>
-    {% else %}
-    <div class="navigation">
-        <li><div class="in_menu">Welcome, {{ user.username }}</div></li>
-        <li><a href="/account/logout">Logout</a></li>
-        <li><a href="/account/settings">Settings</a> </li>
-        {% if group == 'Officer' %}
-            <li><a href="/admin">Admin</a> </li>
-        {% endif %}
-        <li><a href="/articles/all">Articles</a></li>
-        <li><a class="forum_link" href="/forum">Forum</a></li>
-    </div>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     {% autoescape off %}
         <div class="table_div">
