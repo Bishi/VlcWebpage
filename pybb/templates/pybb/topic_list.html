@@ -40,7 +40,7 @@
                 <li class="bottom_li user_li">Started by <a href="http://www.vinlacvicek.com/forum/users/{{ topic.user }}/">{{ topic.user }}</a> on {{ topic.created|date:"d.m.Y H:i" }} </li>
             </td>
             <td class="topic-post-count" style="vertical-align: middle;">
-                <li class="upper_li">{{ topic.post_count }} repl{{ topic.post_count|pluralize:"y,ies" }}</li>
+                <li class="upper_li">{{ topic.post_count|add:"-1" }} repl{{ topic.post_count|add:"-1"|pluralize:"y,ies" }}</li>
                 <li class="bottom_li">{{ topic|pybbm_calc_topic_views }} view{{ topic|pybbm_calc_topic_views|pluralize }}</li>
             </td>
             <td class="topic_avatar" style="vertical-align: middle;">

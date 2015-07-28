@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head lang="en">
-        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}?v=26072015" title="default" />
+        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}?v=26072016" title="default" />
         <link rel="shortcut icon" href="http://www.vinlacvicek.com/favicon.ico?v=2" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=1140px, maximum-scale=1.0" />
@@ -52,21 +52,23 @@
 
                 {% endblock %}
             </div>
-            <div class="pagination">
-                {% if newsArticles.has_previous %}
-                      <span class="page"><a href="?page={{ newsArticles.previous_page_number }}">«</a></span>
-                {% endif %}
-                {% for page in newsArticles.paginator.page_range %}
-                    {% ifequal page newsArticles.number %}
-                        <span class="current">{{ page }}</span>
-                    {% else %}
-                        <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>
-                    {% endifequal %}
-                {% endfor %}
-                {% if newsArticles.has_next %}
-                    <span class="page"><a href="?page={{ newsArticles.next_page_number }}">»</a></span>
-                {% endif %}
-            </div>
+            {% block pagination %}
+                <div class="pagination">
+                    {% if newsArticles.has_previous %}
+                          <span class="page"><a href="?page={{ newsArticles.previous_page_number }}">«</a></span>
+                    {% endif %}
+                    {% for page in newsArticles.paginator.page_range %}
+                        {% ifequal page newsArticles.number %}
+                            <span class="current">{{ page }}</span>
+                        {% else %}
+                            <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>
+                        {% endifequal %}
+                    {% endfor %}
+                    {% if newsArticles.has_next %}
+                        <span class="page"><a href="?page={{ newsArticles.next_page_number }}">»</a></span>
+                    {% endif %}
+                </div>
+            {% endblock %}
             <div class="footer">
                 {% block footer %}
                     <div class="footer_div">

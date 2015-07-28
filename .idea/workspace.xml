@@ -26,58 +26,8 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7269" max-vertical-offset="24106">
-              <caret line="458" column="0" selection-start-line="458" selection-start-column="0" selection-end-line="466" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/category.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="204">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/topic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="1853">
-              <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forum.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="680">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="avatar3.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/avatar3.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="442">
-              <caret line="7" column="118" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.36" vertical-offset="129993" max-vertical-offset="130798">
-              <caret line="7683" column="19" selection-start-line="7683" selection-start-column="19" selection-end-line="7683" selection-end-column="19" />
+            <state vertical-scroll-proportion="-6.12" vertical-offset="21165" max-vertical-offset="24293">
+              <caret line="1263" column="28" selection-start-line="1263" selection-start-column="28" selection-end-line="1263" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -86,38 +36,97 @@
       <file leaf-file-name="base_page.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/templates/home/base_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="1955">
-              <caret line="7" column="93" selection-start-line="7" selection-start-column="93" selection-end-line="7" selection-end-column="93" />
+            <state vertical-scroll-proportion="-5.263158" vertical-offset="739" max-vertical-offset="1989">
+              <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/templates/theme_bootstrap/base.html">
+      <file leaf-file-name="create_news_article.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home/create_news_article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1802">
-              <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="663">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forum_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum_list.html">
+      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.23077" vertical-offset="0" max-vertical-offset="901">
-              <caret line="34" column="165" selection-start-line="34" selection-start-column="165" selection-end-line="34" selection-end-column="165" />
+            <state vertical-scroll-proportion="30.56" vertical-offset="130558" max-vertical-offset="131308">
+              <caret line="7590" column="30" selection-start-line="7590" selection-start-column="30" selection-end-line="7590" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="topic_list.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/topic_list.html">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/home/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77567565" vertical-offset="89" max-vertical-offset="1054">
-              <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.55716354" vertical-offset="6211" max-vertical-offset="6936">
+              <caret line="388" column="23" selection-start-line="388" selection-start-column="23" selection-end-line="388" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="340">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VLCwebsite/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.36" vertical-offset="0" max-vertical-offset="663">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.4736843" vertical-offset="1453" max-vertical-offset="4250">
+              <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="103" selection-end-column="22" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#5;n#div#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chat_archive.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home/chat_archive.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.381579" vertical-offset="126" max-vertical-offset="884">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#134#187#0#HTML" expanded="true" />
+                <element signature="e#350#384#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_page.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home/test_page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="697">
+              <caret line="16" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -133,10 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/home/forms.py" />
-        <option value="$PROJECT_DIR$/pybb/templates/pybb/avatar.html" />
-        <option value="$PROJECT_DIR$/home/utils.py" />
-        <option value="$PROJECT_DIR$/templates/site_base.html" />
         <option value="$PROJECT_DIR$/home/templates/home/delete_chatterbox.html" />
         <option value="$PROJECT_DIR$/home/templates/home/delete_comment.html" />
         <option value="$PROJECT_DIR$/home/templates/home/delete_news_article.html" />
@@ -155,7 +160,6 @@
         <option value="$PROJECT_DIR$/home/admin.py" />
         <option value="$PROJECT_DIR$/home/static/home/scripts.js" />
         <option value="$PROJECT_DIR$/home/templates/home/create_news_article.html" />
-        <option value="$PROJECT_DIR$/VLCwebsite/urls.py" />
         <option value="$PROJECT_DIR$/VLCwebsite/settings.py" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/avatar2.html" />
         <option value="$PROJECT_DIR$/home/templates/home/news_article.html" />
@@ -163,11 +167,8 @@
         <option value="$PROJECT_DIR$/home/templates/home/roster.html" />
         <option value="$PROJECT_DIR$/home/templates/home/application_info.html" />
         <option value="$PROJECT_DIR$/account/forms.py" />
-        <option value="$PROJECT_DIR$/home/views.py" />
         <option value="$PROJECT_DIR$/home/custom_context.py" />
         <option value="$PROJECT_DIR$/pinax_theme_bootstrap/templates/account/logout.html" />
-        <option value="$PROJECT_DIR$/home/templates/home/index.html" />
-        <option value="$PROJECT_DIR$/home/static/home/style.css" />
         <option value="$PROJECT_DIR$/pybb/defaults.py" />
         <option value="$PROJECT_DIR$/home/templates/home/latest_topics.html" />
         <option value="$PROJECT_DIR$/pybb/templatetags/pybb_tags.py" />
@@ -176,14 +177,22 @@
         <option value="$PROJECT_DIR$/pybb/markup/bbcode.py" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/pagination.html" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/avatar3.html" />
+        <option value="$PROJECT_DIR$/pybb/templates/pybb/topic.html" />
+        <option value="$PROJECT_DIR$/pybb/static/markitup/skins/simple/style.css" />
+        <option value="$PROJECT_DIR$/pybb/templates/pybb/_markitup_preview.html" />
+        <option value="$PROJECT_DIR$/pybb/templates/pybb/topic_list.html" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/forum.html" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/category.html" />
-        <option value="$PROJECT_DIR$/pybb/templates/pybb/topic.html" />
-        <option value="$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/home/templates/home/base_page.html" />
+        <option value="$PROJECT_DIR$/pybb/templates/pybb/index.html" />
         <option value="$PROJECT_DIR$/pinax_theme_bootstrap/templates/theme_bootstrap/base.html" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/forum_list.html" />
-        <option value="$PROJECT_DIR$/pybb/templates/pybb/topic_list.html" />
+        <option value="$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/VLCwebsite/urls.py" />
+        <option value="$PROJECT_DIR$/home/static/home/style.css" />
+        <option value="$PROJECT_DIR$/home/templates/home/base_page.html" />
+        <option value="$PROJECT_DIR$/home/templates/home/chat_archive.html" />
+        <option value="$PROJECT_DIR$/home/templates/home/index.html" />
+        <option value="$PROJECT_DIR$/home/views.py" />
       </list>
     </option>
   </component>
@@ -428,6 +437,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLCwebsite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLCwebsite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pybb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="markitup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1024,247 +1063,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/edit_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/edit_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/breadcrumb_top_extra_crumb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/breadcrumb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/avatar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.131579" vertical-offset="0" max-vertical-offset="442">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/attachments_formset.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/add_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/user_topics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/user_posts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9210525" vertical-offset="0" max-vertical-offset="663">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0921053" vertical-offset="117" max-vertical-offset="1037">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/topic_last_who.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="787">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/affix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="2244">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/alert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="1768">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="34085">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="1955">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/carousel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="3791">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/collapse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="3145">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/dropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="2720">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="4284">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/popover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="2091">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/scrollspy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="2788">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/tab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="2397">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/tooltip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="6664">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/js/transition.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="50" max-vertical-offset="1054">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/static/markitup/templates/preview.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/static/markitup/templates/preview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/static/markitup/sets/markdown/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.82" vertical-offset="274" max-vertical-offset="1003">
-          <caret line="45" column="37" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/static/markitup/sets/markdown/set.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.48" vertical-offset="304" max-vertical-offset="1020">
-          <caret line="34" column="20" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/markup/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.306667" vertical-offset="197" max-vertical-offset="901">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/delete_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/avatar2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="442">
@@ -1272,32 +1070,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/pagination.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="850">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/post_template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0263157" vertical-offset="212" max-vertical-offset="2754">
-          <caret line="26" column="60" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybb/markup/bbcode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.92" vertical-offset="37" max-vertical-offset="918">
           <caret line="36" column="81" selection-start-line="36" selection-start-column="81" selection-end-line="36" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7269" max-vertical-offset="24106">
-          <caret line="458" column="0" selection-start-line="458" selection-start-column="0" selection-end-line="466" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1332,49 +1108,242 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum_last_update_info.html">
+    <entry file="file://$PROJECT_DIR$/pybb/static/markitup/skins/simple/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.021963824" vertical-offset="0" max-vertical-offset="774">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="680">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="204">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        <state vertical-scroll-proportion="-8.12" vertical-offset="1651" max-vertical-offset="2380">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="134" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="1853">
+        <state vertical-scroll-proportion="-2.9605262" vertical-offset="251" max-vertical-offset="1853">
           <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css">
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/post_template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.36" vertical-offset="129993" max-vertical-offset="130798">
-          <caret line="7683" column="19" selection-start-line="7683" selection-start-column="19" selection-end-line="7683" selection-end-column="19" />
+        <state vertical-scroll-proportion="-3.0263157" vertical-offset="212" max-vertical-offset="2754">
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/home/base_page.html">
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/post_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="1955">
-          <caret line="7" column="93" selection-start-line="7" selection-start-column="93" selection-end-line="7" selection-end-column="93" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/poll_edit_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38157895" vertical-offset="29" max-vertical-offset="782">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/poll.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65789473" vertical-offset="50" max-vertical-offset="1003">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/pagination.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43421054" vertical-offset="84" max-vertical-offset="850">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/markup/bbcode_widget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65789473" vertical-offset="50" max-vertical-offset="833">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/markup/markdown_widget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65789473" vertical-offset="50" max-vertical-offset="867">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_need_to_login_message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_markitup_preview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43421054" vertical-offset="135" max-vertical-offset="1037">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_markitup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0263157" vertical-offset="59" max-vertical-offset="918">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_button_submit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_button_save.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/_button_new_topic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/add_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.4605262" vertical-offset="0" max-vertical-offset="697">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/attachments_formset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/avatar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="766">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/breadcrumb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/breadcrumb_top_extra_crumb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/delete_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/edit_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3421053" vertical-offset="0" max-vertical-offset="204">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/edit_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/form_errors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/form_field.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5921054" vertical-offset="0" max-vertical-offset="680">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum_last_update_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.2236842" vertical-offset="0" max-vertical-offset="136">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1382,24 +1351,129 @@
     <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/templates/theme_bootstrap/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1802">
-          <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.23077" vertical-offset="0" max-vertical-offset="901">
-          <caret line="34" column="165" selection-start-line="34" selection-start-column="165" selection-end-line="34" selection-end-column="165" />
+          <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/topic_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77567565" vertical-offset="89" max-vertical-offset="1054">
-          <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+        <state vertical-scroll-proportion="-17.192308" vertical-offset="267" max-vertical-offset="1054">
+          <caret line="42" column="32" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8157897" vertical-offset="0" max-vertical-offset="646">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybb/templates/pybb/forum_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.105263" vertical-offset="190" max-vertical-offset="901">
+          <caret line="34" column="158" selection-start-line="34" selection-start-column="158" selection-end-line="34" selection-end-column="158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/templates/500.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="787">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pinax_theme_bootstrap/static/bootstrap/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="30.56" vertical-offset="130558" max-vertical-offset="131308">
+          <caret line="7590" column="30" selection-start-line="7590" selection-start-column="30" selection-end-line="7590" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/test_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="697">
+          <caret line="16" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VLCwebsite/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.36" vertical-offset="0" max-vertical-offset="663">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.12" vertical-offset="21165" max-vertical-offset="24293">
+          <caret line="1263" column="28" selection-start-line="1263" selection-start-column="28" selection-end-line="1263" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/create_news_article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/chat_archive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.381579" vertical-offset="126" max-vertical-offset="884">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#134#187#0#HTML" expanded="true" />
+            <element signature="e#350#384#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/base_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.263158" vertical-offset="739" max-vertical-offset="1989">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4736843" vertical-offset="1453" max-vertical-offset="4250">
+          <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="103" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#5;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55716354" vertical-offset="6211" max-vertical-offset="6936">
+          <caret line="388" column="23" selection-start-line="388" selection-start-column="23" selection-end-line="388" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

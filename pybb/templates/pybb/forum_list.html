@@ -32,8 +32,8 @@
                 </td>
                 <td class="topic-last-post" style="vertical-align: middle;">
                     {% if forum.last_post.user %}
-                        <li class="upper_li last_user_li"><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a></li>
-                        <li class="bottom_li">{% include "pybb/forum_last_update_info.html" %}</li>
+                        <li class="upper_li last_user_li topic_li"><a href="{{ forum.last_post.topic.get_absolute_url }}" title="{{ forum.last_post.topic.name }}">{{ forum.last_post.topic.name|truncatechars:34 }}</a></li>
+                        <li class="bottom_li bottom_user_li"><a href="http://www.vinlacvicek.com/forum/users/{{ forum.last_post.user }}/">{{ forum.last_post.user }}</a> on {% include "pybb/forum_last_update_info.html" %}</li>
                     {% endif %}
                 </td>
             </tr>

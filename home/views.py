@@ -383,3 +383,21 @@ def roster(request):
     args = {'members': members}
 
     return render_to_response('home/roster.html', args, context_instance=RequestContext(request))
+
+
+@login_required
+def chatterbox_archive(request):
+    chat = Chatterbox.objects.all().order_by('pub_date')
+
+    paginator = Paginator(chat, 15)
+    page = request.GET.get('page')
+    try:
+        chat = paginator.page(page)
+    except PageNotAnInteger:
+        chat = paginator.page(1)
+    except EmptyPage:
+        chat = paginator.page(paginator.num_pages)
+
+    args = {'chatterbox': chat}
+
+    return render_to_response('home/chat_archive.html', args, context_instance=RequestContext(request))

@@ -98,6 +98,11 @@
                     {% endif %}
                 </div>
             {% endfor %}
+            {% if user.is_authenticated %}
+                <div class="chat_archive">
+                    <a href="/chat_archive/">Archive</a>
+                </div>
+            {% endif %}
         </div>
         {% if  user.is_authenticated %}
             <div class="chatterbox_form">
@@ -236,3 +241,4 @@
         </div>
     </div>
 {% endblock %}
+

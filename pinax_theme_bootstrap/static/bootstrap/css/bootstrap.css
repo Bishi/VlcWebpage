@@ -4831,6 +4831,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
   padding-right: 2px;
   color: black;
   border: none;
+    border: 1px solid #dddddd;
+    background-color: white;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 2px 5px 2px 5px;
 }
 
 
@@ -7577,11 +7582,12 @@ body {
 
 .topic-list, .category-table, .topic_list_child {
     border: 1px solid #f2f2f2;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     background-color: white;
 }
 
 .topic-list tr:nth-child(even), .topic_list_child tr:nth-child(even) {
+    /*background-color: #FAFBFF;*/
     background-color: #FAFAFA;
 }
 
@@ -7624,8 +7630,9 @@ body {
 
 .bottom_li{
     color: #ADADAD;
-    margin-top: -3px;
+    /*margin-top: -3px;*/
     font-size: 16px;
+    line-height: 15px;
 }
 
 .user_li a{
@@ -7638,6 +7645,7 @@ body {
 
 .upper_li{
     color: #333;
+    line-height: 16px;
 }
 
 .upper_li a{
@@ -7649,11 +7657,11 @@ body {
 }
 
 .topic-name, .forum-name{
-    width: 60%;
+    width: 56%;
 }
 
 .topic-post-count, .forum-topic-count{
-    width: 15%;
+    width: 14%;
 }
 
 .topic-post-count tbody > tr > td{
@@ -7662,10 +7670,11 @@ body {
 
 .topic_avatar{
     width: 5%;
+    padding: 0px 2px;
 }
 
 .topic-last-post, .forum-last-post{
-    width: 20%;
+    width: 25%;
 }
 
 .child-forums-table{
@@ -7686,4 +7695,25 @@ body {
 
 .post_header a:hover{
     color: #428bca;
+}
+
+.topic_li a:hover{
+    color: #333;
+}
+
+.bottom_user_li a{
+    color: #ADADAD;
+}
+
+.bottom_user_li a:hover{
+    color: #428bca;
+}
+
+#mark-all-as-read{
+    font-size: 24px;
+    line-height: 24px;
+}
+
+#mark-all-as-read span{
+    margin-right: 10px;
 }

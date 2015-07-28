@@ -794,7 +794,7 @@ td, th {
 }
 
 .chat_line {
-    border-bottom: 1px solid rgba(166, 166, 166, 0.40);
+    /*border-bottom: 1px solid rgba(166, 166, 166, 0.40);*/
     padding: 5px 3px 5px 3px;
 }
 
@@ -1256,6 +1256,17 @@ td, th {
 .account_header span{
     margin-left: 5px;
     /*line-height: 30px;*/
+}
+
+.chat_archive {
+    font-size: 11px;
+    margin-left: 5px;
+    margin: 5px 5px 5px 8px;
+}
+
+.chat_archive a {
+    text-decoration: none;
+    color: #3faace;
 }
 
 

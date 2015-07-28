@@ -1,0 +1,47 @@
+{% extends 'home/base_page.html' %}
+{% load url from future %}
+{% load pybb_tags i18n %}
+
+{% block content %}
+<div class="chatterbox" style="width: 100%; margin: 10px 17px; height: 100%;">
+            {% for chat in chatterbox %}
+                <div class="chat_line">
+                    <div class="author_container">
+                        <div style="height: 16px; width: 16px;">
+                            {% include 'pybb/avatar2.html' with user=chat.author %}
+                        </div>
+                        <div class="chat_author">
+                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                        </div>
+                    </div>
+                    <div class="chat_body">
+                        {{ chat.body|urlize }}
+                    </div>
+                    {% if user.username == chat.author.username or  group == 'Officer' %}
+                        <div class="chat_delete">
+                            <a href="/deletechat/{{ chat.id }}">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}
+
+{% block pagination %}
+    <div class="pagination">
+        {% if chatterbox.has_previous %}
+              <span class="page"><a href="?page={{ chatterbox.previous_page_number }}">«</a></span>
+        {% endif %}
+        {% for page in chatterbox.paginator.page_range %}
+            {% ifequal page chatterbox.number %}
+                <span class="current">{{ page }}</span>
+            {% else %}
+                <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>
+            {% endifequal %}
+        {% endfor %}
+        {% if chatterbox.has_next %}
+            <span class="page"><a href="?page={{ chatterbox.next_page_number }}">»</a></span>
+        {% endif %}
+    </div>
+{% endblock %}
