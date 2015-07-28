@@ -120,6 +120,30 @@ class LoginUsernameForm(LoginForm):
             self.fields = OrderedDict((k, self.fields[k]) for k in field_order)
 
 
+#for index.html login
+class LoginFormBase(LoginForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginFormBase, self).__init__(*args, **kwargs)
+        self.fields['password'] = forms.CharField(
+            label=_("Password"),
+            widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'})
+        )
+
+
+class LoginUsernameFormBase(LoginFormBase):
+    username = forms.CharField(label=_("Username"), max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    authentication_fail_message = _("The username and/or password you specified are not correct.")
+    identifier_field = "username"
+
+    def __init__(self, *args, **kwargs):
+        super(LoginUsernameFormBase, self).__init__(*args, **kwargs)
+        field_order = ["username", "password", "remember"]
+        if not OrderedDict or hasattr(self.fields, "keyOrder"):
+            self.fields.keyOrder = field_order
+        else:
+            self.fields = OrderedDict((k, self.fields[k]) for k in field_order)
+
+
 class LoginEmailForm(LoginForm):
 
     email = forms.EmailField(label=_("Email"))

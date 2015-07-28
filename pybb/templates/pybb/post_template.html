@@ -5,23 +5,38 @@
 {% pybb_get_profile user=user as user_profile %}
 
 <a name="post-{{ post.id }}"></a> {# may be remove this string? #}
-<table class="table table-bordered post {% if post.on_moderation %}on-moderation{% endif %}" id="post-{{ post.id }}">
-    <thead class="post-header">
-    <tr>
-    <th colspan="2">
-        <a class="permalink" href="{{ post.get_absolute_url }}">#{{ post.get_post_number }}</a>
-        <span class="updated">{% pybb_time post.created %}</span>
-    </th>
-    </tr>
-    </thead>
+<table class="table_post post {% if post.on_moderation %}on-moderation{% endif %}" id="post-{{ post.id }}">
+{#    <thead class="post-header">#}
+{#    <tr>#}
+{#        <th colspan="2">#}
+{#            <a class="permalink" href="{{ post.get_absolute_url }}">#{{ post.get_post_number }}</a>#}
+{#            <span class="updated">{% pybb_time post.created %}</span>#}
+{#        </th>#}
+{#    </tr>#}
+{#    </thead>#}
     <tbody>
     <tr class="post-row">
-        <td class="post-info">
-            {% include "pybb/avatar.html" with user=post.user %}
+        <td class="post-info" rowspan="2">
+
 
             <div class="post-author">
                 <a href="{{ post_user_profile.get_absolute_url }}">
                     <span class="post-username">{{ post_user_profile.get_display_name }}</span>
+                </a>
+            </div>
+        {% include "pybb/avatar.html" with user=post.user %}<div class="below_avatar"></div>
+            {% if post_user_profile.get_display_name|pybb_is_superuser  %}
+                <div class="is_admin">
+                    Administrator
+                </div>
+            {% elif post.topic|pybb_is_moderator:post_user_profile.get_display_name and not post_user_profile.get_display_name|pybb_is_superuser %}
+                <div class="is_moderator">
+                    Moderator
+                </div>
+            {% endif %}
+            <div class="post_author_count">
+                <a href="{% url 'pybb:user_posts' post_user_profile.get_display_name %}">
+                    {{ post_user_profile.post_count }} posts
                 </a>
             </div>
             {% if post_user_profile.rank %}
@@ -56,8 +71,52 @@
             </div>
         </td>
         <td class="post-content">
+            <div class="post_header" style="font-size: 14px; padding-bottom: 5px; color: #ADADAD;">
+                <a class="permalink" href="{{ post.get_absolute_url }}">#{{ post.get_post_number }}</a>
+                <span class="updated">{% pybb_time post.created %}</span>
+            </div>
+            <div class="post_body">
             {{ post.body_html|safe }}
-
+            </div>
+{#            {% if not user.is_authenticated or user_profile.show_signatures %}#}
+{#                {% if post_user_profile.signature %}#}
+{#                    <div class="post-signature">#}
+{#                        {{ post_user_profile.signature_html|safe }}#}
+{#                    </div>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#            {% if post.updated %}#}
+{#                <div class="updated-message">{% trans "Edited" %} {% pybb_time post.updated %}</div>#}
+{#            {% endif %}#}
+{##}
+{#            {% comment %}#}
+{#                    {% if post.attachment_cache %}#}
+{#                    {% for attach in post.attachment_cache %}#}
+{#                    <br/>#}
+{#                    {% trans "Attachment" %}: <a href="{{ attach.get_absolute_url }}">{{ attach.name }}</a> ({{ attach.size_display }})#}
+{#                    {% endfor %}#}
+{#                    {% endif %}#}
+{#            {% endcomment %}#}
+{#            {% if user|pybb_may_create_post:post.topic %}#}
+{#            <div class="post-related">#}
+{#                {% if user|pybb_may_create_post:post.topic %}#}
+{#                    <a href="{% url 'pybb:add_post' topic.id %}?quote_id={{ post.id }}" class="quote-link">{% trans "quote" %}</a>#}
+{#                    <a href="#" class="quote-selected-link">{% trans "quote selected" %}</a>#}
+{#                {% endif %}#}
+{#                <div class='attachments'>#}
+{#                    {% for attachment in post.attachments.all %}#}
+{#                        <a href="{{ attachment.file.url }}"><img src="{{ STATIC_URL }}pybb/img/attachment.png"> {{ attachment.size_display }}</a>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{#        </td>#}
+    </tr>
+    <tr>
+        <td class="post_controls">
+        {% if  post_user_profile.signature or post.updated %}
+            <div class="border_top"></div>
+        {% endif %}
             {% if not user.is_authenticated or user_profile.show_signatures %}
                 {% if post_user_profile.signature %}
                     <div class="post-signature">
@@ -90,6 +149,7 @@
                 </div>
             </div>
             {% endif %}
+        </td>
         </td>
     </tr>
     </tbody>

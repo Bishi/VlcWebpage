@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
 from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit, RaidProgress, RaidBoss
+from account.forms import LoginForm, LoginUsernameForm, LoginUsernameFormBase
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -11,9 +12,9 @@ from pybb.permissions import perms
 from django.shortcuts import get_object_or_404
 from pybb.models import Topic
 from django.template import RequestContext
+from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import permission_required
-import bbcode
-from django.utils.safestring import mark_safe
+from account.conf import settings
 
 
 #homepage
@@ -216,6 +217,7 @@ def create(request):
 
     return render_to_response('home/create_news_article.html', args, context_instance=RequestContext(request))
 
+
 @login_required
 def delete_article(request, article_id):
     #group
@@ -366,6 +368,8 @@ def roster(request):
     default_sort = 'name'
     sort_key = request.GET.get('sort', default_sort)
     sort = valid_sorts.get(sort_key, default_sort)
+
+    members = []
 
     if sort_key != 'il' and sort_key != '-il':
         members = Member.objects.all().order_by(sort)

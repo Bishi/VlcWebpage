@@ -10,8 +10,8 @@
         {% endblock %}
 
         {% block style_base %}
-            <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
-            <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+            <link href="{% static "pinax/css/theme.css" %}?v=28072015" rel="stylesheet">
+            <link href="{% static "bootstrap/css/bootstrap.css" %}?v=28072015" rel="stylesheet">
             {% block extra_style %}{% endblock %}
         {% endblock %}
 
@@ -37,12 +37,37 @@
     </head>
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         <div class="{% block wrapper_class %}{% endblock %}">
-            <div class="forum_header"><div class="header_text"><a href="/">Vin la Cvicek work in progress page</a></div></div>
+            <div class="header">
+                <div class="account_header {% if user.is_authenticated %} padding_one {% endif %}">
+                        {% if user.is_authenticated %}
+                            <span>Welcome, {{ user.username }}</span>
+                            <span><a href="/account/settings">Settings</a></span>
+                            <span><a href="/forum/profile/edit/">Profile</a></span>
+                            <span><a href="/account/logout?next={{ request.path }}">Logout</a></span>
+                        {% else %}
+                            <form action="{% url "account_login" %}?next={{ request.path }}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="login_remember"><span>Remember me? </span> {{ login_form.remember }}</div>
+                                <span class="login_username">{{ login_form.username }}</span>
+                                <span class="login_password">{{ login_form.password }}</span>
+                                <input type="submit" name="login_form" value="Login" class="login_button">
+                                <span><a href="/account/signup">Register</a></span>
+                            </form>
+                        {% endif %}
+                    </div>
+                <div class="header_text">
+                    <a href="/">Vin la Cvicek work in progress page</a>
+                </div>
+            </div>
             {% block topbar_base %}
                 <div class="navigation">
-                    {% block account_bar %}
-                        {% include "_account_bar2.html" %}
-                    {% endblock %}
+                    {% if group == 'Officer' %}
+                        <li><a href="/admin">Admin</a> </li>
+                    {% endif %}
+                    <li><a href="/apply">Apply</a></li>
+                    <li><a href="/articles/all">Articles</a></li>
+                    <li><a href="/roster">Roster</a></li>
+                    <li><a class="forum_link" href="/forum">Forum</a></li>
                 </div>
             {% endblock %}
 

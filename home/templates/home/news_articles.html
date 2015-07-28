@@ -4,51 +4,34 @@
     Articles
 {% endblock %}
 
-{% block navigation %}
-    {% if not user.is_authenticated %}
-    <div class="navigation">
-        <li><div class="in_menu">Welcome, Guest</div></li>
-        <li><a href="/account/signup">Register</a></li>
-        <li><a href="/account/login">Login</a></li>
-        <li><a class="forum_link" href="/forum">Forum</a></li>
-    </div>
-    {% else %}
-    <div class="navigation">
-        <li class="in_menu">Welcome, {{ user.username }}</li>
-        <li><a href="/account/logout">Logout</a></li>
-        <li><a href="/account/settings">Settings</a> </li>
-        {% if group == 'Officer' %}
-            <li><a href="/admin">Admin</a> </li>
-            <li><a href="/articles/create">Create</a></li>
-        {% endif %}
-        <li><a class="forum_link" href="/forum">Forum</a></li>
-    </div>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     <div class="article_wrapper_articles">
         {% for newsArticle in newsArticles %}
-            <div class="article">
-                <h2 class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></h2>
-                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-                {% if newsArticle.thumbnail %}
-                    <p class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}" width="1106"/></a></p>
-                {% endif %}
-                <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
-                <p class="comment_count">
-                        {% for comment, count in comment_count.items %}
-                            {% if comment == newsArticle.id %}
-                                {% if count == 1 %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
-                                {% else %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
+            <div class="article_border">
+                <div class="article">
+                    <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
+                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                    {% if newsArticle.thumbnail %}
+                        <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                            <img src="/media/{{newsArticle.thumbnail}}" width="1058"/></a></div>
+                    {% endif %}
+                    <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
+                    <p class="comment_count">
+                            {% for comment, count in comment_count.items %}
+                                {% if comment == newsArticle.id %}
+                                    {% if count == 1 %}
+                                        <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
+                                    {% else %}
+                                        <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
+                                    {% endif %}
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    </p>
+                            {% endfor %}
+                        </p>
+                </div>
             </div>
         {% endfor %}
+    {% if group == 'Officer' %}
+        <div class="create_article_button"><input type="button" name="delete" value="Create article" onclick="location.href = '/articles/create'" class="submit_button"/></div>
+    {% endif %}
     </div>
 {% endblock %}
