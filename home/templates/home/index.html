@@ -33,212 +33,27 @@
         </div>
     </div>
     <div class="sidebar">
-        <div class="sidebar_statement">
-            Recruitment:
-        </div>
-        <div class="recruitment">
-            {% for recruit in recruits %}
-                <div class="class_entity">
-                    {% if recruit.spec1.is_needed or recruit.spec2.is_needed or recruit.spec3.is_needed %}
-                        <li class="class_name"><img src="/media/{{ recruit.thumbnail }}"/> {{ recruit.name_text }} </li>
-                    {% else %}
-                        <li class="class_name not_needed"><img src="/media/{{ recruit.thumbnail }}"/> {{ recruit.name_text }} </li>
-                    {% endif %}
-                    {% if recruit.spec1.is_needed %}
-                        <li class="class_role"><img src="/media/{{ recruit.spec1.thumbnail }}"
-                                                    title="{{ recruit.spec1.spec_name }}"></li>
-                    {% else %}
-                        <li class="class_role not_needed"><img src="/media/{{ recruit.spec1.thumbnail }}"
-                                                    title="{{ recruit.spec1.spec_name }}"></li>
-                    {% endif %}
-                    {% if recruit.spec2.is_needed %}
-                        <li class="class_role"><img src="/media/{{ recruit.spec2.thumbnail }}"
-                                                    title="{{ recruit.spec2.spec_name }}"></li>
-                    {% else %}
-                        <li class="class_role not_needed"><img src="/media/{{ recruit.spec2.thumbnail }}"
-                                                    title="{{ recruit.spec2.spec_name }}"></li>
-                    {% endif %}
-                    {% if recruit.spec3.is_needed %}
-                        <li class="class_role"><img src="/media/{{ recruit.spec3.thumbnail }}"
-                                                    title="{{ recruit.spec3.spec_name }}"></li>
-                    {% else %}
-                        <li class="class_role not_needed"><img src="/media/{{ recruit.spec3.thumbnail }}"
-                                                    title="{{ recruit.spec3.spec_name }}"></li>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-        <div class="apply_button">
-                <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
-        </div>
-        <div class="latest_forum">
+        {% include "home/recruitment.html" %}
+
+        {% if user.is_authenticated %}
             {% include "home/latest_topics.html" %}
-        </div>
-        <div class="sidebar_statement">
-            Chatterbox:
-        </div>
-        <div class="chatterbox">
-            {% for chat in chatterbox %}
-                <div class="chat_line">
-                    <div class="author_container">
-                        <div style="height: 16px; width: 16px;">
-                            {% include 'pybb/avatar2.html' with user=chat.author %}
-                        </div>
-                        <div class="chat_author">
-                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
-                        </div>
-                    </div>
-                    <div class="chat_body">
-                        {{ chat.body|urlize }}
-                    </div>
-                    {% if user.username == chat.author.username or  group == 'Officer' %}
-                        <div class="chat_delete">
-                            <a href="/deletechat/{{ chat.id }}">Delete</a>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            {% if user.is_authenticated %}
-                <div class="chat_archive">
-                    <a href="/chat_archive/">Archive</a>
-                </div>
-            {% endif %}
-        </div>
-        {% if  user.is_authenticated %}
-            <div class="chatterbox_form">
-                <div class="chatterbox_form_container">
-                    <form action="/" method="post" enctype="multipart/form-data"> {% csrf_token %}
-                        {% for field in form %}
-                            <div class="chatterbox_form_input">{{ field }}</div>
-                        {% endfor %}
-                        <div class="chatterbox_form_button">
-                            <input type="submit" name="chatterbox_form" value="Send" class="submit_button">
-                        </div>
-                    </form>
-                </div>
-            </div>
         {% else %}
-            <div class="chat_log_in">
-                <a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.
-            </div>
+            {% include "home/raid_progress.html" %}
         {% endif %}
-        <div class="sidebar_statement">
-            Raid progress:
-        </div>
-        <div class="raid_progress_wrapper">
-            <div id="accordion">
-                {% for raid in raid_progress %}
-                    <h3>
-{#                        <div class="raid {% if raid.name == 'Highmaul' %} highmaul_raid {% elif raid.name == 'Blackrock Foundry' %} foundry_raid {% elif raid.name == 'Hellfire Citadel' %} citadel_raid {% endif %}">#}
-                        <div class="raid">
-                            <img src="/media/{{ raid.thumbnail }}" width="249px" height="75px">
-                            <div class="raid_info">
-                                <div class="upper_raid">
-                                    <span class="raid_difficulty">{{ raid.difficulty }}</span>
-                                </div>
-                                <div class="bottom_raid">
-                                    <span class="raid_name">{{ raid.name }}</span>
-                                    <span class="raid_defeated">{{ raid.defeated_bosses }}/{{ raid.bosses }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </h3>
-                    <div>
-                        {% for boss in raid_bosses %}
-                            {% if raid.name == boss.raid_instance.name and raid.difficulty == boss.raid_instance.difficulty %}
-                                <div class="boss_names">
-                                    <span class="boss_name">
-                                        {{ boss.name }}
-                                    </span>
-                                    <span class="is_defeated">
-                                        {% if boss.defeated %}
-                                            <font color="green">Defeated</font>
-                                        {% else %}
-                                            <font color="red">Not defeated</font>
-                                        {% endif %}
-                                    </span>
-                                </div>
-                            {% endif %}
-                        {% empty %}
-                            Error
-                        {% endfor %}
-                    </div>
-            {% empty %}
-                <div class="token_div">
-                    No progression available at this time.
-                </div>
-            {% endfor %}
-            </div>
-        </div>
-        <div class="sidebar_statement">
-            Warcraftlogs:
-        </div>
-        <div class="logs">
-            {% for logs in logs_list %}
-                <div class="log_entity">
-                    <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
-                    <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
-                </div>
-            {% empty %}
-                <div class="token_div">
-                    No logs available at this time.
-                </div>
-            {% endfor %}
-        </div>
-        <div class="sidebar_statement">
-            WoW Token price:
-        </div>
-        <div class="logs">
-            {% for token in wow_token %}
-                <div class="token_div">
-                    <li class="token_timestamp">{{ token.timestamp }}</li>
-                    <li class="token_price">{{ token.price }}</li>
-                </div>
-            {% empty %}
-                <div class="token_div">
-                    No price available at this time.
-                </div>
-            {% endfor %}
-        </div>
-        <div class="sidebar_statement">
-            Mount calculator:
-        </div>
-        <div class="calculator" ng-app="mount_calculator" ng-controller="MountCalculator as calc">
-            <div class="calc1">
-                <div class="calc2">Number of mounts: </div>
-                <div class="calc3">
-                    <input type="number" min="0" ng-model="calc.k" required min="0" max="999" style="width: 60px">
-                </div>
-            </div>
-            <div class="calc1">
-                <div class="calc2">Drop chance:</div>
-                <div class="calc3">
-                    <input type="number" min="0" ng-model="calc.p" required min="0" max="100" style="width: 60px" step="0.10"> <span>%</span>
-                </div>
-            </div>
-            <div class="calc1">
-                <div class="calc2">Number of kills: </div>
-                <div class="calc3">
-                    <input type="number" min="0" ng-model="calc.n" required min="0" max="999" style="width: 60px">
-                </div>
-            </div>
-            <div class="calc1">
-                <div class="calc2">Chance: </div>
-                <div class="res12">
-                    {% verbatim %}
-                        {{ calc.drop_chance(calc.k, calc.n, calc.p) }}
-                    {% endverbatim %}
-                </div>
-            </div>
-            <div class="calc1">
-                <div class="calc2">At least one mount:</div>
-                <div class="calc3">
-                    {% verbatim %}
-                        {{ calc.drop_chance_one(0, calc.n, calc.p) }}
-                    {% endverbatim %}
-                </div>
-            </div>
-        </div>
+
+        {% include "home/chatterbox.html" %}
+
+        {% if user.is_authenticated %}
+            {% include "home/raid_progress.html" %}
+        {% else %}
+            {% include "home/latest_topics.html" %}
+        {% endif %}
+
+        {% include "home/warcraftlogs.html" %}
+
+        {% include "home/wowtoken.html" %}
+
+        {% include "home/calculator.html" %}
     </div>
 {% endblock %}
 

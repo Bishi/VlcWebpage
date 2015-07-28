@@ -1,0 +1,38 @@
+<div class="sidebar_statement">
+    Recruitment:
+</div>
+<div class="recruitment">
+    {% for recruit in recruits %}
+        <div class="class_entity">
+            {% if recruit.spec1.is_needed or recruit.spec2.is_needed or recruit.spec3.is_needed %}
+                <li class="class_name"><img src="/media/{{ recruit.thumbnail }}"/> {{ recruit.name_text }} </li>
+            {% else %}
+                <li class="class_name not_needed"><img src="/media/{{ recruit.thumbnail }}"/> {{ recruit.name_text }} </li>
+            {% endif %}
+            {% if recruit.spec1.is_needed %}
+                <li class="class_role"><img src="/media/{{ recruit.spec1.thumbnail }}"
+                                            title="{{ recruit.spec1.spec_name }}"></li>
+            {% else %}
+                <li class="class_role not_needed"><img src="/media/{{ recruit.spec1.thumbnail }}"
+                                            title="{{ recruit.spec1.spec_name }}"></li>
+            {% endif %}
+            {% if recruit.spec2.is_needed %}
+                <li class="class_role"><img src="/media/{{ recruit.spec2.thumbnail }}"
+                                            title="{{ recruit.spec2.spec_name }}"></li>
+            {% else %}
+                <li class="class_role not_needed"><img src="/media/{{ recruit.spec2.thumbnail }}"
+                                            title="{{ recruit.spec2.spec_name }}"></li>
+            {% endif %}
+            {% if recruit.spec3.is_needed %}
+                <li class="class_role"><img src="/media/{{ recruit.spec3.thumbnail }}"
+                                            title="{{ recruit.spec3.spec_name }}"></li>
+            {% else %}
+                <li class="class_role not_needed"><img src="/media/{{ recruit.spec3.thumbnail }}"
+                                            title="{{ recruit.spec3.spec_name }}"></li>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+<div class="apply_button">
+        <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
+</div>

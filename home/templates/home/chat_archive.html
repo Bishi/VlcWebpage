@@ -2,6 +2,11 @@
 {% load url from future %}
 {% load pybb_tags i18n %}
 
+{% block title %}
+    Chat archive
+{%  endblock %}
+
+
 {% block content %}
 <div class="chatterbox" style="width: 100%; margin: 10px 17px; height: 100%;">
             {% for chat in chatterbox %}

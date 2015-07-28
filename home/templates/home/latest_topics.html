@@ -2,7 +2,6 @@
 {% load pybb_tags i18n %}
 
 
-{% block content %}
 <div class="sidebar_statement">
     Latest forum posts:
 </div>
@@ -14,15 +13,10 @@
                 <div class="state-indicator"></div>
                 <b><a href="{{ topic.get_absolute_url }}" title="{{ topic.name }}">{{ topic.name|truncatechars:30 }}</a></b>
                 <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link" title="{% trans 'Go to first unread post' %}">➜</a>
-                {% comment %}
-                {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}
-                {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}
-                {% endcomment %}
                 {% with topic|pybb_topic_inline_pagination as pages %}
 
                 {% endwith %}
             </td>
-
         </tr>
         <td class="topic-last-post">
                 <i><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"M d. Y H:i" }}{% endif %}
@@ -33,5 +27,3 @@
 <div class="chat_log_in">
     See all the latest posts <a href="/forum/topic/latest/">here.</a>
 </div>
-
-{% endblock %}

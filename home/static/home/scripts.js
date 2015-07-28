@@ -53,3 +53,10 @@ $(function() {
         heightStyle: "content"
     });
 });
+
+//news article div
+function showDiv() {
+    document.getElementById('edit_form').style.display = "block";
+    document.getElementById('article_edit_button').style.display = "none";
+    document.getElementById('article_delete_button').style.display = "none";
+}

@@ -1,0 +1,48 @@
+<div class="sidebar_statement">
+    Chatterbox:
+</div>
+<div class="chatterbox">
+    {% for chat in chatterbox %}
+        <div class="chat_line">
+            <div class="author_container">
+                <div style="height: 16px; width: 16px;">
+                    {% include 'pybb/avatar2.html' with user=chat.author %}
+                </div>
+                <div class="chat_author">
+                    <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                </div>
+            </div>
+            <div class="chat_body">
+                {{ chat.body|urlize }}
+            </div>
+            {% if user.username == chat.author.username or  group == 'Officer' %}
+                <div class="chat_delete">
+                    <a href="/deletechat/{{ chat.id }}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <div class="chat_archive">
+            <a href="/chatarchive/">Archive</a>
+        </div>
+    {% endif %}
+</div>
+{% if  user.is_authenticated %}
+    <div class="chatterbox_form">
+        <div class="chatterbox_form_container">
+            <form action="/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                {% for field in form %}
+                    <div class="chatterbox_form_input">{{ field }}</div>
+                {% endfor %}
+                <div class="chatterbox_form_button">
+                    <input type="submit" name="chatterbox_form" value="Send" class="submit_button">
+                </div>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <div class="chat_log_in">
+        <a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.
+    </div>
+{% endif %}

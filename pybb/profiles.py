@@ -5,9 +5,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from pybb import defaults, util
 from pybb.compat import get_image_field_class, get_username_field
+import time
 
 
-TZ_CHOICES = [(float(x[0]), x[1]) for x in (
+def get_tz_choices():
+    TZ_CHOICES = [(float(x[0]), x[1]) for x in (
     (-10, '-12'), (-9, '-11'), (-8, '-10'), (-7, '-09'),
     (-6, '-08 PST'), (-5, '-07 MST'), (-4, '-06 CST'),
     (-3, '-05 EST'), (-2, '-04 AST'), (-1, '-03 ADT'),
@@ -16,9 +18,9 @@ TZ_CHOICES = [(float(x[0]), x[1]) for x in (
     (8, '+06'), (9, '+07'), (10, '+08'),
     (11, '+09'), (12, '+10'), (13, '+11'),
     (14, '+12'), (15, '+13'), (16, '+14'),
-)]
+    )]
 
-TZ_CHOICES2 = [(float(x[0]), x[1]) for x in (
+    TZ_CHOICES2 = [(float(x[0]), x[1]) for x in (
     (-9, '-12'), (-8, '-11'), (-7, '-10'), (-6, '-09'),
     (-5, '-08 PST'), (-4, '-07 MST'), (-3, '-06 CST'),
     (-2, '-05 EST'), (-1, '-04 AST'), (0, '-03 ADT'),
@@ -27,7 +29,13 @@ TZ_CHOICES2 = [(float(x[0]), x[1]) for x in (
     (9, '+06'), (10, '+07'), (11, '+08'),
     (12, '+09'), (13, '+10'), (14, '+11'),
     (15, '+12'), (16, '+13'), (17, '+14'),
-)]
+    )]
+    isdst = time.localtime().tm_isdst
+    if isdst:
+        return TZ_CHOICES2
+    else:
+        return TZ_CHOICES
+
 
 
 class PybbProfile(models.Model):
@@ -44,7 +52,7 @@ class PybbProfile(models.Model):
     signature = models.TextField(_('Signature'), blank=True, max_length=defaults.PYBB_SIGNATURE_MAX_LENGTH)
     signature_html = models.TextField(_('Signature HTML Version'), blank=True,
                                       max_length=defaults.PYBB_SIGNATURE_MAX_LENGTH + 30)
-    time_zone = models.FloatField(_('Time zone'), choices=TZ_CHOICES2, default=float(defaults.PYBB_DEFAULT_TIME_ZONE))
+    time_zone = models.FloatField(_('Time zone'), choices=get_tz_choices(), default=float(defaults.PYBB_DEFAULT_TIME_ZONE))
     language = models.CharField(_('Language'), max_length=10, blank=True, choices=settings.LANGUAGES,
                                 default=settings.LANGUAGE_CODE)
     show_signatures = models.BooleanField(_('Show signatures'), blank=True, default=True)

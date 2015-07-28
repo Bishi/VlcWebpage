@@ -1,0 +1,15 @@
+<div class="sidebar_statement">
+    WoW Token price:
+</div>
+<div class="logs">
+    {% for token in wow_token %}
+        <div class="token_div">
+            <li class="token_timestamp">{{ token.timestamp }}</li>
+            <li class="token_price">{{ token.price }}</li>
+        </div>
+    {% empty %}
+        <div class="token_div">
+            No price available at this time.
+        </div>
+    {% endfor %}
+</div>

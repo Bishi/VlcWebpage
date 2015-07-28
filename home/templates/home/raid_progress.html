@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load account_tags %}
+{% load url from future %}
+{% load pybb_tags i18n %}
+{% load staticfiles %}
+{% load url from future %}
+
+<div class="sidebar_statement">
+    Raid progress:
+</div>
+<div class="raid_progress_wrapper">
+    <div id="accordion">
+        {% for raid in raid_progress %}
+            <h3>
+                <div class="raid">
+                    <img src="/media/{{ raid.thumbnail }}" width="249px" height="75px">
+                    <div class="raid_info">
+                        <div class="upper_raid">
+                            <span class="raid_difficulty">{{ raid.difficulty }}</span>
+                        </div>
+                        <div class="bottom_raid">
+                            <span class="raid_name">{{ raid.name }}</span>
+                            <span class="raid_defeated">{{ raid.defeated_bosses }}/{{ raid.bosses }}</span>
+                        </div>
+                    </div>
+                </div>
+            </h3>
+            <div>
+                {% for boss in raid_bosses %}
+                    {% if raid.name == boss.raid_instance.name and raid.difficulty == boss.raid_instance.difficulty %}
+                        <div class="boss_names">
+                            <span class="boss_name">
+                                {{ boss.name }}
+                            </span>
+                            <span class="is_defeated">
+                                {% if boss.defeated %}
+                                    <font color="green">Defeated</font>
+                                {% else %}
+                                    <font color="red">Not defeated</font>
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    Error
+                {% endfor %}
+            </div>
+    {% empty %}
+        <div class="token_div">
+            No progression available at this time.
+        </div>
+    {% endfor %}
+    </div>
+</div>
