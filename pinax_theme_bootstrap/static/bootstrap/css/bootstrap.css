@@ -7565,6 +7565,11 @@ body {
     padding: 5px 10px;
 }
 
+.category_name a{
+    text-decoration: none;
+    color: black;
+}
+
 .category-table{
     margin-bottom: 0;
 }

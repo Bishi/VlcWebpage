@@ -8,28 +8,26 @@
 {% load url from future %}
 
 {% block content %}
-    <div class="content_wrapper">
-        <div class="article_wrapper">
-            {% for newsArticle in newsArticles %}
-                <div class="article {% if forloop.last %} last_article {% endif %}">
-                    <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/"><div>{{ newsArticle.title }}</div></a></div>
-                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-                    {% if newsArticle.thumbnail %}
-                        <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                            <img src="/media/{{newsArticle.thumbnail}}"/></a>
-                        </div>
-                    {% endif %}
-                    <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
-                    <p class="comment_count">
-                        {% for comment, count in comment_count.items %}
-                            {% if comment == newsArticle.id %}
-                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </p>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="article_wrapper">
+        {% for newsArticle in newsArticles %}
+            <div class="article {% if forloop.last %} last_article {% endif %}">
+                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/"><div>{{ newsArticle.title }}</div></a></div>
+                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                {% if newsArticle.thumbnail %}
+                    <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                        <img src="/media/{{newsArticle.thumbnail}}"/></a>
+                    </div>
+                {% endif %}
+                <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
+                <p class="comment_count">
+                    {% for comment, count in comment_count.items %}
+                        {% if comment == newsArticle.id %}
+                            <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+        {% endfor %}
     </div>
     <div class="sidebar">
         {% include "home/sidebar/recruitment.html" %}
