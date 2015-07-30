@@ -1,33 +1,33 @@
 <div class="sidebar_statement">
     Mount calculator:
 </div>
-<div class="calculator" ng-app="mount_calculator" ng-controller="MountCalculator as calc">
-    <div class="calc1">
-        <div class="calc2">
+<div class="sidebar_content calculator" ng-app="mount_calculator" ng-controller="MountCalculator as calc">
+    <div class="calc_row">
+        <div class="calc_left">
             Number of mounts:
         </div>
-        <div class="calc3">
+        <div class="calc_right">
             <input type="number" min="0" ng-model="calc.k" required min="0" max="999" style="width: 60px">
         </div>
     </div>
-    <div class="calc1">
-        <div class="calc2">
+    <div class="calc_row">
+        <div class="calc_left">
             Drop chance:
         </div>
-        <div class="calc3">
+        <div class="calc_right">
             <input type="number" min="0" ng-model="calc.p" required min="0" max="100" style="width: 60px" step="0.10"> <span>%</span>
         </div>
     </div>
-    <div class="calc1">
-        <div class="calc2">
+    <div class="calc_row">
+        <div class="calc_left">
             Number of kills:
         </div>
-        <div class="calc3">
+        <div class="calc_right">
             <input type="number" min="0" ng-model="calc.n" required min="0" max="999" style="width: 60px">
         </div>
     </div>
-    <div class="calc1">
-        <div class="calc2">
+    <div class="calc_row">
+        <div class="calc_left">
             Chance:
         </div>
         <div class="res12">
@@ -36,11 +36,11 @@
             {% endverbatim %}
         </div>
     </div>
-    <div class="calc1">
-        <div class="calc2">
+    <div class="calc_row">
+        <div class="calc_left">
             At least one mount:
         </div>
-        <div class="calc3">
+        <div class="calc_right">
             {% verbatim %}
                 {{ calc.drop_chance_one(0, calc.n, calc.p) }}
             {% endverbatim %}

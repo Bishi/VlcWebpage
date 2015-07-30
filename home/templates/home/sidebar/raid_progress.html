@@ -12,7 +12,7 @@
     <div id="accordion">
         {% for raid in raid_progress %}
             <h3>
-                <div class="raid">
+                <div class="raid {% if forloop.first %} first_raid {% endif %}">
                     <img src="/media/{{ raid.thumbnail }}" width="249px" height="75px">
                     <div class="raid_info">
                         <div class="upper_raid">

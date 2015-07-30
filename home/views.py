@@ -250,11 +250,11 @@ def delete_article(request, article_id):
 
 def like_article(request, article_id):
     if article_id:
-        a = NewsArticle.objects.get(id=article_id)
-        count = a.likes
+        article = NewsArticle.objects.get(id=article_id)
+        count = article.likes
         count += 1
-        a.likes = count
-        a.save()
+        article.likes = count
+        article.save()
     return HttpResponseRedirect('/articles/get/%s' % article_id)
 
 

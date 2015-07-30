@@ -11,49 +11,48 @@
     <div class="content_wrapper">
         <div class="article_wrapper">
             {% for newsArticle in newsArticles %}
-                <div class="article_border">
-                    <div class="article">
-                        <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/"><div>{{ newsArticle.title }}</div></a></div>
-                        <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-                        {% if newsArticle.thumbnail %}
-                            <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                                <img src="/media/{{newsArticle.thumbnail}}" width="792"/></a></div>
-                        {% endif %}
-                        <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
-                        <p class="comment_count">
-                            {% for comment, count in comment_count.items %}
-                                {% if comment == newsArticle.id %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
+                <div class="article {% if forloop.last %} last_article {% endif %}">
+                    <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/"><div>{{ newsArticle.title }}</div></a></div>
+                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                    {% if newsArticle.thumbnail %}
+                        <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                            <img src="/media/{{newsArticle.thumbnail}}"/></a>
+                        </div>
+                    {% endif %}
+                    <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
+                    <p class="comment_count">
+                        {% for comment, count in comment_count.items %}
+                            {% if comment == newsArticle.id %}
+                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
             {% endfor %}
         </div>
     </div>
     <div class="sidebar">
-        {% include "home/recruitment.html" %}
+        {% include "home/sidebar/recruitment.html" %}
 
         {% if user.is_authenticated %}
-            {% include "home/latest_topics.html" %}
+            {% include "home/sidebar/latest_topics.html" %}
         {% else %}
-            {% include "home/raid_progress.html" %}
+            {% include "home/sidebar/raid_progress.html" %}
         {% endif %}
 
-        {% include "home/chatterbox.html" %}
+        {% include "home/sidebar/chatterbox.html" %}
 
         {% if user.is_authenticated %}
-            {% include "home/raid_progress.html" %}
+            {% include "home/sidebar/raid_progress.html" %}
         {% else %}
-            {% include "home/latest_topics.html" %}
+            {% include "home/sidebar/latest_topics.html" %}
         {% endif %}
 
-        {% include "home/warcraftlogs.html" %}
+        {% include "home/sidebar/warcraftlogs.html" %}
 
-        {% include "home/wowtoken.html" %}
+        {% include "home/sidebar/wowtoken.html" %}
 
-        {% include "home/calculator.html" %}
+        {% include "home/sidebar/calculator.html" %}
     </div>
 {% endblock %}
 

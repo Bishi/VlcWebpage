@@ -7,27 +7,25 @@
 {% block content %}
     <div class="article_wrapper_articles">
         {% for newsArticle in newsArticles %}
-            <div class="article_border">
-                <div class="article">
-                    <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
-                    <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-                    {% if newsArticle.thumbnail %}
-                        <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}" width="1058"/></a></div>
-                    {% endif %}
-                    <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
-                    <p class="comment_count">
-                        {% for comment, count in comment_count.items %}
-                            {% if comment == newsArticle.id %}
-                                {% if count == 1 %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
-                                {% else %}
-                                    <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
-                                {% endif %}
+            <div class="article {% if forloop.last %} last_article {% endif %}">
+                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
+                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                {% if newsArticle.thumbnail %}
+                    <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                    <img src="/media/{{newsArticle.thumbnail}}"/></a></div>
+                {% endif %}
+                <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
+                <p class="comment_count">
+                    {% for comment, count in comment_count.items %}
+                        {% if comment == newsArticle.id %}
+                            {% if count == 1 %}
+                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
+                            {% else %}
+                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
                             {% endif %}
-                        {% endfor %}
-                    </p>
-                </div>
+                        {% endif %}
+                    {% endfor %}
+                </p>
             </div>
         {% endfor %}
         {% if group == 'Officer' %}

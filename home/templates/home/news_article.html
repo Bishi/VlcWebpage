@@ -1,17 +1,19 @@
 {% extends 'home/base_page.html' %}
 
+{% block title %}
+    {{ newsArticle.title }}
+{% endblock %}
+
 {% block content %}
     <div class="article_wrapper_articles">
-        <div class="article_border">
-            <div class="article">
-                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
-                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
-                {% if newsArticle.thumbnail %}
-                    <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}" width="1058"/></a></div>
-                {% endif %}
-                <p class="article_body">{{ newsArticle.body_html | safe }}</p>
-            </div>
+        <div class="article one_article">
+            <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
+            <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+            {% if newsArticle.thumbnail %}
+                <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
+                    <img src="/media/{{newsArticle.thumbnail}}"/></a></div>
+            {% endif %}
+            <p class="article_body">{{ newsArticle.body_html | safe }}</p>
         </div>
         {% if user.username == newsArticle.author.username or  group == 'Officer' %}
             <div class="article_buttons">

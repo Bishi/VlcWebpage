@@ -1,7 +1,7 @@
 <div class="sidebar_statement">
     Recruitment:
 </div>
-<div class="recruitment">
+<div class="sidebar_content recruitment">
     {% for recruit in recruits %}
         <div class="class_entity">
             {% if recruit.spec1.is_needed or recruit.spec2.is_needed or recruit.spec3.is_needed %}
@@ -33,6 +33,6 @@
         </div>
     {% endfor %}
 </div>
-<div class="apply_button">
-        <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>
-</div>
+{#<div class="apply_button">#}
+{#        <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>#}
+{#</div>#}

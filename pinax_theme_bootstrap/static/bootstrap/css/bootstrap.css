@@ -7670,7 +7670,17 @@ body {
 
 .topic_avatar{
     width: 5%;
-    padding: 0px 2px;
+    /*padding: 0px 2px;*/
+}
+
+div.topic_avatar{
+    border: 1px solid #CECECE;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    border-radius: 36px;
+    overflow: hidden;
+    margin: auto;
 }
 
 .topic-last-post, .forum-last-post{

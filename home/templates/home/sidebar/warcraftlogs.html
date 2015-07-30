@@ -3,9 +3,9 @@
 <div class="sidebar_statement">
     Warcraftlogs:
 </div>
-<div class="logs">
+<div class="sidebar_content logs">
     {% for logs in logs_list %}
-        <div class="log_entity">
+        <div class="log_entity {% if forloop.first %} first_topic {% endif %}">
             <li class="log_name"><b><a href="https://www.warcraftlogs.com/reports/{{ logs.id }}">{{ logs.title|truncatechars:35 }}</a></b></li>
             <li class="log_date"><i>{{ logs.owner }}</i> - {{ logs.start|unix_to_date }}</li>
         </div>
