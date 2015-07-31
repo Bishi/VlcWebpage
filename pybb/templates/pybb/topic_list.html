@@ -47,7 +47,7 @@
                 {% include "pybb/avatar3.html" with user=topic.last_post.user %}
             </td>
             <td class="topic-last-post" style="vertical-align: middle;">
-                <li class="upper_li last_user_li"><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></li>
+                <li class="upper_li last_user_li"><a href="/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></li>
                 <li class="bottom_li">{% include "pybb/topic_last_message_info.html" %}</li>
             </td>
         </tr>

@@ -49,7 +49,6 @@ INSTALLED_APPS = (
     'captcha',
     'compressor',
     'precise_bbcode',
-    # 'south',
 )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),

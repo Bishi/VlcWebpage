@@ -374,9 +374,13 @@ def roster(request):
     if sort_key != 'il' and sort_key != '-il':
         members = Member.objects.all().order_by(sort)
     elif sort_key == 'il':
-        members = Member.objects.extra(select={'tmp': 'CAST(-item_level AS INTEGER)'}).order_by('tmp')
+        # members = Member.objects.extra(select={'tmp': 'CAST(-item_level AS INTEGER)'}).order_by('tmp')
+        members = Member.objects.extra(select={'tmp': "case when item_level != 'Unknown' then "
+                                                      "to_number(item_level, '999') else 0 end"}).order_by('-tmp')
     elif sort_key == '-il':
-        members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
+        # members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
+        members = Member.objects.extra(select={'tmp': "case when item_level != 'Unknown' then "
+                                                      "to_number(item_level, '999') else 0 end"}).order_by('tmp')
 
     #members = Member.objects.extra(select={'tmp': 'CAST(item_level AS INTEGER)'}).order_by('tmp')
 
