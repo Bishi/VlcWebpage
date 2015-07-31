@@ -128,6 +128,8 @@ PYBB_PROFILE_RELATED_NAME = getattr(settings, 'PYBB_PROFILE_RELATED_NAME', 'pybb
 
 PYBB_INITIAL_CUSTOM_USER_MIGRATION = getattr(settings, 'PYBB_INITIAL_CUSTOM_USER_MIGRATION', None)
 
+PYBB_DISABLE_NOTIFICATIONS = getattr(settings, 'PYBB_DISABLE_NOTIFICATIONS', False)
+
 # Backward compatibility : define old functions which was defined here if some devs did used it
 # TODO in a near future : delete those functions
 

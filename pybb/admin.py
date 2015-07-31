@@ -127,7 +127,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'time_zone', 'language', 'post_count']
+    list_display = ['user', 'time_zone', 'language', 'post_count', 'id']
     list_per_page = 20
     ordering = ['-user']
     search_fields = ['user__%s' % username_field]

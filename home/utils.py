@@ -33,9 +33,9 @@ def create_logs(data):
 
     for log in data:
         log_id = log["id"]
-        tmp = log_list.values_list('id').filter(id=log_id)
+        tmp = log_list.values_list('id').filter(name=log_id)
         if not tmp:
-            log = WarcraftlogsAPI(id=log["id"], title=log["title"], owner=log["owner"],
+            log = WarcraftlogsAPI(name=log["id"], title=log["title"], owner=log["owner"],
                                   start=log["start"], end=log["end"], zone=log["zone"])
             log.save(force_insert=True)
 
@@ -61,7 +61,7 @@ class RealmStatusClient(object):
 def create_status(data):
     RealmStatusAPI.objects.all().delete()
 
-    maz_status = RealmStatusAPI(id=data['realms'][0]['name'], queue=data['realms'][0]['queue'],
+    maz_status = RealmStatusAPI(name=data['realms'][0]['name'], queue=data['realms'][0]['queue'],
                                 status=data['realms'][0]['status'])
     maz_status.save(force_insert=True)
 

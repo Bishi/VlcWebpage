@@ -389,7 +389,7 @@ def roster(request):
 def chatterbox_archive(request):
     chat = Chatterbox.objects.all().order_by('pub_date')
 
-    paginator = Paginator(chat, 15)
+    paginator = Paginator(chat, 25)
     page = request.GET.get('page')
     try:
         chat = paginator.page(page)

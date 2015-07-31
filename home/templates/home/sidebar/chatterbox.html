@@ -1,5 +1,9 @@
 <div class="sidebar_statement">
-    Chatterbox:
+    {% if user.is_authenticated %}
+        <a href="/chatarchive/">Chatterbox:</a>
+    {% else %}
+        Chatterbox:
+    {% endif %}
 </div>
 <div class="sidebar_content chatterbox">
     {% for chat in chatterbox %}

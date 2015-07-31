@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'captcha',
     'compressor',
     'precise_bbcode',
+    # 'south',
 )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
@@ -136,14 +137,22 @@ SITE_ID = 9
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'NAME': 'c:/Users/i7-2600K/DjangoProjectsDev/db_vlc.sqlite3',
-        'NAME': os.path.join(DB_DIR, 'db_vlc.sqlite3')
+with open('c:/Users/i7-2600K/DjangoProjects/database.txt') as f:
+    DATABASES = {
+        'default': {
+            # 'ENGINE': 'django.db.backends.sqlite3',
+            # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            # 'NAME': 'c:/Users/i7-2600K/DjangoProjectsDev/db_vlc.sqlite3',
+            # 'NAME': os.path.join(DB_DIR, 'db_vlc.sqlite3')
+            'NAME':     'vlc_website',
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'USER':     'Bishi',
+            'PASSWORD': f.read().strip(),
+            'HOST':     'localhost',
+            'PORT':     '5432'
+        }
     }
-}
+
 
 ENV_PATH = os.path.abspath(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
@@ -222,3 +231,5 @@ PYBB_SMILES = {
 PYBB_MARKUP_ENGINES_PATHS ={'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}
 PYBB_MARKUP = 'bbcode'
 PYBB_PERMISSION_HANDLER = 'pybb.permissions_custom.MyPermissionHandler'
+PYBB_DISABLE_NOTIFICATIONS = True
+PYBB_DISABLE_SUBSCRIPTIONS = True

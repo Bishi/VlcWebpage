@@ -2,11 +2,6 @@ from VLCwebsite.settings import *
 
 DEBUG = TEMPLATE_DEBUG = False
 
-#not actual database info
-#DATABASE_NAME = 'production'
-#DATABASE_USER = 'app'
-#DATABASE_PASSWORD = 'letmein'
-
 #CSRF_COOKIE_SECURE = True
 #SESSION_COOKIE_SECURE = True
 

@@ -90,16 +90,16 @@ class Recruit(models.Model):
 
 
 class WarcraftlogsAPI(models.Model):
-    id = models.CharField(max_length=20, primary_key=True)
+    name = models.CharField(max_length=20, null=True)
     title = models.CharField(max_length=20)
     owner = models.CharField(max_length=20)
-    start = models.IntegerField()
-    end = models.IntegerField()
+    start = models.BigIntegerField()
+    end = models.BigIntegerField()
     zone = models.IntegerField()
 
     def __str__(self):
         #return self.title
-        return '%s %s' % (self.id, self.title)
+        return '%s %s' % (self.name, self.title)
 
     class Meta:
         verbose_name_plural = "Warcraftlogs"
@@ -116,12 +116,12 @@ class WarcraftlogsURL(models.Model):
 
 
 class RealmStatusAPI(models.Model):
-    id = models.CharField(max_length=200, primary_key=True)
+    name = models.CharField(max_length=200, null=True)
     queue = models.BooleanField(default=False)
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.id
+        return self.name
 
     class Meta:
         verbose_name_plural = "Realm status api"

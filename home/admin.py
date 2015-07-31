@@ -79,7 +79,7 @@ admin.site.register(Recruit, RecruitAdmin)
 
 
 class WarcraftlogsAPIAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'start')
+    list_display = ('name', 'title', 'start')
     ordering = ('start',)
 
 
@@ -94,7 +94,7 @@ admin.site.register(WarcraftlogsURL, WarcraftlogsUrlAdmin)
 
 
 class RealmStatusAPIAdmin(admin.ModelAdmin):
-    list_display = ('id', 'status')
+    list_display = ('name', 'status')
 
 
 admin.site.register(RealmStatusAPI, RealmStatusAPIAdmin)
