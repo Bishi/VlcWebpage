@@ -4690,7 +4690,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   list-style: none;
   /*background-color: #f5f5f5;*/
     background-color: #eee;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
+        background: #FAFAFA;
 }
 
 .breadcrumb > li {
@@ -4701,10 +4702,24 @@ textarea.input-group-sm > .input-group-btn > .btn {
   padding: 0 5px;
   color: #cccccc;
   content: "/\00a0";
+    content: ">\00a0"
 }
 
 .breadcrumb > .active {
   color: #999999;
+}
+
+li a{
+    color: black;
+}
+
+li a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.final_breadcrumb{
+    color: #ADADAD;
 }
 
 .pagination {
