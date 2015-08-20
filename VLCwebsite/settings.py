@@ -214,7 +214,7 @@ PYBB_SMILES = {
     'o.O': 'huh.gif',
     'o_O': 'blink.gif',
     '<.<': 'dry.gif',
-    '8)': 'cool.gif',
+    '*8)*': 'cool.gif',
     'ˇˇ': 'goodgrief.gif',
     '*mad*': 'mad.gif',
     '*lol*': 'laugh.gif',

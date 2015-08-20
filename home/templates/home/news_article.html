@@ -38,7 +38,7 @@
             {% for comment in comments %}
                 <div class="comment_container">
                     <div style="height: 80px; width: 80px;">
-                        {% include 'pybb/avatar2.html' with user=comment.author %}
+                        {% include 'pybb/avatar.html' with user=comment.author %}
                     </div>
                     <div class="comment">
                         <div class="comment_author">

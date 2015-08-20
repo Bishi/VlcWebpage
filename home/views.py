@@ -90,7 +90,7 @@ def index_view(request):
         form = ChatterboxForm()
 
     #raid progress
-    raid_progress = RaidProgress.objects.all()
+    raid_progress = RaidProgress.objects.all().order_by('order')
     raid_bosses = RaidBoss.objects.all()
 
     args = {}
