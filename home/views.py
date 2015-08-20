@@ -157,11 +157,13 @@ def news_article(request, article_id=1):
 
     #edit article form
     instance = get_object_or_404(NewsArticle, id=article_id)
-    form = NewsArticleForm(request.POST or None, instance=instance)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect('/articles/all')
-
+    if "edit_article_form" in request.POST:
+        form = NewsArticleForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/articles/all')
+    else:
+        form = NewsArticleForm(request.POST or None, instance=instance)
     #get comments
     try:
         comments = ArticleComment.objects.all().filter(origin=article_id).order_by('pub_date')
