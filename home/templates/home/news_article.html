@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="article_wrapper_articles">
-        <div class="article one_article">
+        <div class="article one_article" id="article-{{ newsArticle.id }}">
             <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
             <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
             {% if newsArticle.thumbnail %}
@@ -36,7 +36,7 @@
             Comments:
             </div>
             {% for comment in comments %}
-                <div class="comment_container">
+                <div class="comment_container" id="comment-{{ comment.id }}">
                     <div style="height: 80px; width: 80px;">
                         {% include 'pybb/avatar.html' with user=comment.author %}
                     </div>
