@@ -19,9 +19,9 @@
                     <div class="account_header">
                         {% if user.is_authenticated %}
                             <span>Welcome, {{ user.username }}</span>
-                            <span><a href="/account/settings">Settings</a></span>
-                            <span><a href="/forum/profile/edit/">Profile</a></span>
-                            <span><a href="/account/logout?next={{ request.path }}">Logout</a></span>
+                            <span><a href="{% url 'account_settings' %}">Settings</a></span>
+                            <span><a href="{% url 'pybb:edit_profile' %}">Profile</a></span>
+                            <span><a href="{% url 'account_logout' %}?next={{ request.path }}">Logout</a></span>
                         {% else %}
                             <form action="{% url "account_login" %}?next={{ request.path }}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -29,23 +29,23 @@
                                 <span class="login_username">{{ login_form.username }}</span>
                                 <span class="login_password">{{ login_form.password }}</span>
                                 <input type="submit" name="login_form" value="Login" class="login_button">
-                                <span><a href="/account/signup">Register</a></span>
+                                <span><a href="{% url 'account_signup' %}">Register</a></span>
                             </form>
                         {% endif %}
                     </div>
                     <div class="header_text">
-                        <a href="/">Vin la Cvicek work in progress page</a>
+                        <a href="{% url 'home' %}">Vin la Cvicek work in progress page</a>
                     </div>
                 </div>
             {% endblock %}
             <div class="navigation">
                 {% if group == 'Officer' %}
-                    <li><a href="/admin">Admin</a> </li>
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 {% endif %}
-                <li><a href="/apply">Apply</a></li>
-                <li><a href="/articles/all">Articles</a></li>
-                <li><a href="/roster">Roster</a></li>
-                <li><a class="forum_link" href="/forum">Forum</a></li>
+                <li><a href="{% url 'apply' %}">Apply</a></li>
+                <li><a href="{% url 'home:articles' %}">Articles</a></li>
+                <li><a href="{% url 'roster' %}">Roster</a></li>
+                <li><a class="forum_link" href="{% url 'pybb:index' %}">Forum</a></li>
             </div>
             <div class="content">
                 {% block content %}

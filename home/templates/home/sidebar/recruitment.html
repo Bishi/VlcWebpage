@@ -1,5 +1,5 @@
 <div class="sidebar_statement">
-    <a href="/apply/">Recruitment:</a>
+    <a href="{% url 'apply' %}">Recruitment:</a>
 </div>
 <div class="sidebar_content recruitment">
     {% for recruit in recruits %}
@@ -33,6 +33,3 @@
         </div>
     {% endfor %}
 </div>
-{#<div class="apply_button">#}
-{#        <input type="button" name="delete" value="Application info" onclick="location.href = '/apply'" class="submit_button"/>#}
-{#</div>#}

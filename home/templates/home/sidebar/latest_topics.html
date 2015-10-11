@@ -3,7 +3,7 @@
 
 
 <div class="sidebar_statement">
-    <a href="/forum/topic/latest/">Latest forum posts</a>
+    <a href="{% url 'pybb:topic_latest' %}">Latest forum posts</a>
 </div>
 <table class="sidebar_content table topic-list">
     <tbody class="tbody">
@@ -19,16 +19,13 @@
                     {% endwith %}
                 </div>
                 <div class="latest_bottom {% if forloop.last %} last_topic {% endif %}">
-                    <i><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"M d. Y H:i" }}{% endif %}
+                    <i><a href="{% url 'pybb:user' topic.last_post.user %}">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"M d. Y H:i" }}{% endif %}
                 </div>
             </td>
         </tr>
-{#        <td class="topic-last-post">#}
-{#                <i><a href="http://www.vinlacvicek.com/forum/users/{{ topic.last_post.user }}/">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"M d. Y H:i" }}{% endif %}#}
-{#        </td>#}
     {% endfor %}
     </tbody>
 </table>
 <div class="chat_log_in">
-    See all the latest posts <a href="/forum/topic/latest/">here.</a>
+    See all the latest posts <a href="{% url 'pybb:topic_latest' %}">here.</a>
 </div>

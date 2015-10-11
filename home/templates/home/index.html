@@ -5,24 +5,23 @@
 {% load url from future %}
 {% load pybb_tags i18n %}
 {% load staticfiles %}
-{% load url from future %}
 
 {% block content %}
     <div class="article_wrapper">
         {% for newsArticle in newsArticles %}
             <div class="article {% if forloop.last %} last_article {% endif %}">
-                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/"><div>{{ newsArticle.title }}</div></a></div>
-                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                <div class="article_title"><a href="{% url 'home:article' newsArticle.id %}"><div>{{ newsArticle.title }}</div></a></div>
+                <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
                 {% if newsArticle.thumbnail %}
-                    <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
-                        <img src="/media/{{newsArticle.thumbnail}}"/></a>
+                    <div class="article_thumbnail"><a href="{% url 'media' newsArticle.thumbnail %}">
+                        <img src="{% url 'media' newsArticle.thumbnail %}"/></a>
                     </div>
                 {% endif %}
                 <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
                 <p class="comment_count">
                     {% for comment, count in comment_count.items %}
                         {% if comment == newsArticle.id %}
-                            <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment{{ count|pluralize }}</a>
+                            <a href="{% url 'home:article' newsArticle.id %}">{{ count }} comment{{ count|pluralize }}</a>
                         {% endif %}
                     {% endfor %}
                 </p>

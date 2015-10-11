@@ -1,6 +1,6 @@
 <div class="sidebar_statement">
     {% if user.is_authenticated %}
-        <a href="/chatarchive/">Chatterbox:</a>
+        <a href="{% url 'chatterbox_archive' %}">Chatterbox:</a>
     {% else %}
         Chatterbox:
     {% endif %}
@@ -13,7 +13,7 @@
                     {% include 'pybb/avatar2.html' with user=chat.author %}
                 </div>
                 <div class="chat_author">
-                    <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                    <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
                 </div>
             </div>
             <div class="chat_body">
@@ -21,14 +21,14 @@
             </div>
             {% if user.username == chat.author.username or  group == 'Officer' %}
                 <div class="chat_delete">
-                    <a href="/deletechat/{{ chat.id }}">Delete</a>
+                    <a href="{% url 'delete_chatterbox' chat.id %}">Delete</a>
                 </div>
             {% endif %}
         </div>
     {% endfor %}
     {% if user.is_authenticated %}
         <div class="chat_archive">
-            <a href="/chatarchive/">Archive</a>
+            <a href="{% url 'chatterbox_archive' %}">Archive</a>
         </div>
     {% endif %}
 </div>
@@ -47,6 +47,6 @@
     </div>
 {% else %}
     <div class="chat_log_in">
-        <a href="/account/login/">Log in</a> or <a href="/account/signup/">register</a> to use the chat.
+        <a href="{% url 'account_login' %}">Log in</a> or <a href="{% url 'account_signup' %}">register</a> to use the chat.
     </div>
 {% endif %}
