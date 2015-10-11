@@ -133,6 +133,9 @@ class LatestTopicsView(PaginatorMixin, generic.ListView):
     def get_queryset(self):
         qs = Topic.objects.all().select_related()
         qs = perms.filter_topics(self.request.user, qs)
+        if 'search' in self.request.GET:
+            search = self.request.GET['search']
+            qs = qs.filter(name__icontains=search)
         return qs.order_by('-updated', '-id')
 
 

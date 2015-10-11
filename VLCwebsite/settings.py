@@ -143,7 +143,7 @@ with open('c:/Users/i7-2600K/DjangoProjects/database.txt') as f:
             # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
             # 'NAME': 'c:/Users/i7-2600K/DjangoProjectsDev/db_vlc.sqlite3',
             # 'NAME': os.path.join(DB_DIR, 'db_vlc.sqlite3')
-            'NAME':     'vlc_website',
+            'NAME':     'vlc_websiteRESTORED',
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
             'USER':     'Bishi',
             'PASSWORD': f.read().strip(),

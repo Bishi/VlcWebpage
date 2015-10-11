@@ -4,7 +4,7 @@
     <data-source source="LOCAL" name="Django default" uuid="80ffff7c-30db-455a-a143-f8b730c1bb15">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/vlc_website</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/vlc_websiteRESTORED</jdbc-url>
       <user-name>Bishi</user-name>
       <libraries />
     </data-source>

@@ -152,7 +152,7 @@ def get_rank(rank):
     # current_ranks = ['Guild Master', 'Officer', 'Officer Alt',
     #                  'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
     current_ranks = ['Guild Master', 'Officer', 'Officer Alt', 'Trial Officer',
-                     'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
+                     'Member', 'Backup/AFK', 'Trial', 'Alt', 'Slacker', 'Wrong Rank']
     try:
         c_string = current_ranks[rank]
     except:
