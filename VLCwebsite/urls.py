@@ -13,12 +13,12 @@ urlpatterns = patterns('',
     url(r'^articles/', include('home.urls', namespace="home")),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }, name="media"),
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-        }, name="static"),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT, },
+        name="media"),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.STATIC_ROOT, },
+        name="static"),
 
     # aliases to match original django-registration urls
     url(r"^account/", include("account.urls")),

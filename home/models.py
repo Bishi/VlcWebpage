@@ -163,7 +163,7 @@ def get_rank(rank):
 
 def get_class(player_class):
     classes = ['Unknown', 'Warrior', 'Paladin', 'Hunter', 'Rogue',
-               'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock','Monk', 'Druid']
+               'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock', 'Monk', 'Druid']
     try:
         c_string = classes[player_class]
     except:

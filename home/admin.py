@@ -1,10 +1,10 @@
 from django.contrib import admin
-from home.models import NewsArticle, Recruitment, ClassName, ClassRole, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
+from home.models import NewsArticle, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
 from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit, RaidProgress, RaidBoss
 from home.models import Chatterbox
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 
 class NewsArticleAdmin(admin.ModelAdmin):
@@ -127,7 +127,7 @@ class RaidBossInLine(admin.TabularInline):
 class RaidProgressAdmin(admin.ModelAdmin):
     list_display = ('name', 'difficulty', 'tier', '_get_defeated', 'bosses',)
     inlines = [RaidBossInLine]
-    fieldsets = [('Raid Info',          {'fields': ['name', 'difficulty', 'tier', 'order', 'thumbnail']}),]
+    fieldsets = [('Raid Info',          {'fields': ['name', 'difficulty', 'tier', 'order', 'thumbnail']}), ]
 
     #child must be saved before the parent
     def save_model(self, request, obj, form, change):

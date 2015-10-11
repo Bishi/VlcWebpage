@@ -169,7 +169,6 @@ def update_roster(data):
             char_spec = 'Unknown'
             char_item_level = 'Unknown'
 
-
         char_level = member['character']['level']
         char_class = member['character']['class']
         char_rank = member['rank']

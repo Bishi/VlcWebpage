@@ -53,14 +53,13 @@ INSTALLED_APPS = (
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                  # 'C:/Users/i7-2600K/DjangoProjectsDev/VLCwebsite/home/templates',
-                 'C:/Python34/Lib/site-packages/pybb/templates',]
+                 # 'C:/Python34/Lib/site-packages/pybb/templates',
+                 ]
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
-
-
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -95,9 +94,9 @@ ROOT_URLCONF = 'VLCwebsite.urls'
 
 WSGI_APPLICATION = 'VLCwebsite.wsgi.application'
 
-ADMINS = (('Jernej', 'jernej.mrvar@gmail.com'),('Admin', 'admin@vinlacvicek.com'))
+ADMINS = (('Jernej', 'jernej.mrvar@gmail.com'), ('Admin', 'admin@vinlacvicek.com'))
 
-MANAGERS = (('Jernej', 'jernej.mrvar@gmail.com'),('Admin', 'admin@vinlacvicek.com'))
+MANAGERS = (('Jernej', 'jernej.mrvar@gmail.com'), ('Admin', 'admin@vinlacvicek.com'))
 
 #ADMINS =(('Jernej', 'jernej.mrvar@gmail.com'),)
 #MANAGERS =(('Jernej', 'jernej.mrvar@gmail.com'),)
@@ -128,8 +127,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'admin@vinlacvicek.com'
 EMAIL_HOST_PASSWORD = '6b2gbmk8wsqz'
-
-
 
 SITE_ID = 9
 
@@ -227,7 +224,7 @@ PYBB_SMILES = {
     '*zzz*': 'sleep.gif',
 }
 
-PYBB_MARKUP_ENGINES_PATHS ={'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}
+PYBB_MARKUP_ENGINES_PATHS = {'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}
 PYBB_MARKUP = 'bbcode'
 PYBB_PERMISSION_HANDLER = 'pybb.permissions_custom.MyPermissionHandler'
 PYBB_DISABLE_NOTIFICATIONS = True
