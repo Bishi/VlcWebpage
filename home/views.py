@@ -2,8 +2,9 @@ from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, JsonResponse, QueryDict, HttpResponse
-from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
-from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit, RaidProgress, RaidBoss
+from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, CommentForm
+from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox
+from home.models import ArticleComment, Member, Recruit, RaidProgress, RaidBoss
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -226,17 +227,13 @@ def create(request):
 
 @login_required
 def delete_article(request, article_id):
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
     try:
         article = NewsArticle.objects.get(id=article_id)
     except:
         raise Http404("Article does not exist")
 
-    if request.user == article.author or group_name == 'Officer':
+    # can delete the article if user is the author or if user is in the Officer group
+    if request.user == article.author or is_officer(request):
         instance = get_object_or_404(NewsArticle, id=article_id)
         form = DeleteNewsArticleForm(request.POST or None, instance=instance)
         if form.is_valid():
@@ -355,9 +352,13 @@ def chatterbox_archive(request):
 
 @login_required
 def delete_chat(request):
+    """
+    Ajax script delete_chat does the work
+    """
     if request.method == 'DELETE':
         post = Chatterbox.objects.get(pk=int(QueryDict(request.body).get('postpk')))
 
+        # can delete the comment if user is the author or if user is in the Officer group
         if is_officer(request) or request.user == post.author:
             post.delete()
 
@@ -375,9 +376,13 @@ def delete_chat(request):
 
 @login_required
 def delete_comment(request):
+    """
+    Ajax script delete_comment does the work
+    """
     if request.method == 'DELETE':
         post = ArticleComment.objects.get(pk=int(QueryDict(request.body).get('postpk')))
 
+        # can delete the comment if user is the author or if user is in the Officer group
         if is_officer(request) or request.user == post.author:
             post.delete()
 

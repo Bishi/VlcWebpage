@@ -36,8 +36,8 @@
       <file leaf-file-name="scripts.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/static/home/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.48" vertical-offset="899" max-vertical-offset="3400">
-              <caret line="69" column="26" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="26" />
+            <state vertical-scroll-proportion="-9.22" vertical-offset="1562" max-vertical-offset="3400">
+              <caret line="119" column="27" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -75,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.16" vertical-offset="4846" max-vertical-offset="6783">
-              <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.5641026" vertical-offset="5998" max-vertical-offset="6868">
+              <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -87,21 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news_article.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="news_article.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/templates/home/news_article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7155612" vertical-offset="306" max-vertical-offset="1479">
-              <caret line="51" column="56" selection-start-line="51" selection-start-column="56" selection-end-line="51" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home/static/home/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.48" vertical-offset="13653" max-vertical-offset="22202">
-              <caret line="831" column="20" selection-start-line="831" selection-start-column="20" selection-end-line="831" selection-end-column="20" />
+            <state vertical-scroll-proportion="-7.1578946" vertical-offset="306" max-vertical-offset="1479">
+              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -1278,14 +1268,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/static/home/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.48" vertical-offset="899" max-vertical-offset="3400">
-          <caret line="69" column="26" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home/templates/home/sidebar/chatterbox.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.9210525" vertical-offset="0" max-vertical-offset="969">
@@ -1294,21 +1276,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/views.py">
+    <entry file="file://$PROJECT_DIR$/home/templates/home/news_article.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.16" vertical-offset="4846" max-vertical-offset="6783">
-          <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-7.1578946" vertical-offset="306" max-vertical-offset="1479">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/home/news_article.html">
+    <entry file="file://$PROJECT_DIR$/home/static/home/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7155612" vertical-offset="306" max-vertical-offset="1479">
-          <caret line="51" column="56" selection-start-line="51" selection-start-column="56" selection-end-line="51" selection-end-column="56" />
+        <state vertical-scroll-proportion="-9.22" vertical-offset="1562" max-vertical-offset="3400">
+          <caret line="119" column="27" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5641026" vertical-offset="5998" max-vertical-offset="6868">
+          <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
