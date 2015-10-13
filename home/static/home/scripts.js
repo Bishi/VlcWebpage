@@ -85,7 +85,7 @@ $(function() {
         event.preventDefault();
         var post_primary_key = $(this).attr('id').split('-')[2];
         console.log("PK: " + post_primary_key) // sanity check
-        delete_chat(post_primary_key);
+        delete_comment(post_primary_key);
     });
 
     // AJAX for deleting chat
@@ -117,7 +117,7 @@ $(function() {
     };
 
     // AJAX for deleting comments
-    function delete_chat(post_primary_key){
+    function delete_comment(post_primary_key){
         if (confirm('are you sure you want to remove this post?')==true){
             $.ajax({
                 url : "/delete_comment/", // the endpoint
