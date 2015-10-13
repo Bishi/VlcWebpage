@@ -293,36 +293,6 @@ def test_page(request):
     return render_to_response('home/test_page.html', args, context_instance=RequestContext(request))
 
 
-@login_required
-def delete_comment(request, comment_id):
-    #group
-    group_name = 'not_officer'
-    if request.user.groups.filter(name='Officer'):
-        group_name = 'Officer'
-
-    try:
-        comment = ArticleComment.objects.get(id=comment_id)
-    except:
-        raise Http404("Comment does not exist")
-
-    if request.user == comment.author or group_name == 'Officer':
-        instance = get_object_or_404(ArticleComment, id=comment_id)
-        form = DeleteCommentForm(request.POST or None, instance=instance)
-        if form.is_valid():
-            comment.delete()
-            return HttpResponseRedirect('/')
-    else:
-        raise PermissionDenied()
-
-    args = {}
-    args.update(csrf(request))
-
-    args['form'] = form
-    args['comment'] = comment
-
-    return render_to_response('home/delete_comment.html', args, context_instance=RequestContext(request))
-
-
 def roster(request):
     #get list of members
     valid_sorts = {
@@ -386,17 +356,19 @@ def chatterbox_archive(request):
 @login_required
 def delete_chat(request):
     if request.method == 'DELETE':
-        if not is_officer(request):
+        post = Chatterbox.objects.get(pk=int(QueryDict(request.body).get('postpk')))
+
+        if is_officer(request) or request.user == post.author:
+            post.delete()
+
+            response_data = {}
+            response_data.update(csrf(request))
+            response_data = {'msg': 'Post was deleted.'}
+
+            return JsonResponse(response_data)
+        else:
             raise PermissionDenied()
 
-        post = Chatterbox.objects.get(pk=int(QueryDict(request.body).get('postpk')))
-        post.delete()
-
-        response_data = {}
-        response_data.update(csrf(request))
-        response_data = {'msg': 'Post was deleted.'}
-
-        return JsonResponse(response_data)
     else:
         return HttpResponse("What are you even doing here, guy?")
 
@@ -404,16 +376,18 @@ def delete_chat(request):
 @login_required
 def delete_comment(request):
     if request.method == 'DELETE':
-        if not is_officer(request):
+        post = ArticleComment.objects.get(pk=int(QueryDict(request.body).get('postpk')))
+
+        if is_officer(request) or request.user == post.author:
+            post.delete()
+
+            response_data = {}
+            response_data.update(csrf(request))
+            response_data = {'msg': 'Post was deleted.'}
+
+            return JsonResponse(response_data)
+        else:
             raise PermissionDenied()
 
-        post = ArticleComment.objects.get(pk=int(QueryDict(request.body).get('postpk')))
-        post.delete()
-
-        response_data = {}
-        response_data.update(csrf(request))
-        response_data = {'msg': 'Post was deleted.'}
-
-        return JsonResponse(response_data)
     else:
         return HttpResponse("What are you even doing here, guy?")
