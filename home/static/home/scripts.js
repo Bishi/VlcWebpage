@@ -72,19 +72,19 @@ $(function() {
         create_post();
     });
 
-    // Delete post on click
-    $(".chat_delete").on('click', 'a[id^=delete-post-]', function(event){
+    // Delete chat on click
+    $(".chat_delete").on('click', 'a[id^=delete-chat-]', function(event){
         event.preventDefault();
         var post_primary_key = $(this).attr('id').split('-')[2];
         console.log("PK: " + post_primary_key) // sanity check
-        delete_post(post_primary_key);
+        delete_chat(post_primary_key);
     });
 
      // AJAX for deleting
-    function delete_post(post_primary_key){
+    function delete_chat(post_primary_key){
         if (confirm('are you sure you want to remove this post?')==true){
             $.ajax({
-                url : "/delete_post/", // the endpoint
+                url : "/delete_chat/", // the endpoint
                 type : "DELETE", // http method
                 data : { postpk : post_primary_key }, // data sent with the delete request
                 success : function(json) {

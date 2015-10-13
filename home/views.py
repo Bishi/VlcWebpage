@@ -384,7 +384,7 @@ def chatterbox_archive(request):
 
 
 @login_required
-def delete_post(request):
+def delete_chat(request):
     if request.method == 'DELETE':
         if not is_officer(request):
             raise PermissionDenied()

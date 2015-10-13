@@ -8,8 +8,8 @@
     <div class="article_wrapper_articles">
         {% for newsArticle in newsArticles %}
             <div class="article {% if forloop.last %} last_article {% endif %}" id="article-{{ newsArticle.id }}">
-                <div class="article_title"><a href="/articles/get/{{ newsArticle.id }}/">{{ newsArticle.title }}</a></div>
-                <div class="article_author"> Posted by <i><a href="http://www.vinlacvicek.com/forum/users/{{ newsArticle.author }}/">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                <div class="article_title"><a href="{% url 'home:article' newsArticle.id %}">{{ newsArticle.title }}</a></div>
+                <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
                 {% if newsArticle.thumbnail %}
                     <div class="article_thumbnail"><a href="/media/{{newsArticle.thumbnail}}">
                     <img src="/media/{{newsArticle.thumbnail}}"/></a></div>
@@ -17,12 +17,8 @@
                 <p class="article_body">{{ newsArticle.body_html | truncatewords_html:500 | safe }}</p>
                 <p class="comment_count">
                     {% for comment, count in comment_count.items %}
-                        {% if comment == newsArticle.id %}
-                            {% if count == 1 %}
-                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comment</a>
-                            {% else %}
-                                <a href="/articles/get/{{ newsArticle.id }}/">{{ count }} comments</a>
-                            {% endif %}
+                         {% if comment == newsArticle.id %}
+                            <a href="{% url 'home:article' newsArticle.id %}">{{ count }} comment{{ count|pluralize }}</a>
                         {% endif %}
                     {% endfor %}
                 </p>

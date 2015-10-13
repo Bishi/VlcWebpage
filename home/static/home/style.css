@@ -817,13 +817,13 @@ td, th {
     padding: 5px 0 5px 0;
 }
 
-.comment_delete {
+.delete_comment {
     padding: 0 17px 0px 5px;
     font-size: 11px;
     padding-bottom: 5px;
 }
 
-.comment_delete a {
+.delete_comment a {
     text-decoration: none;
     color: #3faace;
 }
