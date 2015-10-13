@@ -364,14 +364,14 @@ def delete_chat(request):
 
             response_data = {}
             response_data.update(csrf(request))
-            response_data = {'msg': 'Post was deleted.'}
+            response_data = {'message': 'Post was deleted.'}
 
             return JsonResponse(response_data)
         else:
             raise PermissionDenied()
 
     else:
-        return HttpResponse("What are you even doing here, guy?")
+        return JsonResponse({'message': 'What are you even doing here, guy?'})
 
 
 @login_required
@@ -388,11 +388,11 @@ def delete_comment(request):
 
             response_data = {}
             response_data.update(csrf(request))
-            response_data = {'msg': 'Post was deleted.'}
+            response_data = {'message': 'Post was deleted.'}
 
             return JsonResponse(response_data)
         else:
             raise PermissionDenied()
 
     else:
-        return HttpResponse("What are you even doing here, guy?")
+        return JsonResponse({'message': 'What are you even doing here, guy?'})

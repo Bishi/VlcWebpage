@@ -32,7 +32,6 @@ urlpatterns = patterns('',
 
     url(r'^captcha/', include('captcha.urls')),
     url(r'^apply/', application_info, name='apply'),
-    url(r'^deletecomment/(?P<comment_id>\d+)/$', delete_comment, name='delete_comment'),
     url(r'^delete_chat/$', delete_chat),
     url(r'^delete_comment/$', delete_comment),
 )
