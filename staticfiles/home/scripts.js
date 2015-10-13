@@ -66,11 +66,12 @@ $(function() {
 
 
     // Submit post on submit
-    $('#post-form').on('submit', function(event){
-        event.preventDefault();
-        console.log("form submitted!")  // sanity check
-        create_post();
-    });
+    // Does nothing yet
+//    $('#post-form').on('submit', function(event){
+//        event.preventDefault();
+//        console.log("form submitted!")  // sanity check
+//        create_post();
+//    });
 
     // Delete chat on click
     $(".chat_delete").on('click', 'a[id^=delete-chat-]', function(event){
@@ -90,7 +91,7 @@ $(function() {
 
     // AJAX for deleting chat
     function delete_chat(post_primary_key){
-        if (confirm('are you sure you want to remove this post?')==true){
+        if (confirm('Are you sure you want to remove this post?')==true){
             $.ajax({
                 url : "/delete_chat/", // the endpoint
                 type : "DELETE", // http method
@@ -118,7 +119,7 @@ $(function() {
 
     // AJAX for deleting comments
     function delete_comment(post_primary_key){
-        if (confirm('are you sure you want to remove this post?')==true){
+        if (confirm('Are you sure you want to remove this post?')==true){
             $.ajax({
                 url : "/delete_comment/", // the endpoint
                 type : "DELETE", // http method
