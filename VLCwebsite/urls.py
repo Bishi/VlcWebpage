@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from home.views import home_redirect
 from django.conf import settings
-from home.views import index_view, delete_chat, roster, chatterbox_archive, application_info, delete_comment
+from home.views import index_view, roster, chatterbox_archive, application_info, delete_chat, delete_comment
 import VLCwebsite.views
 import account.views
 
@@ -34,4 +34,5 @@ urlpatterns = patterns('',
     url(r'^apply/', application_info, name='apply'),
     url(r'^deletecomment/(?P<comment_id>\d+)/$', delete_comment, name='delete_comment'),
     url(r'^delete_chat/$', delete_chat),
+    url(r'^delete_comment/$', delete_comment),
 )

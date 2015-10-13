@@ -49,8 +49,11 @@
                             {{ comment.body }}
                         </div>
                         {% if user.username == comment.author.username or  group == 'Officer' %}
-                            <div class="delete_comment">
+                            <div class="comment_delete">
                                 <a href="/deletecomment/{{ comment.id }}">Delete</a>
+                            </div>
+                            <div class="comment_delete">
+                                <a id="delete-comment-{{comment.id}}">Delete</a>
                             </div>
                         {% endif %}
                     </div>

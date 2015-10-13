@@ -80,7 +80,15 @@ $(function() {
         delete_chat(post_primary_key);
     });
 
-     // AJAX for deleting
+    // Delete comment on click
+    $(".comment_delete").on('click', 'a[id^=delete-comment-]', function(event){
+        event.preventDefault();
+        var post_primary_key = $(this).attr('id').split('-')[2];
+        console.log("PK: " + post_primary_key) // sanity check
+        delete_chat(post_primary_key);
+    });
+
+    // AJAX for deleting chat
     function delete_chat(post_primary_key){
         if (confirm('are you sure you want to remove this post?')==true){
             $.ajax({
@@ -88,8 +96,36 @@ $(function() {
                 type : "DELETE", // http method
                 data : { postpk : post_primary_key }, // data sent with the delete request
                 success : function(json) {
-                    // hide the post
+                   // hide the post
                   $('#chat-'+post_primary_key).hide(); // hide the post on success
+                  console.log("post deletion successful");
+                },
+
+                error : function(xhr,errmsg,err) {
+                    // Show an error
+                    if(err == "FORBIDDEN"){
+                        alert("Forbidden. You aren't supposed to be here, buddy.");
+                    }else{
+                        alert("Oops! Something went wrong. " + err);
+                    }
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                }
+            });
+        } else {
+            return false;
+        }
+    };
+
+    // AJAX for deleting comments
+    function delete_chat(post_primary_key){
+        if (confirm('are you sure you want to remove this post?')==true){
+            $.ajax({
+                url : "/delete_comment/", // the endpoint
+                type : "DELETE", // http method
+                data : { postpk : post_primary_key }, // data sent with the delete request
+                success : function(json) {
+                   // hide the post
+                  $('#comment-'+post_primary_key).hide(); // hide the post on success
                   console.log("post deletion successful");
                 },
 

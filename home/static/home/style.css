@@ -817,15 +817,19 @@ td, th {
     padding: 5px 0 5px 0;
 }
 
-.delete_comment {
+.comment_delete {
     padding: 0 17px 0px 5px;
     font-size: 11px;
     padding-bottom: 5px;
 }
 
-.delete_comment a {
+.comment_delete a {
     text-decoration: none;
     color: #3faace;
+}
+
+.comment_delete a:hover{
+    cursor: pointer;
 }
 
 .comment_form_button {

@@ -399,3 +399,21 @@ def delete_chat(request):
         return JsonResponse(response_data)
     else:
         return HttpResponse("What are you even doing here, guy?")
+
+
+@login_required
+def delete_comment(request):
+    if request.method == 'DELETE':
+        if not is_officer(request):
+            raise PermissionDenied()
+
+        post = ArticleComment.objects.get(pk=int(QueryDict(request.body).get('postpk')))
+        post.delete()
+
+        response_data = {}
+        response_data.update(csrf(request))
+        response_data = {'msg': 'Post was deleted.'}
+
+        return JsonResponse(response_data)
+    else:
+        return HttpResponse("What are you even doing here, guy?")
