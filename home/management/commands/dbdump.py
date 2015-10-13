@@ -4,6 +4,9 @@ import time
 
 
 class Command(BaseCommand):
+        """
+        Creates a .json backup
+        """
         def handle(self, *args, **options):
             timestamp = str(int(time.time()))
             file_name = 'e:\\VLCpage\\DBBackup\\backup_'+timestamp+'.json'

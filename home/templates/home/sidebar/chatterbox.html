@@ -21,7 +21,7 @@
             </div>
             {% if user.username == chat.author.username or  group == 'Officer' %}
                 <div class="chat_delete">
-                    <a href="{% url 'delete_chatterbox' chat.id %}">Delete</a>
+                    <a id="delete-post-{{chat.id}}">Delete</a>
                 </div>
             {% endif %}
         </div>

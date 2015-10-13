@@ -703,6 +703,10 @@ td, th {
     color: #3faace;
 }
 
+.chat_delete a:hover {
+    cursor: pointer;
+}
+
 .chat_body {
     margin-top: 0;
     word-wrap: break-word;

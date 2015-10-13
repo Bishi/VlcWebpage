@@ -1,10 +1,9 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, JsonResponse, QueryDict, HttpResponse
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, ChatterboxDeleteForm, DeleteCommentForm, CommentForm
 from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox, ArticleComment, Member, Recruit, RaidProgress, RaidBoss
-from account.forms import LoginForm, LoginUsernameForm, LoginUsernameFormBase
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
@@ -12,9 +11,14 @@ from pybb.permissions import perms
 from django.shortcuts import get_object_or_404
 from pybb.models import Topic
 from django.template import RequestContext
-from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import permission_required
-from account.conf import settings
+
+
+def is_officer(request):
+    if request.user.groups.filter(name='Officer'):
+        return True
+    else:
+        return False
 
 
 #homepage
@@ -407,3 +411,19 @@ def chatterbox_archive(request):
     args = {'chatterbox': chat}
 
     return render_to_response('home/chat_archive.html', args, context_instance=RequestContext(request))
+
+
+@login_required
+def delete_post(request):
+    if request.method == 'DELETE':
+        if not is_officer(request):
+            raise PermissionDenied()
+
+        post = Chatterbox.objects.get(pk=int(QueryDict(request.body).get('postpk')))
+        post.delete()
+
+        response_data = {'msg': 'Post was deleted.'}
+
+        return JsonResponse(response_data)
+    else:
+        return HttpResponse("What are you even doing here, guy?")

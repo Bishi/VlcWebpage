@@ -10,13 +10,13 @@
 {% block content %}
 <div class="chatterbox_archive">
             {% for chat in chatterbox %}
-                <div class="chat_line">
+                <div class="chat_line" id="chat-{{ chat.id }}">
                     <div class="author_container">
                         <div style="height: 16px; width: 16px;">
                             {% include 'pybb/avatar2.html' with user=chat.author %}
                         </div>
                         <div class="chat_author">
-                            <i><a href="http://www.vinlacvicek.com/forum/users/{{ chat.author }}/">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                            <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
                         </div>
                     </div>
                     <div class="chat_body">
@@ -24,7 +24,7 @@
                     </div>
                     {% if user.username == chat.author.username or  group == 'Officer' %}
                         <div class="chat_delete">
-                            <a href="/deletechat/{{ chat.id }}">Delete</a>
+                            <a id="delete-post-{{chat.id}}">Delete</a>
                         </div>
                     {% endif %}
                 </div>
