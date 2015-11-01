@@ -371,7 +371,7 @@ def delete_chat(request):
             raise PermissionDenied()
 
     else:
-        return JsonResponse({'message': 'What are you even doing here, guy?'})
+        return JsonResponse({'message': 'What are you even doing here?'})
 
 
 @login_required
@@ -395,4 +395,4 @@ def delete_comment(request):
             raise PermissionDenied()
 
     else:
-        return JsonResponse({'message': 'What are you even doing here, guy?'})
+        return JsonResponse({'message': 'What are you even doing here?'})

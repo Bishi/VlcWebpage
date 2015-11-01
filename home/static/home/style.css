@@ -117,10 +117,6 @@ a:visited {
     margin: 10px 0 15px 0;
 }
 
-.article_thumbnail {
-
-}
-
 .article_body{
     line-height: 100%;
 }
@@ -188,7 +184,11 @@ a:visited {
 }
 
 .article_thumbnail img{
-    width: 100%;
+    display: block;
+    max-height: 800px;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .article_body{

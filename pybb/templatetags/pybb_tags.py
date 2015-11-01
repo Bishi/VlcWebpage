@@ -19,6 +19,10 @@ from django.utils import dateformat
 from django.utils.timezone import timedelta
 from django.utils.timezone import now as tznow
 
+
+"""
+THIS FILE IS NOT USED. CHECK home/pybb_tags.py
+"""
 try:
     import pytils
     pytils_enabled = True
