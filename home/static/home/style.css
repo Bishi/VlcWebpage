@@ -181,14 +181,12 @@ a:visited {
 
 .article_thumbnail {
     margin-top: 10px;
+    text-align: center;
 }
 
 .article_thumbnail img{
-    display: block;
     max-height: 800px;
     max-width: 100%;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .article_body{
