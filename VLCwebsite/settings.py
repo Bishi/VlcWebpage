@@ -230,4 +230,4 @@ PYBB_MARKUP_ENGINES_PATHS = {'bbcode': 'pybb.markup.markup_engines.CustomBBCodeP
 PYBB_MARKUP = 'bbcode'
 PYBB_PERMISSION_HANDLER = 'pybb.permissions_custom.MyPermissionHandler'
 PYBB_DISABLE_NOTIFICATIONS = False
-PYBB_DISABLE_SUBSCRIPTIONS = True
+PYBB_DISABLE_SUBSCRIPTIONS = False

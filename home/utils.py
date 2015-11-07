@@ -148,8 +148,9 @@ def update_roster(data):
         #  ò -> &#242 etc;
         char_name = member['character']['name'].encode('ascii', 'xmlcharrefreplace').decode('utf-8')
         tmp_char_name = member['character']['name']
+        #print(char_name)
+
         #  spec and item level
-        #  print(char_name)
         try:
             spec_client = SpecClient()
             spec_data = spec_client.fetch(tmp_char_name)
