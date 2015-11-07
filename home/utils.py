@@ -125,7 +125,7 @@ class SpecClient(object):
         url = 'https://eu.api.battle.net/wow/character/Draenor/'+name+'?fields=talents%2C+items&locale=en_GB&' \
               'apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
 
-        # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
+        #  http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
         url = urllib.parse.urlsplit(url)
         url = list(url)
         url[2] = urllib.parse.quote(url[2])
@@ -145,11 +145,11 @@ def update_roster(data):
     curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified']/1000))
 
     for member in data['members']:
-        #ò -> &#242 etc;
+        #  ò -> &#242 etc;
         char_name = member['character']['name'].encode('ascii', 'xmlcharrefreplace').decode('utf-8')
         tmp_char_name = member['character']['name']
-        #Sspec and item level
-        # print(char_name)
+        #  spec and item level
+        #  print(char_name)
         try:
             spec_client = SpecClient()
             spec_data = spec_client.fetch(tmp_char_name)
@@ -163,7 +163,7 @@ def update_roster(data):
             if char_spec.startswith("/"):
                     char_spec = char_spec[1:]
             char_item_level = str(spec_data['items']['averageItemLevel']) + \
-                              "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
+                                "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
             # print(char_spec)
         except:
             char_spec = 'Unknown'
@@ -174,14 +174,15 @@ def update_roster(data):
         char_rank = member['rank']
         curr_thumbnail = member['character']['thumbnail']
 
-        #check if thumbnail is valid
-        curr_thumbnail = "http://eu.battle.net/static-render/eu/"+curr_thumbnail
-        url = curr_thumbnail[20:]
+        #  check if thumbnail is valid
+        #  used to be "http://eu.battle.net/static-render/eu/" + curr_thumbnail
+        curr_thumbnail = "http://render-api-eu.worldofwarcraft.com/static-render/eu/" + curr_thumbnail
+        url = curr_thumbnail[40:]
         status = check_thumbnail(url)
         if 400 <= status <= 505:
-            curr_thumbnail = "http://media.blizzard.com/wow/icons/36/inv_misc_questionmark.jpg"
+            curr_thumbnail = "/media/class_thumbnails/question.jpg"
 
-        #save new guild member
+        #  save new guild member
         if not Member.objects.filter(name=char_name):
             new_member = Member(name=char_name,
                                 spec=char_spec,
@@ -195,7 +196,7 @@ def update_roster(data):
             new_member.save(force_insert=True)
             print("NEW ENTRY: ", char_name, char_spec, char_class, char_rank, char_level)
 
-        #update guild member if level or rank or spec or thumbnail changed
+        #  update guild member if level or rank or spec or thumbnail changed
         guildie = Member.objects.get(name=char_name)
         if guildie.level != char_level or guildie.rank != char_rank or guildie.spec != char_spec \
                 or guildie.thumbnail != curr_thumbnail or guildie.item_level != char_item_level:
@@ -209,7 +210,7 @@ def update_roster(data):
             guildie.save()
             print("UPDATED:", guildie.name)
 
-    #if the guild member is no longer in the guild -> delete
+    #  if the guild member is no longer in the guild -> delete
     for member in current_roster:
         if str(member) not in str(data['members']).encode('ascii', 'xmlcharrefreplace').decode('utf-8'):
             #logging.debug("DELETED: %s", str(member) )
@@ -220,7 +221,7 @@ def update_roster(data):
 
 
 def check_thumbnail(url):
-    conn = http.client.HTTPConnection("eu.battle.net", 80, timeout=5)
+    conn = http.client.HTTPConnection("render-api-eu.worldofwarcraft.com", 80, timeout=5)
     conn.request("HEAD", url)
     r1 = conn.getresponse()
     return r1.status
