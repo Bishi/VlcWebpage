@@ -392,17 +392,27 @@ def url_replace(request, field, value):
 
     return dict_.urlencode()
 
+
 @register.filter
 def pybb_may_view_topic(topic, user):
 
     return perms.may_view_topic(user, topic)
+
 
 @register.filter
 def pybb_is_superuser(user):
     tmp_user = User.objects.get_by_natural_key(username=user)
     return tmp_user.is_superuser
 
+
 @register.filter
 def pybb_is_moderator(topic, user):
     tmp_user = User.objects.get_by_natural_key(username=user)
     return perms.may_moderate_topic(tmp_user, topic)
+
+
+@register.filter
+def url_replace_pagination(request, field, value):
+    dict_ = request.GET.copy()
+    dict_[field] = value
+    return dict_.urlencode()

@@ -7748,3 +7748,57 @@ div.topic_avatar{
 #mark-all-as-read span{
     margin-right: 10px;
 }
+
+.search_div input[type=text], .form_input textarea {
+    outline: none;
+    padding: 3px 0 3px 3px;
+    /*margin: 5px 1px 3px 0;*/
+    border: 1px solid #DDDDDD;
+    -moz-transition: none 0s ease 0s;
+    max-width: 99.5%;
+    max-height: 1000px;
+    /*width: 99.5%;*/
+    /*font-family: monospace;*/
+    height: 25px;
+}
+
+.search_div input[type=text]:focus, .form_input textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+    max-width: 99.5%;
+    max-height: 1000px;
+    /*width: 99.5%;*/
+}
+
+.submit_search {
+    border: 1px solid darkgray;
+    color: #000000;
+    display: inline-block;
+    /*padding: 3px 10px 3px 10px;*/
+    text-decoration: none;
+    /*border-radius: 3px;*/
+
+    text-transform: uppercase;
+    font-size: 13px;
+    background: #fdfdfd;
+    background: -moz-linear-gradient(top, #fdfdfd 0%, #dcdcdc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#dcdcdc));
+    background: -webkit-linear-gradient(top, #fdfdfd 0%,#dcdcdc 100%);
+    background: -o-linear-gradient(top, #fdfdfd 0%,#dcdcdc 100%);
+    background: -ms-linear-gradient(top, #fdfdfd 0%,#dcdcdc 100%);
+    background: linear-gradient(to bottom, #fdfdfd 0%, #dcdcdc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#efefef',GradientType=0 );
+    font-family: Calibri, sans-serif;
+    /*margin-bottom: 2px;*/
+    vertical-align: bottom;
+    height: 25px;
+}
+
+.submit_search:hover {
+    color: #3faace;
+    cursor: pointer;
+}
+
+.search_div{
+    float: right;
+}

@@ -9,6 +9,10 @@
     {% endwith %}
 {% endblock %}
 
+{% block search %}
+    {% include "pybb/search_by_topic.html" %}
+{% endblock %}
+
 {% block content %}
     <div class="forum">
         <div class="category_name"><a href="/forum/topics/{{ forum.id }}">{{ forum.name }}</a></div>

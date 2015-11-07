@@ -12,6 +12,10 @@
     {% endwith %}
 {% endblock %}
 
+{% block search %}
+    {% include "pybb/search_by_topic.html" %}
+{% endblock %}
+
 {% block content %}
     <div class="forum">
         <h1>{% trans "Last updates in topics" %}</h1>

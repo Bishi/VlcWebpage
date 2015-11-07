@@ -1,19 +1,23 @@
 {% load i18n %}
+{% load pybb_tags %}
 
 {% if is_paginated %}
     <div class="pagination">
         {% if page_obj.has_previous %}
-              <span class="page"><a href="?page={{ page_obj.previous_page_number }}">«</a></span>
+{#              <span class="page"><a href="?page={{ page_obj.previous_page_number }}">«</a></span>#}
+            <span class="page"><a href="?{% url_replace request 'page' page_obj.previous_page_number %}">«</a></span>
         {% endif %}
         {% for page in page_obj.paginator.page_range %}
             {% ifequal page page_obj.number %}
                 <span class="current">{{ page }}</span>
             {% else %}
-                <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>
+{#                <span class="page"><a href="?page={{ page }}">{{ page }}</a></span>#}
+                <span class="page"><a href="?{% url_replace request 'page' page %}">{{ page }}</a></span>
             {% endifequal %}
         {% endfor %}
         {% if page_obj.has_next %}
-            <span class="page"><a href="?page={{ page_obj.next_page_number }}">»</a></span>
+{#            <span class="page"><a href="?page={{ page_obj.next_page_number }}">»</a></span>#}
+            <span class="page"><a href="?{% url_replace request 'page' page_obj.next_page_number %}">»</a></span>
         {% endif %}
     </div>
 {% endif %}
