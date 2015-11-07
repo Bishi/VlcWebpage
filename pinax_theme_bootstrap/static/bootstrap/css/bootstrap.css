@@ -1796,6 +1796,7 @@ fieldset[disabled] .form-control {
 
 textarea.form-control {
   height: auto;
+    max-width: 1080px;
 }
 
 .form-group {

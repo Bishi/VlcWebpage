@@ -70,7 +70,7 @@ class WowTokenApiClient(object):
     interval = 0
 
     def fetch(self, **params):
-        delta = time.time() - RealmStatusClient.interval
+        delta = time.time() - WowTokenApiClient.interval
         if delta < 2:
             time.sleep(2 - delta)
         RealmStatusClient.interval = time.time()
@@ -178,7 +178,7 @@ def update_roster(data):
         curr_thumbnail = "http://eu.battle.net/static-render/eu/"+curr_thumbnail
         url = curr_thumbnail[20:]
         status = check_thumbnail(url)
-        if status == 404:
+        if 400 <= status <= 505:
             curr_thumbnail = "http://media.blizzard.com/wow/icons/36/inv_misc_questionmark.jpg"
 
         #save new guild member

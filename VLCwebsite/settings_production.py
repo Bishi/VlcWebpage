@@ -1,6 +1,7 @@
 from VLCwebsite.settings import *
 
 DEBUG = TEMPLATE_DEBUG = False
+PYBB_DISABLE_NOTIFICATIONS = True
 
 #CSRF_COOKIE_SECURE = True
 #SESSION_COOKIE_SECURE = True
