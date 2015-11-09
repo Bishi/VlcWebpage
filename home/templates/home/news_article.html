@@ -8,7 +8,7 @@
     <div class="article_wrapper_articles">
         <div class="article one_article" id="article-{{ newsArticle.id }}">
             <div class="article_title"><a href="{% url 'home:article' newsArticle.id %}">{{ newsArticle.title }}</a></div>
-            <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+            <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"d. F Y H:i" }}</div>
             {% if newsArticle.thumbnail %}
                 <div class="article_thumbnail"><a href="{% url 'media' newsArticle.thumbnail %}">
                     <img src="{% url 'media' newsArticle.thumbnail %}"/></a>

@@ -11,7 +11,7 @@
         {% for newsArticle in newsArticles %}
             <div class="article {% if forloop.last %} last_article {% endif %}" id="article-{{ newsArticle.id }}">
                 <div class="article_title"><a href="{% url 'home:article' newsArticle.id %}"><div>{{ newsArticle.title }}</div></a></div>
-                <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"F d. Y H:i" }}</div>
+                <div class="article_author"> Posted by <i><a href="{% url 'pybb:user' newsArticle.author %}">{{ newsArticle.author }}</a></i> on {{ newsArticle.pub_date|date:"d. F Y H:i" }}</div>
                 {% if newsArticle.thumbnail %}
                     <div class="article_thumbnail">
                         <a href="{% url 'media' newsArticle.thumbnail %}">
