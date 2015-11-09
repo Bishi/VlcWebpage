@@ -19,7 +19,7 @@
                     {% endwith %}
                 </div>
                 <div class="latest_bottom {% if forloop.last %} last_topic {% endif %}">
-                    <i><a href="{% url 'pybb:user' topic.last_post.user %}">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"M d. Y H:i" }}{% endif %}
+                    <i><a href="{% url 'pybb:user' topic.last_post.user %}">{{ topic.last_post.user }}</a></i> - {% if topic.updated %}{{ topic.updated|date:"d. M. Y H:i" }}{% endif %}
                 </div>
             </td>
         </tr>

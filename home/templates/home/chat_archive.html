@@ -16,7 +16,7 @@
                             {% include 'pybb/avatar2.html' with user=chat.author %}
                         </div>
                         <div class="chat_author">
-                            <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"M d. Y H:i" }}
+                            <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"d. M. Y H:i" }}
                         </div>
                     </div>
                     <div class="chat_body">
