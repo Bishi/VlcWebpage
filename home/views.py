@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, JsonResponse, QueryDict, HttpResponse
+from django.http import HttpResponseRedirect, Http404, JsonResponse, QueryDict
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, CommentForm
 from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox
 from home.models import ArticleComment, Member, Recruit, RaidProgress, RaidBoss
@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from pybb.models import Topic
 from django.template import RequestContext
 from django.contrib.auth.decorators import permission_required
+from django.core.urlresolvers import reverse
 
 
 def is_officer(request):
@@ -90,7 +91,7 @@ def index_view(request):
             instance.author = request.user
             instance.pub_date = timezone.now()
             instance.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('home'))
     else:
         form = ChatterboxForm()
 
@@ -116,7 +117,7 @@ def index_view(request):
 
 
 def home_redirect(response):
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('home'))
 
 
 #/home/all
@@ -166,7 +167,7 @@ def news_article(request, article_id=1):
         form = NewsArticleForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/articles/all')
+            return HttpResponseRedirect(reverse('home:articles'))
     else:
         form = NewsArticleForm(request.POST or None, instance=instance)
     #get comments
@@ -187,7 +188,7 @@ def news_article(request, article_id=1):
             instance.pub_date = timezone.now()
             instance.origin = article_c
             instance.save()
-            return HttpResponseRedirect('/articles/get/%s' % article_id)
+            return HttpResponseRedirect(reverse('home:article', args=(article_id,)))
     else:
         form_comments = CommentForm()
 
@@ -213,7 +214,7 @@ def create(request):
             instance.author = request.user
             instance.pub_date = timezone.now()
             instance.save()
-            return HttpResponseRedirect('/articles/all')
+            return HttpResponseRedirect(reverse('home:articles'))
     else:
         form = NewsArticleForm()
 
@@ -238,7 +239,7 @@ def delete_article(request, article_id):
         form = DeleteNewsArticleForm(request.POST or None, instance=instance)
         if form.is_valid():
             article.delete()
-            return HttpResponseRedirect('/articles/all')
+            return HttpResponseRedirect(reverse('home:articles'))
     else:
         raise PermissionDenied()
 
@@ -249,16 +250,6 @@ def delete_article(request, article_id):
     args['newsArticle'] = article
 
     return render_to_response('home/delete_news_article.html', args, context_instance=RequestContext(request))
-
-
-def like_article(request, article_id):
-    if article_id:
-        article = NewsArticle.objects.get(id=article_id)
-        count = article.likes
-        count += 1
-        article.likes = count
-        article.save()
-    return HttpResponseRedirect('/articles/get/%s' % article_id)
 
 
 def application_info(request):
@@ -277,7 +268,7 @@ def test_page(request):
             instance.author = request.user
             instance.pub_date = timezone.now()
             instance.save()
-            return HttpResponseRedirect('/articles/test')
+            return HttpResponseRedirect(reverse('home:test'))
     else:
         form = ChatterboxForm()
 
