@@ -19,6 +19,8 @@ from django.utils import dateformat
 from django.utils.timezone import timedelta
 from django.utils.timezone import now as tznow
 from django.contrib.auth.models import User
+from django.utils import formats
+from django.utils.dateformat import format, time_format
 from datetime import datetime
 from time import strftime
 
@@ -416,3 +418,17 @@ def url_replace_pagination(request, field, value):
     dict_ = request.GET.copy()
     dict_[field] = value
     return dict_.urlencode()
+
+
+@register.filter(expects_localtime=True, is_safe=False)
+def custom_date(value, arg=None):
+    d_format = "d. M. Y H:i"
+    if arg == "long":
+        d_format = "jS F Y H:i"
+    try:
+        return formats.date_format(value, d_format)
+    except AttributeError:
+        try:
+            return format(value, d_format)
+        except AttributeError:
+            return ''

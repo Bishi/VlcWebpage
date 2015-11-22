@@ -34,7 +34,7 @@
                             <td class="td_spec">{{ member.spec }}</td>
                             <td class="td_class">{{ member.player_class_string }}</td>
                             <td class="td_rank">{{ member.rank_string }}</td>
-                            <td class="td_timestamp">{{ member.timestamp|date:"d. M. Y H:i" }}</td>
+                            <td class="td_timestamp">{{ member.timestamp|custom_date }}</td>
                         </tr>
                     {% endif %}
                 {% endfor %}

@@ -1,3 +1,4 @@
+{% load pybb_tags i18n %}
 <div class="sidebar_statement">
     {% if user.is_authenticated %}
         <a href="{% url 'chatterbox_archive' %}">Chatterbox:</a>
@@ -13,7 +14,7 @@
                     {% include 'pybb/avatar2.html' with user=chat.author %}
                 </div>
                 <div class="chat_author">
-                    <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|date:"d. M. Y H:i" }}
+                    <i><a href="{% url 'pybb:user' chat.author %}">{{ chat.author }}</a></i> on {{ chat.pub_date|custom_date }}
                 </div>
             </div>
             <div class="chat_body">
