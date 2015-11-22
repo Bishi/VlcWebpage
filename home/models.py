@@ -44,31 +44,6 @@ class ArticleComment(models.Model):
         return self.body
 
 
-class ClassName(models.Model):
-    class_name_text = models.CharField(max_length=20)
-    pic = models.FileField(upload_to="class_thumbnails/")
-
-    def __str__(self):
-        return self.class_name_text
-
-
-class ClassRole(models.Model):
-    class_role_text = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.class_role_text
-
-
-class Recruitment(models.Model):
-    class_name = models.ForeignKey(ClassName)
-    class_role = models.ForeignKey(ClassRole)
-    #class_text = models.CharField(max_length=30)
-    #name = class_name.class_name_text
-
-    def __str__(self):
-        return self.class_name.class_name_text
-
-
 class Spec(models.Model):
     spec_name = models.CharField(max_length=20)
     thumbnail = models.FileField(upload_to="class_thumbnails/class_icons/")
