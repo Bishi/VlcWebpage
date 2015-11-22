@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="form_container">
-        <form action="/articles/create/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <form action="{% url 'home:create_article' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
             {% for field in form %}
                 <div class="form_name">{{ field.label_tag }}</div>
                 <div class="form_input">{{ field }}</div>

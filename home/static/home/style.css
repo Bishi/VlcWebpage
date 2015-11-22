@@ -728,6 +728,7 @@ td, th {
     border: 1px solid rgba(166, 166, 166, 0.40);
     padding: 2px 0 2px 2px;
     margin: 0 5px 0 5px;
+    height: 16px;
 }
 
 .submit_button {

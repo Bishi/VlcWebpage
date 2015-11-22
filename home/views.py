@@ -334,9 +334,9 @@ def roster(request):
 
 @login_required
 def chatterbox_archive(request):
-    chat = Chatterbox.objects.all().order_by('pub_date')
+    chat = Chatterbox.objects.all().order_by('-pub_date')
 
-    paginator = Paginator(chat, 25)
+    paginator = Paginator(chat, 25, 5)
     page = request.GET.get('page')
     try:
         chat = paginator.page(page)

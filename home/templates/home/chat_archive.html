@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="chatterbox_archive">
-            {% for chat in chatterbox %}
+            {% for chat in chatterbox reversed %}
                 <div class="chat_line" id="chat-{{ chat.id }}">
                     <div class="author_container">
                         <div style="height: 16px; width: 16px;">
