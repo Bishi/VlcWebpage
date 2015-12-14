@@ -105,7 +105,7 @@ class DefaultPermissionHandler(object):
             # if topic is hidden, only staff may post
             return False
 
-        if topic.closed and (not user.is_staff):
+        if topic.closed and (not user.is_superuser):
             # if topic is closed, only staff may post
             return False
 
