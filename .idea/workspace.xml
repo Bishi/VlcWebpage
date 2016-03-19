@@ -63,6 +63,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings_production.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VLCwebsite/settings_production.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.06014151" vertical-offset="0" max-vertical-offset="848">
+              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-29.92" vertical-offset="51" max-vertical-offset="4046">
+              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -85,24 +105,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pybb_tags.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pybb_tags.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/templatetags/pybb_tags.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3972431" vertical-offset="6109" max-vertical-offset="7480">
+            <state vertical-scroll-proportion="-4.2266665" vertical-offset="6109" max-vertical-offset="7480">
               <caret line="378" column="61" selection-start-line="378" selection-start-column="61" selection-end-line="378" selection-end-column="61" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="permissions_custom.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/permissions_custom.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -112,16 +122,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="901">
               <caret line="12" column="52" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pybb_tags.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybb/templatetags/pybb_tags.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2131" max-vertical-offset="6613">
-              <caret line="115" column="47" selection-start-line="115" selection-start-column="42" selection-end-line="115" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -165,7 +165,6 @@
         <option value="$PROJECT_DIR$/pybb/templates/pybb/search_by_topic.html" />
         <option value="$PROJECT_DIR$/home/templates/home/base_page.html" />
         <option value="$PROJECT_DIR$/pinax_theme_bootstrap/templates/theme_bootstrap/base.html" />
-        <option value="$PROJECT_DIR$/VLCwebsite/settings_production.py" />
         <option value="$PROJECT_DIR$/VLCwebsite/settings.py" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/mail_templates/subscription_email_body.html" />
         <option value="$PROJECT_DIR$/pybb/templates/pybb/mail_templates/subscription_email_subject.html" />
@@ -188,6 +187,7 @@
         <option value="$PROJECT_DIR$/home/utils.py" />
         <option value="$PROJECT_DIR$/home/templates/home/application_info.html" />
         <option value="$PROJECT_DIR$/home/templatetags/pybb_tags.py" />
+        <option value="$PROJECT_DIR$/VLCwebsite/settings_production.py" />
       </list>
     </option>
   </component>
@@ -352,6 +352,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sidebar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLCwebsite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLCwebsite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLCwebsite" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -606,7 +620,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="77" y="59" width="1466" height="1029" extended-state="0" />
+    <frame x="77" y="59" width="1466" height="1029" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -747,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings_production.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="255">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybb/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32102728" vertical-offset="14182" max-vertical-offset="31314">
@@ -821,13 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="1119" max-vertical-offset="2907">
           <caret line="84" column="14" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09357798" vertical-offset="0" max-vertical-offset="4046">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1003,14 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.44" vertical-offset="408" max-vertical-offset="3961">
-          <caret line="0" column="36" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.5466666" vertical-offset="720" max-vertical-offset="6715">
@@ -1031,11 +1023,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home/templatetags/pybb_tags.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3972431" vertical-offset="6109" max-vertical-offset="7480">
+        <state vertical-scroll-proportion="-4.2266665" vertical-offset="6109" max-vertical-offset="7480">
           <caret line="378" column="61" selection-start-line="378" selection-start-column="61" selection-end-line="378" selection-end-column="61" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.44" vertical-offset="408" max-vertical-offset="3961">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.92" vertical-offset="51" max-vertical-offset="4046">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VLCwebsite/settings_production.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06014151" vertical-offset="0" max-vertical-offset="848">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
