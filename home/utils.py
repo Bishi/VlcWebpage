@@ -103,7 +103,7 @@ class RosterClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         RealmStatusClient.interval = time.time()
-        url = 'https://eu.api.battle.net/wow/guild/Draenor/Vin%20la%20Cvicek?fields=members&locale=en_GB&api' \
+        url = 'https://eu.api.battle.net/wow/guild/Draenor/VLC?fields=members&locale=en_GB&api' \
               'key=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
         return self.fetch_json(url)
 

@@ -126,8 +126,8 @@ class Chatterbox(models.Model):
 def get_rank(rank):
     # current_ranks = ['Guild Master', 'Officer', 'Officer Alt',
     #                  'Member', 'Trial', 'Alt', 'Slacker', 'STFU', 'Wrong Rank']
-    current_ranks = ['Guild Master', 'Officer', 'Officer Alt', 'Trial Officer',
-                     'Member', 'Backup/AFK', 'Trial', 'Alt', 'Slacker', 'Wrong Rank']
+    current_ranks = ['Guild Master', 'Officer', 'Officer Alt', 'Recruiting',
+                     'Raider', 'Member', 'Backup/AFK', 'Trial', 'Alt', 'Wrong Rank']
     try:
         c_string = current_ranks[rank]
     except:
