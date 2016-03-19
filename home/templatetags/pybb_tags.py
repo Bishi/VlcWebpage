@@ -376,7 +376,7 @@ def pybb_posted_byT(post, user):
 def unix_to_date(unix):
     unix = unix/1000
     unix = int(unix)
-    time = datetime.fromtimestamp(int(unix)).strftime('%b %d. %Y')
+    time = datetime.fromtimestamp(int(unix)).strftime('%d. %b. %Y')
     return time
 
 #http://stackoverflow.com/questions/2272370/sortable-table-columns-in-django
