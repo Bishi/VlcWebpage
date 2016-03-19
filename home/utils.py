@@ -182,6 +182,9 @@ def update_roster(data):
         status = check_thumbnail(url)
         if 400 <= status <= 505:
             curr_thumbnail = "/media/class_thumbnails/question.jpg"
+            if member['character']['name'] == 'Notrapiu':
+                curr_thumbnail = "http://render-api-eu.worldofwarcraft.com/static-render/" \
+                                 "eu/gnomeregan/217/98074073-avatar.jpg"
 
         #  save new guild member
         if not Member.objects.filter(name=char_name):
