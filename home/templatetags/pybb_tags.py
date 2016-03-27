@@ -84,7 +84,10 @@ class PybbTimeNode(template.Node):
                 tz1 = time.altzone
             else:
                 tz1 = time.timezone
-            tz = tz1 + (util.get_pybb_profile(context['user']).time_zone-1) * 60 * 60
+            if time.localtime().tm_isdst:
+                tz = tz1 + (util.get_pybb_profile(context['user']).time_zone) * 60 * 60
+            else:
+                tz = tz1 + (util.get_pybb_profile(context['user']).time_zone - 1) * 60 * 60
             context_time = context_time + timedelta(seconds=tz)
         if today < context_time < tomorrow:
             return _('Today, %s') % context_time.strftime('%H:%M')
