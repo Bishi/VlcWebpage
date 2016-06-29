@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 import os
 import sys
 
-path = 'C:/Users/i7-2600K/DjangoProjects/VLCwebsite'
+path = 'C:/GitHub/DjangoProjects/VLCwebsite'
 if path not in sys.path:
     sys.path.append(path)
 

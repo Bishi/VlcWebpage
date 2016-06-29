@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 DB_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-PRODUCTION_DIR = 'c:/Users/i7-2600K/DjangoProjects/'
+PRODUCTION_DIR = 'c:/GitHub/DjangoProjects/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
