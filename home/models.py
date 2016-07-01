@@ -45,7 +45,7 @@ class ArticleComment(models.Model):
 
 
 class Spec(models.Model):
-    spec_name = models.CharField(max_length=20)
+    spec_name = models.CharField(max_length=25)
     thumbnail = models.FileField(upload_to="class_thumbnails/class_icons/")
     is_needed = models.BooleanField(default=False)
 
