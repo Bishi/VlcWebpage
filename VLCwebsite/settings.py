@@ -224,6 +224,7 @@ PYBB_SMILES = {
     ';)': 'wink.gif',
     ':)': 'smile.gif',
     '*zzz*': 'sleep.gif',
+    'Kappa': 'kappa.jpg'
 }
 
 PYBB_MARKUP_ENGINES_PATHS = {'bbcode': 'pybb.markup.markup_engines.CustomBBCodeParser'}

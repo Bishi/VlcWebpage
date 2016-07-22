@@ -6,6 +6,7 @@ import json
 import datetime
 import http.client
 import logging
+import ssl
 
 
 class WarcraftlogsClient(object):
@@ -22,7 +23,8 @@ class WarcraftlogsClient(object):
         return self.fetch_json(url)
 
     def fetch_json(self, url):
-        data = urllib.request.urlopen(url)
+        context = ssl._create_unverified_context()
+        data = urllib.request.urlopen(url, context=context)
         str_response = data.readall().decode('utf-8')
         data = json.loads(str_response)
         return data
@@ -74,7 +76,7 @@ class WowTokenApiClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         RealmStatusClient.interval = time.time()
-        url = 'https://wowtoken.info/wowtoken.json'
+        url = 'http://wowtoken.info/wowtoken.json'
         return self.fetch_json(url)
 
     def fetch_json(self, url):
@@ -182,9 +184,6 @@ def update_roster(data):
         status = check_thumbnail(url)
         if 400 <= status <= 505:
             curr_thumbnail = "/media/class_thumbnails/question.jpg"
-            if member['character']['name'] == 'Notrapiu':
-                curr_thumbnail = "http://render-api-eu.worldofwarcraft.com/static-render/" \
-                                 "eu/gnomeregan/217/98074073-avatar.jpg"
 
         #  save new guild member
         if not Member.objects.filter(name=char_name):
