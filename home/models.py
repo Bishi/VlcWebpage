@@ -148,7 +148,7 @@ def get_class(player_class):
 
 
 class Member(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     spec = models.CharField(max_length=40, null=True)
     rank = models.IntegerField()
     rank_string = models.CharField(max_length=20, default="Wrong Rank")
