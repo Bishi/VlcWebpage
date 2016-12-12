@@ -92,7 +92,7 @@ def create_wowtoken(data):
     updated_time = timezone.now()
 
     token_price = WowTokenApi(price=data['update']['EU']['formatted']['buy'],
-                              timestamp=datetime.datetime.fromtimestamp(updated).strftime("%b %d. %Y %H:%M"),
+                              timestamp=datetime.datetime.fromtimestamp(updated).strftime("%d. %b. %Y %H:%M"),
                               pub_date=updated_time)
     token_price.save(force_insert=True)
 
