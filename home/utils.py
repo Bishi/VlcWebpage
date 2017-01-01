@@ -6,6 +6,7 @@ import json
 import datetime
 import http.client
 import logging
+import html
 import ssl
 
 
@@ -111,7 +112,7 @@ class RosterClient(object):
 
     def fetch_json(self, url):
         data = urllib.request.urlopen(url)
-        str_response = data.readall().decode('utf-8')
+        str_response = data.read().decode('utf-8')
         data = json.loads(str_response)
         return data
 
@@ -137,12 +138,15 @@ class SpecClient(object):
 
     def fetch_json(self, url):
         data = urllib.request.urlopen(url)
-        str_response = data.readall().decode('utf-8')
+        str_response = data.read().decode('utf-8')
         data = json.loads(str_response)
         return data
 
 
 def update_roster(data):
+    log = logging.getLogger("utils")
+    log.info("_______________")
+    log.info("Logging started")
     current_roster = Member.objects.all()
     curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified']/1000))
 
@@ -152,26 +156,17 @@ def update_roster(data):
         tmp_char_name = member['character']['name']
         #print(char_name)
 
-        #  spec and item level
+        # spec and item level
         try:
             spec_client = SpecClient()
             spec_data = spec_client.fetch(tmp_char_name)
-            char_spec = ""
-            try:
-                for spec in spec_data['talents']:
-                    char_spec = char_spec + "/" + spec['spec']['name']
-            except:
-                char_spec = spec_data['talents'][0]['spec']['name']
-
-            if char_spec.startswith("/"):
-                    char_spec = char_spec[1:]
+            char_spec = member['character']['spec']['name']
             char_item_level = str(spec_data['items']['averageItemLevel']) + \
                                 "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
-            # print(char_spec)
-        except:
+        except Exception as e:
+            log.error("%s : %s" % (e, tmp_char_name))
             char_spec = 'Unknown'
             char_item_level = 'Unknown'
-
         char_level = member['character']['level']
         char_class = member['character']['class']
         char_rank = member['rank']
@@ -198,6 +193,9 @@ def update_roster(data):
                                 thumbnail=curr_thumbnail)
             new_member.save(force_insert=True)
             print("NEW ENTRY: ", char_name, char_spec, char_class, char_rank, char_level)
+            log.info("NEW ENTRY: %s %s %s %s %s" % (char_name, char_spec,
+                                                    char_class, char_rank,
+                                                    char_level))
 
         #  update guild member if level or rank or spec or thumbnail changed
         guildie = Member.objects.get(name=char_name)
@@ -212,15 +210,18 @@ def update_roster(data):
             guildie.thumbnail = curr_thumbnail
             guildie.save()
             print("UPDATED:", guildie.name)
+            log.info("UPDATED: %s" % guildie.name)
 
     #  if the guild member is no longer in the guild -> delete
     for member in current_roster:
         if str(member) not in str(data['members']).encode('ascii', 'xmlcharrefreplace').decode('utf-8'):
             #logging.debug("DELETED: %s", str(member) )
-            print('DELETED: ', member)
+            print("DELETED: ", member)
+            log.info("DELETED: %s" % member)
             member.delete()
 
     print("Last updated: ", curr_timestamp)
+    log.info("Last updated: %s" % curr_timestamp)
 
 
 def check_thumbnail(url):

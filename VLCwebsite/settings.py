@@ -142,11 +142,11 @@ with open(PRODUCTION_DIR + 'database.txt') as f:
             # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
             # 'NAME': 'c:/Users/i7-2600K/DjangoProjectsDev/db_vlc.sqlite3',
             # 'NAME': os.path.join(DB_DIR, 'db_vlc.sqlite3')
-            'NAME':     'vlc_websiteRESTORED',
+            'NAME':     'vlc_website',
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
             'USER':     'Bishi',
             'PASSWORD': f.read().strip(),
-            'HOST':     'localhost',
+            'HOST':     '192.168.1.10',
             'PORT':     '5432'
         }
     }
@@ -232,3 +232,50 @@ PYBB_MARKUP = 'bbcode'
 PYBB_PERMISSION_HANDLER = 'pybb.permissions_custom.MyPermissionHandler'
 PYBB_DISABLE_NOTIFICATIONS = False
 PYBB_DISABLE_SUBSCRIPTIONS = False
+
+#logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'null': {
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
+        'roster': {
+            'level':'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': PRODUCTION_DIR + "logs/roster.log",
+            'maxBytes': 500000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
+        'console':{
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['console'],
+            'propagate': True,
+            'level':'WARN',
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'utils': {
+            'handlers': ['roster'],
+            'level': 'INFO',
+        },
+    }
+}
