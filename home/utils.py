@@ -193,9 +193,7 @@ def update_roster(data):
                                 thumbnail=curr_thumbnail)
             new_member.save(force_insert=True)
             print("NEW ENTRY: ", char_name, char_spec, char_class, char_rank, char_level)
-            log.info("NEW ENTRY: %s %s %s %s %s" % (char_name, char_spec,
-                                                    char_class, char_rank,
-                                                    char_level))
+            log.info("NEW ENTRY: %s %s %s %s %s" % (char_name, char_spec, char_class, char_rank, char_level))
 
         #  update guild member if level or rank or spec or thumbnail changed
         guildie = Member.objects.get(name=char_name)
