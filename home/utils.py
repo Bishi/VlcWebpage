@@ -1,4 +1,4 @@
-from home.models import WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI, WowTokenApi, Member
+from home.models import WarcraftlogsAPI, RealmStatusAPI, WowTokenApi, Member, EndpointUrl
 from django.utils import timezone
 import time
 import urllib.request
@@ -6,85 +6,65 @@ import json
 import datetime
 import http.client
 import logging
-import html
 import ssl
 
 
-class WarcraftlogsClient(object):
+class EndpointsClient(object):
     interval = 0
 
-    def fetch(self, **params):
-        delta = time.time() - WarcraftlogsClient.interval
+    def fetch(self, url):
+        delta = time.time() - EndpointsClient.interval
         if delta < 2:
             time.sleep(2 - delta)
-        WarcraftlogsClient.interval = time.time()
-        #url = "https://www.warcraftlogs.com/v1/reports/guild/Vin%20la%20Cvicek/Mazrigos/EU?api_key=38f09f38b5243079de0c15cb5eded39a"
-        url = WarcraftlogsURL.objects.all()
-        url = url.values_list('url')[0][0]
         return self.fetch_json(url)
 
     def fetch_json(self, url):
         context = ssl._create_unverified_context()
         data = urllib.request.urlopen(url, context=context)
-        str_response = data.readall().decode('utf-8')
+        str_response = data.read().decode('utf-8')
         data = json.loads(str_response)
         return data
+
+
+class SpecClient(object):
+    interval = 0
+
+    def fetch(self, name):
+        delta = time.time() - SpecClient.interval
+        if delta < 2:
+            time.sleep(2 - delta)
+        SpecClient.interval = time.time()
+        character_url = EndpointUrl.objects.all().get(name="Character").url
+        character_fields = EndpointUrl.objects.all().get(name="Character Fields").url
+        api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").url
+        url = character_url + name + character_fields + api_key
+
+        # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
+        url = urllib.parse.urlsplit(url)
+        url = list(url)
+        url[2] = urllib.parse.quote(url[2])
+        url = urllib.parse.urlunsplit(url)
+        fetch = EndpointsClient()
+        return fetch.fetch_json(url)
 
 
 def create_logs(data):
-    log_list = WarcraftlogsAPI.objects.all()
+    WarcraftlogsAPI.objects.all().delete()
 
     for log in data:
-        log_id = log["id"]
-        tmp = log_list.values_list('id').filter(name=log_id)
-        if not tmp:
-            log = WarcraftlogsAPI(name=log["id"], title=log["title"], owner=log["owner"],
-                                  start=log["start"], end=log["end"], zone=log["zone"])
-            log.save(force_insert=True)
-
-
-class RealmStatusClient(object):
-    interval = 0
-
-    def fetch(self, **params):
-        delta = time.time() - RealmStatusClient.interval
-        if delta < 2:
-            time.sleep(2 - delta)
-        RealmStatusClient.interval = time.time()
-        url = 'http://eu.battle.net/api/wow/realm/status?realms=Draenor'
-        return self.fetch_json(url)
-
-    def fetch_json(self, url):
-        data = urllib.request.urlopen(url)
-        str_response = data.readall().decode('utf-8')
-        data = json.loads(str_response)
-        return data
+        log = WarcraftlogsAPI(name=log["id"], title=log["title"], owner=log["owner"],
+                              start=log["start"], end=log["end"], zone=log["zone"])
+        log.save(force_insert=True)
 
 
 def create_status(data):
     RealmStatusAPI.objects.all().delete()
 
-    maz_status = RealmStatusAPI(name=data['realms'][0]['name'], queue=data['realms'][0]['queue'],
-                                status=data['realms'][0]['status'])
-    maz_status.save(force_insert=True)
-
-
-class WowTokenApiClient(object):
-    interval = 0
-
-    def fetch(self, **params):
-        delta = time.time() - WowTokenApiClient.interval
-        if delta < 2:
-            time.sleep(2 - delta)
-        RealmStatusClient.interval = time.time()
-        url = 'http://wowtoken.info/wowtoken.json'
-        return self.fetch_json(url)
-
-    def fetch_json(self, url):
-        data = urllib.request.urlopen(url)
-        str_response = data.readall().decode('utf-8')
-        data = json.loads(str_response)
-        return data
+    for realm in data['realms']:
+        if realm['name'] == 'Draenor':
+            status = RealmStatusAPI(name=realm['name'], queue=realm['queue'],
+                                    status=realm['status'])
+            status.save(force_insert=True)
 
 
 def create_wowtoken(data):
@@ -98,63 +78,18 @@ def create_wowtoken(data):
     token_price.save(force_insert=True)
 
 
-class RosterClient(object):
-    interval = 0
-
-    def fetch(self, **params):
-        delta = time.time() - RealmStatusClient.interval
-        if delta < 2:
-            time.sleep(2 - delta)
-        RealmStatusClient.interval = time.time()
-        url = 'https://eu.api.battle.net/wow/guild/Draenor/VLC?fields=members&locale=en_GB&api' \
-              'key=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
-        return self.fetch_json(url)
-
-    def fetch_json(self, url):
-        data = urllib.request.urlopen(url)
-        str_response = data.read().decode('utf-8')
-        data = json.loads(str_response)
-        return data
-
-
-class SpecClient(object):
-    interval = 0
-
-    def fetch(self, name, **params):
-        delta = time.time() - RealmStatusClient.interval
-        if delta < 2:
-            time.sleep(2 - delta)
-        RealmStatusClient.interval = time.time()
-        url = 'https://eu.api.battle.net/wow/character/Draenor/'+name+'?fields=talents%2C+items&locale=en_GB&' \
-              'apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r'
-
-        #  http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
-        url = urllib.parse.urlsplit(url)
-        url = list(url)
-        url[2] = urllib.parse.quote(url[2])
-        url = urllib.parse.urlunsplit(url)
-
-        return self.fetch_json(url)
-
-    def fetch_json(self, url):
-        data = urllib.request.urlopen(url)
-        str_response = data.read().decode('utf-8')
-        data = json.loads(str_response)
-        return data
-
-
 def update_roster(data):
     log = logging.getLogger("utils")
     log.info("_______________")
     log.info("Logging started")
     current_roster = Member.objects.all()
-    curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified']/1000))
+    curr_timestamp = datetime.datetime.fromtimestamp(int(data['lastModified'] / 1000))
 
     for member in data['members']:
-        #  ò -> &#242 etc;
+        # ò -> &#242 etc;
         char_name = member['character']['name'].encode('ascii', 'xmlcharrefreplace').decode('utf-8')
         tmp_char_name = member['character']['name']
-        #print(char_name)
+        # print(char_name)
 
         # spec and item level
         try:
@@ -162,7 +97,7 @@ def update_roster(data):
             spec_data = spec_client.fetch(tmp_char_name)
             char_spec = member['character']['spec']['name']
             char_item_level = str(spec_data['items']['averageItemLevel']) + \
-                                "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
+                              "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
         except Exception as e:
             log.error("%s : %s" % (e, tmp_char_name))
             char_spec = 'Unknown'
@@ -210,10 +145,9 @@ def update_roster(data):
             print("UPDATED:", guildie.name)
             log.info("UPDATED: %s" % guildie.name)
 
-    #  if the guild member is no longer in the guild -> delete
+    # if the guild member is no longer in the guild -> delete
     for member in current_roster:
         if str(member) not in str(data['members']).encode('ascii', 'xmlcharrefreplace').decode('utf-8'):
-            #logging.debug("DELETED: %s", str(member) )
             print("DELETED: ", member)
             log.info("DELETED: %s" % member)
             member.delete()

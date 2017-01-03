@@ -90,6 +90,17 @@ class WarcraftlogsURL(models.Model):
         verbose_name_plural = "Warcraftlogs url"
 
 
+class EndpointUrl(models.Model):
+    name = models.CharField(max_length=200)
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Endpoint Urls"
+
+
 class RealmStatusAPI(models.Model):
     name = models.CharField(max_length=200, null=True)
     queue = models.BooleanField(default=False)

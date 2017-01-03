@@ -2,6 +2,7 @@ from django.contrib import admin
 from home.models import NewsArticle, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
 from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit, RaidProgress, RaidBoss
 from home.models import Chatterbox
+from home.models import EndpointUrl
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -91,6 +92,13 @@ class WarcraftlogsUrlAdmin(admin.ModelAdmin):
 
 
 admin.site.register(WarcraftlogsURL, WarcraftlogsUrlAdmin)
+
+
+class EndpointUrlAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(EndpointUrl, EndpointUrlAdmin)
 
 
 class RealmStatusAPIAdmin(admin.ModelAdmin):

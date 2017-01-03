@@ -1,9 +1,13 @@
 from django.core.management.base import BaseCommand
+from home.models import EndpointUrl
 from home import utils
 
 
 class Command(BaseCommand):
         def handle(self, *args, **options):
-                client = utils.RealmStatusClient()
-                data = client.fetch()
-                utils.create_status(data)
+            status = EndpointUrl.objects.all().get(name="Realm Status").url
+            api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").url
+            status += api_key
+            client = utils.EndpointsClient()
+            data = client.fetch(status)
+            utils.create_status(data)
