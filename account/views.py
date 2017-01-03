@@ -9,7 +9,7 @@ from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.edit import FormView
 
 from django.contrib import auth, messages
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 
 from account import signals
@@ -102,7 +102,7 @@ class SignupView(FormView):
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 
@@ -227,7 +227,7 @@ class SignupView(FormView):
         return hookset.get_user_credentials(self.form, self.identifier_field)
 
     def get_code(self):
-        return self.request.REQUEST.get("code")
+        return self.request.POST.get("code", self.request.GET.get("code"))
 
     def is_open(self):
         if self.signup_code:
@@ -291,11 +291,11 @@ class LoginView(FormView):
             return [self.template_name]
 
     def get_context_data(self, **kwargs):
-        ctx = kwargs
+        ctx = super(LoginView, self).get_context_data(**kwargs)
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 
@@ -356,7 +356,7 @@ class LogoutView(TemplateResponseMixin, View):
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 
@@ -389,7 +389,7 @@ class ConfirmEmailView(TemplateResponseMixin, View):
     def get(self, *args, **kwargs):
         self.object = self.get_object()
         ctx = self.get_context_data()
-        return self.render_to_response(ctx)
+        return self.render(ctx)
 
     def post(self, *args, **kwargs):
         self.object = confirmation = self.get_object()
@@ -398,7 +398,7 @@ class ConfirmEmailView(TemplateResponseMixin, View):
         redirect_url = self.get_redirect_url()
         if not redirect_url:
             ctx = self.get_context_data()
-            return self.render_to_response(ctx)
+            return self.render(ctx)
         if self.messages.get("email_confirmed"):
             messages.add_message(
                 self.request,
@@ -501,11 +501,11 @@ class ChangePasswordView(FormView):
         return redirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
-        ctx = kwargs
+        ctx = super(ChangePasswordView, self).get_context_data(**kwargs)
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 
@@ -537,7 +537,7 @@ class PasswordResetView(FormView):
     token_generator = default_token_generator
 
     def get_context_data(self, **kwargs):
-        context = kwargs
+        context = super(PasswordResetView, self).get_context_data(**kwargs)
         if self.request.method == "POST" and "resend" in self.request.POST:
             context["resend"] = True
         return context
@@ -595,16 +595,16 @@ class PasswordResetTokenView(FormView):
         ctx = self.get_context_data(form=form)
         if not self.check_token(self.get_user(), self.kwargs["token"]):
             return self.token_fail()
-        return self.render_to_response(ctx)
+        return self.render(ctx)
 
     def get_context_data(self, **kwargs):
-        ctx = kwargs
+        ctx = super(PasswordResetTokenView, self).get_context_data(**kwargs)
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "uidb36": self.kwargs["uidb36"],
             "token": self.kwargs["token"],
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 
@@ -712,11 +712,12 @@ class SettingsView(LoginRequiredMixin, FormView):
                 self.primary_email_address.change(email, confirm=confirm)
 
     def get_context_data(self, **kwargs):
-        ctx = kwargs
+        # ctx = kwargs
+        ctx = super(SettingsView, self).get_context_data(**kwargs)
         redirect_field_name = self.get_redirect_field_name()
         ctx.update({
             "redirect_field_name": redirect_field_name,
-            "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),
+            "redirect_field_value": self.request.POST.get(redirect_field_name, self.request.GET.get(redirect_field_name, "")),
         })
         return ctx
 

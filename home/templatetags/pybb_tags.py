@@ -8,7 +8,8 @@ import warnings
 
 from django import template
 from django.core.cache import cache
-from django.template.base import get_library, InvalidTemplateLibrary, TemplateSyntaxError, TOKEN_BLOCK
+from django.template.library import InvalidTemplateLibrary, TemplateSyntaxError
+from django.template.base import TOKEN_BLOCK
 from django.template.defaulttags import LoadNode, CommentNode, IfNode
 from django.template.smartif import Literal
 from django.utils.safestring import mark_safe
@@ -271,41 +272,6 @@ def load_perms_filters():
             elif len(inspect.getargspec(method[1]).args) == 2: # only user should be passed to permission method
                 register.filter('%s%s' % ('pybb_', method[0]), partial_no_param(method[0], perms))
 load_perms_filters()
-
-# next two tags copied from https://bitbucket.org/jaap3/django-friendly-tag-loader
-
-@register.tag
-def friendly_load(parser, token):
-    """
-    Tries to load a custom template tag set. Non existing tag libraries
-    are ignored.
-
-    This means that, if used in conjuction with ``if_has_tag``, you can try to
-    load the comments template tag library to enable comments even if the
-    comments framework is not installed.
-
-    For example::
-
-        {% load friendly_loader %}
-        {% friendly_load comments webdesign %}
-
-        {% if_has_tag render_comment_list %}
-            {% render_comment_list for obj %}
-        {% else %}
-            {% if_has_tag lorem %}
-                {% lorem %}
-            {% endif_has_tag %}
-        {% endif_has_tag %}
-    """
-    bits = token.contents.split()
-    for taglib in bits[1:]:
-        try:
-            lib = get_library(taglib)
-            parser.add_library(lib)
-        except InvalidTemplateLibrary:
-            pass
-    return LoadNode()
-
 
 @register.tag
 def if_has_tag(parser, token):

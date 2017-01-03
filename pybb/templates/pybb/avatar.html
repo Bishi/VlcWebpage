@@ -1,5 +1,4 @@
 {% load pybb_tags %}
-{% friendly_load thumbnail %}
 <div class="avatar">
     {% pybb_get_profile user=user as user_profile %}
     <a href="{{ user_profile.get_absolute_url }}">

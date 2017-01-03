@@ -1,11 +1,11 @@
 from django.utils import timezone
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, JsonResponse, QueryDict
 from home.forms import NewsArticleForm, DeleteNewsArticleForm, ChatterboxForm, CommentForm
 from home.models import NewsArticle, WarcraftlogsAPI, WowTokenApi, Chatterbox
 from home.models import ArticleComment, Member, Recruit, RaidProgress, RaidBoss
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import PermissionDenied
 from pybb.permissions import perms
@@ -113,7 +113,7 @@ def index_view(request):
     args['raid_progress'] = raid_progress
     args['raid_bosses'] = raid_bosses
 
-    return render_to_response('home/index.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/index.html', args)
 
 
 def home_redirect(response):
@@ -152,7 +152,7 @@ def news_articles(request):
 
     args = {'newsArticles': articles, 'comment_count': comment_count}
 
-    return render_to_response('home/news_articles.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/news_articles.html', args)
 
 
 def news_article(request, article_id=1):
@@ -201,7 +201,7 @@ def news_article(request, article_id=1):
     args['comments'] = comments
     args['comment_number'] = comment_number
 
-    return render_to_response('home/news_article.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/news_article.html', args)
 
 
 @permission_required('home.add_newsarticle', raise_exception=True)
@@ -223,7 +223,7 @@ def create(request):
 
     args['form'] = form
 
-    return render_to_response('home/create_news_article.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/create_news_article.html', args)
 
 
 @login_required
@@ -249,11 +249,11 @@ def delete_article(request, article_id):
     args['form'] = form
     args['newsArticle'] = article
 
-    return render_to_response('home/delete_news_article.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/delete_news_article.html', args)
 
 
 def application_info(request):
-    return render_to_response('home/application_info.html', context_instance=RequestContext(request))
+    return render(request, 'home/application_info.html')
 
 
 def test_page(request):
@@ -278,7 +278,7 @@ def test_page(request):
     args['form'] = form
     args['chatterbox'] = chatterbox
 
-    return render_to_response('home/test_page.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/test_page.html', args)
 
 
 def roster(request):
@@ -320,7 +320,7 @@ def roster(request):
 
     args = {'members': members}
 
-    return render_to_response('home/roster.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/roster.html', args)
 
 
 @login_required
@@ -338,7 +338,7 @@ def chatterbox_archive(request):
 
     args = {'chatterbox': chat}
 
-    return render_to_response('home/chat_archive.html', args, context_instance=RequestContext(request))
+    return render(request, 'home/chat_archive.html', args)
 
 
 @login_required

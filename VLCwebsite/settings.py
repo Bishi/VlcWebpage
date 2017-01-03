@@ -23,9 +23,9 @@ with open(PRODUCTION_DIR + 'secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-TEMPLATE_DEBUG = True
+# TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'www.vinlacvicek.com', 'vinlacvicek.com']
 
@@ -52,15 +52,46 @@ INSTALLED_APPS = (
     'precise_bbcode',
 )
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
-                 # 'C:/Users/i7-2600K/DjangoProjectsDev/VLCwebsite/home/templates',
-                 # 'C:/Python34/Lib/site-packages/pybb/templates',
-                 ]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                "account.context_processors.account",
+                'django.template.context_processors.request',
+                'pinax_theme_bootstrap.context_processors.theme',
+                'pybb.context_processors.processor',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.debug',
+                'home.custom_context.home_context',
+            ],
+            'loaders': [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+            ],
+            'builtins':[
+                'home.templatetags.pybb_tags',
+            ],
+            'debug': True,
+        },
+    }
+]
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+# TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
+#                  # 'C:/Users/i7-2600K/DjangoProjectsDev/VLCwebsite/home/templates',
+#                  # 'C:/Python34/Lib/site-packages/pybb/templates',
+#                  ]
+
+# TEMPLATE_LOADERS = (
+#     'django.template.loaders.filesystem.Loader',
+#     'django.template.loaders.app_directories.Loader',
+# )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -75,18 +106,18 @@ MIDDLEWARE_CLASSES = (
     'pybb.middleware.PybbMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    "account.context_processors.account",
-    'django.core.context_processors.request',
-    'pinax_theme_bootstrap.context_processors.theme',
-    'pybb.context_processors.processor',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.debug',
-    'home.custom_context.home_context',
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'django.contrib.auth.context_processors.auth',
+#     "account.context_processors.account",
+#     'django.core.context_processors.request',
+#     'pinax_theme_bootstrap.context_processors.theme',
+#     'pybb.context_processors.processor',
+#     'django.core.context_processors.i18n',
+#     'django.core.context_processors.media',
+#     'django.core.context_processors.static',
+#     'django.core.context_processors.debug',
+#     'home.custom_context.home_context',
+# )
 
 #AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTH_PROFILE_MODULE = 'pybb.Profile'
@@ -246,7 +277,7 @@ LOGGING = {
     'handlers': {
         'null': {
             'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
+            'class':'logging.NullHandler',
         },
         'roster': {
             'level':'INFO',

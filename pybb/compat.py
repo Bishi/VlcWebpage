@@ -88,3 +88,6 @@ def get_paginator_class():
         pure_pagination = False
 
     return Paginator, pure_pagination
+
+def get_related_model_class(parent_model, field_name):
+    return parent_model._meta.get_field(field_name).related_model

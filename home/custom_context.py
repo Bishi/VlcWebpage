@@ -1,7 +1,7 @@
 from home.models import RealmStatusAPI
 from django.contrib.auth import views as auth_view
 from django.http import HttpResponseRedirect
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from account.conf import settings
 from account.forms import LoginUsernameFormBase
 
