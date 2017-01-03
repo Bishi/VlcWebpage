@@ -67,3 +67,4 @@ lib64
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+*/migrations/*
