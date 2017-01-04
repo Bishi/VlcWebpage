@@ -1,0 +1,58 @@
+[
+{
+  "fields": {
+    "url": "&apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r",
+    "name": "Blizzard Api Key"
+  },
+  "pk": 1,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "https://eu.api.battle.net/wow/guild/Draenor/VLC?fields=members&locale=en_GB",
+    "name": "Guild"
+  },
+  "pk": 2,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "https://eu.api.battle.net/wow/character/Draenor/",
+    "name": "Character"
+  },
+  "pk": 3,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "http://wowtoken.info/wowtoken.json",
+    "name": "WoW Token"
+  },
+  "pk": 4,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "https://eu.api.battle.net/wow/realm/status?locale=en_GB",
+    "name": "Realm Status"
+  },
+  "pk": 5,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "http://www.warcraftlogs.com/v1/reports/guild/VLC/Draenor/EU?api_key=38f09f38b5243079de0c15cb5eded39a",
+    "name": "Warcraftlogs"
+  },
+  "pk": 6,
+  "model": "home.endpointurl"
+},
+{
+  "fields": {
+    "url": "?fields=talents%2C+items&locale=en_GB",
+    "name": "Character Fields"
+  },
+  "pk": 7,
+  "model": "home.endpointurl"
+}
+]

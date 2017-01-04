@@ -1,0 +1,149 @@
+{
+
+    "lastModified": 1483533562000,
+    "name": "VLC",
+    "realm": "Draenor",
+    "battlegroup": "Embuscade / Hinterhalt",
+    "level": 25,
+    "side": 1,
+    "achievementPoints": 1115,
+    "members": [
+        {
+            "character": {
+                "name": "Test",
+                "realm": "Draenor",
+                "battlegroup": "Embuscade / Hinterhalt",
+                "class": 8,
+                "race": 10,
+                "gender": 0,
+                "level": 110,
+                "achievementPoints": 18270,
+                "thumbnail": "draenor/99/86603107-avatar.jpg",
+                "spec": {
+                    "name": "Unholy",
+                    "role": "DPS",
+                    "backgroundImage": "bg-deathknight-unholy",
+                    "icon": "spell_deathknight_unholypresence",
+                    "description": "A master of death and decay, spreading infection and controlling undead minions to do her bidding.",
+                    "order": 2
+                },
+                "guild": "VLC",
+                "guildRealm": "Draenor",
+                "lastModified": 0
+            },
+            "rank": 7
+        },
+        {
+            "character": {
+                "name": "Test3",
+                "realm": "Draenor",
+                "battlegroup": "Embuscade / Hinterhalt",
+                "class": 8,
+                "race": 10,
+                "gender": 0,
+                "level": 110,
+                "achievementPoints": 18270,
+                "thumbnail": "draenor/99/86603107-avatar.jpg",
+                "spec": {
+                    "name": "Unholy",
+                    "role": "DPS",
+                    "backgroundImage": "bg-deathknight-unholy",
+                    "icon": "spell_deathknight_unholypresence",
+                    "description": "A master of death and decay, spreading infection and controlling undead minions to do her bidding.",
+                    "order": 2
+                },
+                "guild": "VLC",
+                "guildRealm": "Draenor",
+                "lastModified": 0
+            },
+            "rank": 7
+        },
+        {
+            "character": {
+                "name": "Test4",
+                "realm": "Draenor",
+                "battlegroup": "Embuscade / Hinterhalt",
+                "class": 8,
+                "race": 10,
+                "gender": 0,
+                "level": 110,
+                "achievementPoints": 18270,
+                "thumbnail": "draenor/99/86603107-avatar.jpg",
+                "spec": {
+                    "name": "Unholy",
+                    "role": "DPS",
+                    "backgroundImage": "bg-deathknight-unholy",
+                    "icon": "spell_deathknight_unholypresence",
+                    "description": "A master of death and decay, spreading infection and controlling undead minions to do her bidding.",
+                    "order": 2
+                },
+                "guild": "VLC",
+                "guildRealm": "Draenor",
+                "lastModified": 0
+            },
+            "rank": 7
+        },
+        {
+            "character": {
+                "name": "Test5",
+                "realm": "Draenor",
+                "battlegroup": "Embuscade / Hinterhalt",
+                "class": 8,
+                "race": 10,
+                "gender": 0,
+                "level": 110,
+                "achievementPoints": 18270,
+                "thumbnail": "draenor/99/86603107-avatar.jpg",
+                "spec": {
+                    "name": "Unholy",
+                    "role": "DPS",
+                    "backgroundImage": "bg-deathknight-unholy",
+                    "icon": "spell_deathknight_unholypresence",
+                    "description": "A master of death and decay, spreading infection and controlling undead minions to do her bidding.",
+                    "order": 2
+                },
+                "guild": "VLC",
+                "guildRealm": "Draenor",
+                "lastModified": 0
+            },
+            "rank": 7
+        },
+        {
+            "character": {
+                "name": "Test6",
+                "realm": "Draenor",
+                "battlegroup": "Embuscade / Hinterhalt",
+                "class": 8,
+                "race": 10,
+                "gender": 0,
+                "level": 110,
+                "achievementPoints": 18270,
+                "thumbnail": "draenor/99/86603107-avatar.jpg",
+                "spec": {
+                    "name": "Unholy",
+                    "role": "DPS",
+                    "backgroundImage": "bg-deathknight-unholy",
+                    "icon": "spell_deathknight_unholypresence",
+                    "description": "A master of death and decay, spreading infection and controlling undead minions to do her bidding.",
+                    "order": 2
+                },
+                "guild": "VLC",
+                "guildRealm": "Draenor",
+                "lastModified": 0
+            },
+            "rank": 7
+        }
+
+    ],
+    "emblem": {
+        "icon": 152,
+        "iconColor": "ffb1b8b1",
+        "iconColorId": 14,
+        "border": 0,
+        "borderColor": "ffffffff",
+        "borderColorId": 14,
+        "backgroundColor": "ffb1002e",
+        "backgroundColorId": 5
+    }
+
+}
