@@ -17,4 +17,5 @@ class UpdateRosterTestCase(TestCase):
         # "Testing utils.update_roster"
 
         utils.update_roster(UpdateRosterTestCase.data)
-        self.assertEqual(5, Member.objects.all().count())
+        members = Member.objects.values_list('name', flat=True)
+        self.assertListEqual(list(members), ['Test', 'Test3', 'Test4', 'Test5', 'Test6'])
