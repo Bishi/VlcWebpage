@@ -1,14 +1,14 @@
 from django.test import TestCase
 from home.models import Member
 from home import utils
-import json
 from VLCwebsite.settings import BASE_DIR
+import json
 
 # Create your tests here.
 
 
 class UpdateRosterTestCase(TestCase):
-    fixtures = ['endpoint.json', 'member.json']
+    fixtures = ['member.json']
 
     guild_json_data = open(BASE_DIR + "/home/fixtures/guild_data.json")
     data = json.load(guild_json_data)
