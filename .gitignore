@@ -43,6 +43,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 env/
+env110/
 
 *.pyc
 *.pyo
@@ -68,3 +69,5 @@ lib64
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 */migrations/*
+activate.bat
+deactivate.bat
