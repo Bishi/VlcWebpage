@@ -21,7 +21,7 @@ class EndpointsClient(object):
     def fetch_json(self, url):
         context = ssl._create_unverified_context()
         data = urllib.request.urlopen(url, context=context)
-        str_response = data.read().decode('utf-8')
+        str_response = data.readall().decode('utf-8')
         data = json.loads(str_response)
         return data
 

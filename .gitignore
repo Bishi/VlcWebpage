@@ -44,6 +44,8 @@ Temporary Items
 .apdisk
 env/
 env110/
+env35/
+__pyache__/
 
 *.pyc
 *.pyo
@@ -71,3 +73,7 @@ lib64
 */migrations/*
 activate.bat
 deactivate.bat
+runserver.bat
+requirementsNew3.txt
+requirementsNew2.txt
+requirementsNew.txt
