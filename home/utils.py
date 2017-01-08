@@ -1,5 +1,6 @@
 from home.models import WarcraftlogsAPI, RealmStatusAPI, WowTokenApi, Member, EndpointUrl
 from django.utils import timezone
+from urllib.error import HTTPError
 import time
 import urllib.request
 import json
@@ -34,10 +35,11 @@ class SpecClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         SpecClient.interval = time.time()
-        character_url = EndpointUrl.objects.all().get(name="Character").url
-        character_fields = EndpointUrl.objects.all().get(name="Character Fields").url
-        api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").url
-        url = character_url + name + character_fields + api_key
+        character_url = EndpointUrl.objects.all().get(name="Character Url").value
+        realm = EndpointUrl.objects.all().get(name="Realm Name").value
+        character_fields = EndpointUrl.objects.all().get(name="Character Fields").value
+        api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").value
+        url = character_url + "/" + realm + "/" + name + character_fields + api_key
 
         # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
         url = urllib.parse.urlsplit(url)
@@ -59,9 +61,10 @@ def create_logs(data):
 
 def create_status(data):
     RealmStatusAPI.objects.all().delete()
+    current_realm = EndpointUrl.objects.all().get(name="Realm Name").value
 
     for realm in data['realms']:
-        if realm['name'] == 'Draenor':
+        if realm['name'] == current_realm:
             status = RealmStatusAPI(name=realm['name'], queue=realm['queue'],
                                     status=realm['status'])
             status.save(force_insert=True)
@@ -91,6 +94,9 @@ def update_roster(data):
         tmp_char_name = member['character']['name']
         # print(char_name)
 
+        char_spec = 'Unknown'
+        char_item_level = 'Unknown'
+
         # spec and item level
         try:
             spec_client = SpecClient()
@@ -98,17 +104,24 @@ def update_roster(data):
             char_spec = member['character']['spec']['name']
             char_item_level = str(spec_data['items']['averageItemLevel']) + \
                               "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
+        except KeyboardInterrupt:
+            log.info("Logging interrupted by user.")
+            raise
+        except HTTPError:
+            log.info("Could not find character %s" % tmp_char_name)
+            print("Could not find character %s" % tmp_char_name)
+        except KeyError as e:
+            log.info("Could not find some info for character %s : %s" % (tmp_char_name, e))
+            print("Could not find some info for character %s : %s" % (tmp_char_name, e))
         except Exception as e:
             log.error("%s : %s" % (e, tmp_char_name))
-            char_spec = 'Unknown'
-            char_item_level = 'Unknown'
+            print("ERROR %s %s" % (tmp_char_name.encode("UTF-8"), e))
         char_level = member['character']['level']
         char_class = member['character']['class']
         char_rank = member['rank']
         curr_thumbnail = member['character']['thumbnail']
 
         #  check if thumbnail is valid
-        #  used to be "http://eu.battle.net/static-render/eu/" + curr_thumbnail
         curr_thumbnail = "http://render-api-eu.worldofwarcraft.com/static-render/eu/" + curr_thumbnail
         url = curr_thumbnail[40:]
         status = check_thumbnail(url)

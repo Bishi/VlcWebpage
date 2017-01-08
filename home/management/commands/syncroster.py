@@ -5,9 +5,13 @@ from home import utils
 
 class Command(BaseCommand):
         def handle(self, *args, **options):
-            roster = EndpointUrl.objects.all().get(name="Guild").url
-            api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").url
-            roster += api_key
+            guild_url = EndpointUrl.objects.all().get(name="Guild Url").value
+            realm_name = EndpointUrl.objects.all().get(name="Realm Name").value
+            guild_name = EndpointUrl.objects.all().get(name="Guild Name").value
+            guild_field = EndpointUrl.objects.all().get(name="Guild Fields").value
+            api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").value
+
+            url = guild_url + "/" + realm_name + "/" + guild_name + guild_field + api_key
             client = utils.EndpointsClient()
-            data = client.fetch(roster)
+            data = client.fetch(url)
             utils.update_roster(data)

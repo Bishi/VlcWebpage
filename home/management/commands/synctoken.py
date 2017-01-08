@@ -5,7 +5,9 @@ from home import utils
 
 class Command(BaseCommand):
         def handle(self, *args, **options):
-            status = EndpointUrl.objects.all().get(name="WoW Token").url
+            token = EndpointUrl.objects.all().get(name="WoW Token").value
+
+            url = token
             client = utils.EndpointsClient()
-            data = client.fetch(status)
+            data = client.fetch(url)
             utils.create_wowtoken(data)

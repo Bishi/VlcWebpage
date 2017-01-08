@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import NewsArticle, WarcraftlogsAPI, WarcraftlogsURL, RealmStatusAPI
+from home.models import NewsArticle, WarcraftlogsAPI, RealmStatusAPI
 from home.models import ArticleComment, WowTokenApi, Member, Spec, Recruit, RaidProgress, RaidBoss
 from home.models import Chatterbox
 from home.models import EndpointUrl
@@ -87,15 +87,8 @@ class WarcraftlogsAPIAdmin(admin.ModelAdmin):
 admin.site.register(WarcraftlogsAPI, WarcraftlogsAPIAdmin)
 
 
-class WarcraftlogsUrlAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(WarcraftlogsURL, WarcraftlogsUrlAdmin)
-
-
 class EndpointUrlAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'value')
 
 
 admin.site.register(EndpointUrl, EndpointUrlAdmin)

@@ -80,19 +80,9 @@ class WarcraftlogsAPI(models.Model):
         verbose_name_plural = "Warcraftlogs"
 
 
-class WarcraftlogsURL(models.Model):
-    url = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.url
-
-    class Meta:
-        verbose_name_plural = "Warcraftlogs url"
-
-
 class EndpointUrl(models.Model):
     name = models.CharField(max_length=200)
-    url = models.CharField(max_length=200)
+    value = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name

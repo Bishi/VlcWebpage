@@ -1,58 +1,90 @@
 [
 {
   "fields": {
-    "url": "&apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r",
-    "name": "Blizzard Api Key"
+    "name": "Blizzard Api Key",
+    "value": "&apikey=83e6zvj6pxysg9cnr6euybwk4wfkm76r"
   },
-  "pk": 1,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 1
 },
 {
   "fields": {
-    "url": "https://eu.api.battle.net/wow/guild/Draenor/VLC?fields=members&locale=en_GB",
-    "name": "Guild"
+    "name": "Guild Url",
+    "value": "https://eu.api.battle.net/wow/guild"
   },
-  "pk": 2,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 2
 },
 {
   "fields": {
-    "url": "https://eu.api.battle.net/wow/character/Draenor/",
-    "name": "Character"
+    "name": "Character Url",
+    "value": "https://eu.api.battle.net/wow/character"
   },
-  "pk": 3,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 3
 },
 {
   "fields": {
-    "url": "http://wowtoken.info/wowtoken.json",
-    "name": "WoW Token"
+    "name": "WoW Token",
+    "value": "http://wowtoken.info/wowtoken.json"
   },
-  "pk": 4,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 4
 },
 {
   "fields": {
-    "url": "https://eu.api.battle.net/wow/realm/status?locale=en_GB",
-    "name": "Realm Status"
+    "name": "Realm Status",
+    "value": "https://eu.api.battle.net/wow/realm/status?locale=en_GB"
   },
-  "pk": 5,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 5
 },
 {
   "fields": {
-    "url": "http://www.warcraftlogs.com/v1/reports/guild/VLC/Draenor/EU?api_key=38f09f38b5243079de0c15cb5eded39a",
-    "name": "Warcraftlogs"
+    "name": "Warcraftlogs",
+    "value": "http://www.warcraftlogs.com/v1/reports/guild"
   },
-  "pk": 6,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 6
 },
 {
   "fields": {
-    "url": "?fields=talents%2C+items&locale=en_GB",
-    "name": "Character Fields"
+    "name": "Character Fields",
+    "value": "?fields=talents%2C+items&locale=en_GB"
   },
-  "pk": 7,
-  "model": "home.endpointurl"
+  "model": "home.endpointurl",
+  "pk": 7
+},
+{
+  "fields": {
+    "name": "Realm Name",
+    "value": "Draenor"
+  },
+  "model": "home.endpointurl",
+  "pk": 8
+},
+{
+  "fields": {
+    "name": "Guild Name",
+    "value": "VLC"
+  },
+  "model": "home.endpointurl",
+  "pk": 9
+},
+{
+  "fields": {
+    "name": "Warcraftlogs Api Key",
+    "value": "EU?api_key=38f09f38b5243079de0c15cb5eded39a"
+  },
+  "model": "home.endpointurl",
+  "pk": 10
+},
+{
+  "fields": {
+    "name": "Guild Fields",
+    "value": "?fields=members&locale=en_GB"
+  },
+  "model": "home.endpointurl",
+  "pk": 11
 }
 ]

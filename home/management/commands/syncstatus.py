@@ -5,9 +5,10 @@ from home import utils
 
 class Command(BaseCommand):
         def handle(self, *args, **options):
-            status = EndpointUrl.objects.all().get(name="Realm Status").url
-            api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").url
-            status += api_key
+            status = EndpointUrl.objects.all().get(name="Realm Status").value
+            api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").value
+
+            url = status + api_key
             client = utils.EndpointsClient()
-            data = client.fetch(status)
+            data = client.fetch(url)
             utils.create_status(data)
