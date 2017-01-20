@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^roster/$', roster, name='roster'),
     url(r'^chatarchive/$', chatterbox_archive, name='chatterbox_archive'),
 
-    url(r'^captcha/', include('captcha.urls')),
+    # url(r'^captcha/', include('captcha.urls')),
     url(r'^apply/', application_info, name='apply'),
     url(r'^delete_chat/$', delete_chat),
     url(r'^delete_comment/$', delete_comment),

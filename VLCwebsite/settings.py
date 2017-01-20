@@ -29,8 +29,11 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'www.vinlacvicek.com', 'vinlacvicek.com']
 
+with open(PRODUCTION_DIR + 'captchaPublic.txt') as f:
+    RECAPTCHA_PUBLIC_KEY = f.read().strip()
 
-# Application definition
+with open(PRODUCTION_DIR + 'captchaPrivate.txt') as f:
+    RECAPTCHA_PRIVATE_KEY = f.read().strip()
 
 INSTALLED_APPS = (
     'django.contrib.admin',
