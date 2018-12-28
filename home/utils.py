@@ -3,11 +3,14 @@ from django.utils import timezone
 from urllib.error import HTTPError
 import time
 import urllib.request
+import urllib.parse
 import json
 import datetime
 import http.client
 import logging
 import ssl
+from django.conf import settings
+from urllib import  parse
 
 
 class EndpointsClient(object):
@@ -80,6 +83,17 @@ def create_wowtoken(data):
                               pub_date=updated_time)
     token_price.save(force_insert=True)
 
+def get_access_token():
+    with open(settings.PRODUCTION_DIR + 'clientSecret.txt') as f:
+        secret = f.read().strip()
+
+    client = "c9ad5f0302b24fc2b96ccb3709b287c6"
+    url = "https://us.battle.net/oauth/token"
+    data = parse.urlencode({'grant_type': 'client_credentials', 'client_id': client, 'client_secret': secret}).encode()
+    data = urllib.request.urlopen(url, data)
+    str_response = data.readall().decode('utf-8')
+    data = json.loads(str_response)
+    return (data['access_token'])
 
 def update_roster(data):
     log = logging.getLogger("utils")
