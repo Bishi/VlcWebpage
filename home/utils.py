@@ -85,10 +85,12 @@ def create_status(data):
 
 def create_wowtoken(data):
     WowTokenApi.objects.all().delete()
-    updated = data['update']['EU']['raw']['updated']
+    updated = data['last_updated_timestamp'] / 1000
     updated_time = timezone.now()
+    price = str(data['price']).split("0000")[0]
+    price = "{:,}g".format(int(price))
 
-    token_price = WowTokenApi(price=data['update']['EU']['formatted']['buy'],
+    token_price = WowTokenApi(price=price,
                               timestamp=datetime.datetime.fromtimestamp(updated).strftime("%d. %b. %Y %H:%M"),
                               pub_date=updated_time)
     token_price.save(force_insert=True)
@@ -136,7 +138,6 @@ def update_roster(data):
 
         #  check if thumbnail is valid
         curr_thumbnail = "https://render-eu.worldofwarcraft.com/character/" + curr_thumbnail
-        print(curr_thumbnail)
         url = curr_thumbnail.split(".com")[1]
         status = check_thumbnail(url)
         if 400 <= status <= 505:
