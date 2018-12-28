@@ -85,13 +85,13 @@ def create_status(data):
 
 def create_wowtoken(data):
     WowTokenApi.objects.all().delete()
-    updated = data['last_updated_timestamp'] / 1000
+    updated = str(data['last_updated_timestamp'])[:-3]
     updated_time = timezone.now()
-    price = str(data['price']).split("0000")[0]
+    price = str(data['price'])[:-4]
     price = "{:,}g".format(int(price))
 
     token_price = WowTokenApi(price=price,
-                              timestamp=datetime.datetime.fromtimestamp(updated).strftime("%d. %b. %Y %H:%M"),
+                              timestamp=datetime.datetime.fromtimestamp(int(updated)).strftime("%d. %b. %Y %H:%M"),
                               pub_date=updated_time)
     token_price.save(force_insert=True)
 
