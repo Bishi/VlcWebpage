@@ -95,6 +95,7 @@ def create_wowtoken(data):
                               pub_date=updated_time)
     token_price.save(force_insert=True)
 
+
 def update_roster(data):
     log = logging.getLogger("utils")
     log.info("_______________")
