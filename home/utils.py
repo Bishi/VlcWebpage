@@ -3,14 +3,13 @@ from django.utils import timezone
 from urllib.error import HTTPError
 import time
 import urllib.request
-import urllib.parse
 import json
 import datetime
 import http.client
 import logging
 import ssl
 from django.conf import settings
-from urllib import  parse
+from urllib import parse
 
 
 class EndpointsClient(object):
@@ -38,12 +37,11 @@ class SpecClient(object):
         if delta < 2:
             time.sleep(2 - delta)
         SpecClient.interval = time.time()
-        character_url = EndpointUrl.objects.all().get(name="Character Url").value
+        base_url = EndpointUrl.objects.all().get(name="Base Url").value
         realm = EndpointUrl.objects.all().get(name="Realm Name").value
         character_fields = EndpointUrl.objects.all().get(name="Character Fields").value
-        api_key = EndpointUrl.objects.all().get(name="Blizzard Api Key").value
-        url = character_url + "/" + realm + "/" + name + character_fields + api_key
-
+        api_key_new = get_access_token()
+        url = base_url + "character/" + realm + "/" + name + character_fields + "&access_token=" + api_key_new
         # http://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen
         url = urllib.parse.urlsplit(url)
         url = list(url)
@@ -51,6 +49,18 @@ class SpecClient(object):
         url = urllib.parse.urlunsplit(url)
         fetch = EndpointsClient()
         return fetch.fetch_json(url)
+
+def get_access_token():
+    with open(settings.PRODUCTION_DIR + 'clientSecret.txt') as f:
+        secret = f.read().strip()
+
+    client = "c9ad5f0302b24fc2b96ccb3709b287c6"
+    url = "https://us.battle.net/oauth/token"
+    data = parse.urlencode({'grant_type': 'client_credentials', 'client_id': client, 'client_secret': secret}).encode()
+    data = urllib.request.urlopen(url, data)
+    str_response = data.readall().decode('utf-8')
+    data = json.loads(str_response)
+    return (data['access_token'])
 
 
 def create_logs(data):
@@ -83,18 +93,6 @@ def create_wowtoken(data):
                               pub_date=updated_time)
     token_price.save(force_insert=True)
 
-def get_access_token():
-    with open(settings.PRODUCTION_DIR + 'clientSecret.txt') as f:
-        secret = f.read().strip()
-
-    client = "c9ad5f0302b24fc2b96ccb3709b287c6"
-    url = "https://us.battle.net/oauth/token"
-    data = parse.urlencode({'grant_type': 'client_credentials', 'client_id': client, 'client_secret': secret}).encode()
-    data = urllib.request.urlopen(url, data)
-    str_response = data.readall().decode('utf-8')
-    data = json.loads(str_response)
-    return (data['access_token'])
-
 def update_roster(data):
     log = logging.getLogger("utils")
     log.info("_______________")
@@ -118,7 +116,7 @@ def update_roster(data):
             char_spec = member['character']['spec']['name']
             if spec_data['items']['averageItemLevel'] < 500:
                 char_item_level = str(spec_data['items']['averageItemLevel']) + \
-                                 "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
+                                  "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
         except KeyboardInterrupt:
             log.info("Logging interrupted by user.")
             raise
@@ -138,11 +136,11 @@ def update_roster(data):
 
         #  check if thumbnail is valid
         curr_thumbnail = "https://render-eu.worldofwarcraft.com/character/" + curr_thumbnail
-        url = curr_thumbnail[40:]
+        print(curr_thumbnail)
+        url = curr_thumbnail.split(".com")[1]
         status = check_thumbnail(url)
         if 400 <= status <= 505:
             curr_thumbnail = "/media/class_thumbnails/question.jpg"
-
         #  save new guild member
         if not Member.objects.filter(name=char_name):
             new_member = Member(name=char_name,
@@ -185,7 +183,7 @@ def update_roster(data):
 
 
 def check_thumbnail(url):
-    conn = http.client.HTTPConnection("render-api-eu.worldofwarcraft.com", 80, timeout=5)
+    conn = http.client.HTTPConnection("render-eu.worldofwarcraft.com", 80, timeout=5)
     conn.request("HEAD", url)
     r1 = conn.getresponse()
     return r1.status
