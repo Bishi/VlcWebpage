@@ -102,8 +102,9 @@ def update_roster(data):
             spec_client = SpecClient()
             spec_data = spec_client.fetch(tmp_char_name)
             char_spec = member['character']['spec']['name']
-            char_item_level = str(spec_data['items']['averageItemLevel']) + \
-                              "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
+            if spec_data['items']['averageItemLevel'] < 500:
+                char_item_level = str(spec_data['items']['averageItemLevel']) + \
+                                 "(" + str(spec_data['items']['averageItemLevelEquipped']) + ")"
         except KeyboardInterrupt:
             log.info("Logging interrupted by user.")
             raise
@@ -122,7 +123,7 @@ def update_roster(data):
         curr_thumbnail = member['character']['thumbnail']
 
         #  check if thumbnail is valid
-        curr_thumbnail = "http://render-api-eu.worldofwarcraft.com/static-render/eu/" + curr_thumbnail
+        curr_thumbnail = "https://render-eu.worldofwarcraft.com/character/" + curr_thumbnail
         url = curr_thumbnail[40:]
         status = check_thumbnail(url)
         if 400 <= status <= 505:
